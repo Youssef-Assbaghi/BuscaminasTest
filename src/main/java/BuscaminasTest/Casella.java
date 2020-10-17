@@ -17,6 +17,8 @@ public class Casella {
 	
 	public boolean getBandera() {return this.bandera;}
 	public boolean getEstado() {return this.estado;}
+	public boolean getMina() {return this.esMina;}
+	public int getminasCercanas() {return this.minasCercanas;}
 	public void cambiarBandera() {
 		if (!estado && !bandera)  bandera=true;
 		else bandera=false;
