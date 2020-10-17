@@ -18,14 +18,12 @@ public class Casella {
 	public boolean getBandera() {return this.bandera;}
 	public void cambiarBandera() {
 		
-		if (estado==false) {
-			if(bandera==false) {
-				bandera=true;
-			}else {
-				bandera=false;
-			}
+		if (estado==false) 
+			if(bandera==false) bandera=true;
+			else bandera=false;
+				
 			
-		}
-
+			
+		
 	}
 }
