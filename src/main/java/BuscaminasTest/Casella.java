@@ -16,14 +16,16 @@ public class Casella {
 	public void setEstado(boolean state) {estado=state;}
 	
 	public boolean getBandera() {return this.bandera;}
+	public boolean getEstado() {return this.estado;}
 	public void cambiarBandera() {
-		
-		if (estado==false) 
-			if(bandera==false) bandera=true;
-			else bandera=false;
-				
-			
-			
-		
+		if (!estado && !bandera)  bandera=true;
+		else bandera=false;
+
+	}
+
+	public void abrirCasella() {
+		if (!estado && !bandera) {
+			estado=true;
+		}
 	}
 }
