@@ -45,7 +45,9 @@ public class CasellaTest {
 		assertFalse("Una vez cambia de bandera al volver a darle se debe quitar y devolver False", casilla.getBandera());
 		
 		casilla.setEstado(true);
-		assertFalse("Si la mina es abierta no se puede abrir la casilla", casilla.getBandera());
+		casilla.setBandera(true);
+		casilla.cambiarBandera();
+		assertFalse("Si la mina es abierta no se puede poner bandera a la casilla", casilla.getBandera());
 		
 	}
 	
