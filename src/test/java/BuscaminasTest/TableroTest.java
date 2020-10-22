@@ -23,7 +23,17 @@ public class TableroTest {
 	
 	@Test
 	public void testPonerBandera() {
-		fail("Not yet implemented");
+		
+		//Al empezar no puede haber una bandera en ninguna casilla.
+		
+		Tablero tablero = new Tablero(20,20);
+		assertFalse(tablero.casillas[1][1].getBandera());
+		
+		tablero.casillas[1][1].cambiarBandera();
+		
+		assertTrue(tablero.casillas[1][1].getBandera());
+		
+		
 	}
 
 }
