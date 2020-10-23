@@ -33,6 +33,12 @@ public class TableroTest {
 		
 		assertTrue(tablero.casillas[1][1].getBandera());
 		
+		//No se puede poner una bandera a una casilla abierta.
+		
+		tablero.casillas[1][2].abrirCasella();
+		tablero.casillas[1][2].cambiarBandera();
+		assertFalse(tablero.casillas[1][1].getBandera());
+		
 		
 	}
 
