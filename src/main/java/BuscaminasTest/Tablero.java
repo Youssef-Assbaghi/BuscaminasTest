@@ -21,8 +21,8 @@ public final class Tablero {
 	
 	public void ponerBandera(int fila, int columna);
 	
-	public int getNFiles() {return nFilas; }
+	public int getNFilas() {return nFilas; }
 	
-	public int getNColumnes() {return nColumnas; }
+	public int getNColumnas() {return nColumnas; }
 
 }
