@@ -4,16 +4,28 @@ public final class Tablero {
 	
 	private int nFilas;
 	private int nColumnas;
-	Casella casillas [][];
+	private Casella[][] casillas; // Debe ser privada y acceder mediante getters y setters
 	
 	public Tablero(int filas,int columnas) {
 		// TODO Auto-generated constructor stub
 		nFilas=filas;
 		nColumnas=columnas;
 		casillas=new Casella[nFilas][nColumnas];
+
 	}
 	
-	public void generarTablero() {}
+	public Casella getCasillas(int fila, int columna) {
+		return casillas[fila][columna];
+	}
+	
+	public void generarTablero() {
+		for (Casella[] casellas : casillas)
+			for (int i = 0; i < casellas.length; i++) 
+				casellas[i]=new Casella();
+			
+		
+	
+	}
 		
 	public void pintarTablero() {}
 	
