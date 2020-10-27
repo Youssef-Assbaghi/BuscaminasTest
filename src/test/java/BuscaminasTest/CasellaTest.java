@@ -43,6 +43,8 @@ public class CasellaTest {
 		assertEquals("Al setear no puede tener minas cercanas negativas",0, casilla.getminasCercanas());
 		casilla = new Casella(8,false,true,false);
 		assertEquals("Al setear no puede tener mas de 8 minas cercanas",8, casilla.getminasCercanas());
+		casilla = new Casella(5,false,false,false);
+		assertFalse("Al setear no puede tener mas de 8 minas cercanas", casilla.getBandera());
 		
 		
 		
@@ -83,14 +85,31 @@ public class CasellaTest {
 		casilla.abrirCasella();
 		assertTrue("Como  ya se ha abierto no se puede volver a abrir", casilla.getEstado());
 		
+		casilla.setBandera(true);
+		casilla.abrirCasella();
+		assertTrue("Si abierto y bandera se queda abierto y se elimina bandera", casilla.getEstado());
+		assertFalse("Si abierto y bandera se queda abierto y se elimina bandera", casilla.getBandera());
+		
 		casilla.setEstado(false); // Seteamos para poder volver al estrado inicial y seguir haciedo test
 		casilla.cambiarBandera();
 		
-		assertFalse("Si hay bandera primero se debe quitar y luego se puede hace", casilla.getEstado());
+		assertFalse("Si hay bandera primero se debe quitar y luego se puede hacer", casilla.getEstado());
 		
 		casilla.cambiarBandera();
 		casilla.abrirCasella();
 		assertTrue("Como una vez se quita la bandera se puede cambiar el estado de la casilla", casilla.getEstado());
+		
+		casilla.setEstado(true); 
+		casilla.setBandera(true);
+		casilla.abrirCasella();
+		assertFalse("Si esta abierta y tenemos bandera debemos cambiarla a false", casilla.getBandera());
+		assertTrue("El estado seria TRUE", casilla.getEstado());
+		
+		casilla.setEstado(false); 
+		casilla.setBandera(true);
+		casilla.abrirCasella();
+		assertFalse("El estado seria false", casilla.getEstado());
+		assertFalse("El estado seria TRUE", casilla.getBandera());
 		
 	}
 	

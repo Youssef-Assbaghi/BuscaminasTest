@@ -13,17 +13,30 @@ public class Casella {
 		bandera=false;
 	}
 	public Casella(int nMinas,boolean mina,boolean state,boolean flag) {
-		minasCercanas=nMinas;
+		
+		if(nMinas>8) {
+			minasCercanas=8;
+		}else if(nMinas<0) {
+			minasCercanas=0;
+		}else {
+			minasCercanas=nMinas;
+		}
+		
 		esMina=mina;
-		estado=state;
-		bandera=flag;
+		
+		if(state && flag) {
+			bandera=false;
+		}else {
+			estado=state;
+			bandera=flag;
+		}
 
 	}
 	
 	public void setEstado(boolean state) {estado=state;}
-	public void setMinasCercanas(int nMinas) {minasCercanas=nMinas;}
+	//public void setMinasCercanas(int nMinas) {minasCercanas=nMinas;}
 	public void setBandera(boolean flag) {bandera=flag;}
-	public void setEsMina(boolean mina) {esMina=mina;}
+	//public void setEsMina(boolean mina) {esMina=mina;}
 	public boolean getBandera() {return this.bandera;}
 	public boolean getEstado() {return this.estado;}
 	public boolean getMina() {return this.esMina;}
@@ -37,6 +50,8 @@ public class Casella {
 	public void abrirCasella() {
 		if (!estado && !bandera) {
 			estado=true;
+		}else if(bandera) {
+			bandera=false;
 		}
 	}
 }
