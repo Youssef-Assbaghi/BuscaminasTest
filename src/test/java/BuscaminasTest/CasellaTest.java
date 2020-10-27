@@ -30,6 +30,27 @@ public class CasellaTest {
 		assertFalse("Al principio de la ejecucion no es mina por lo tanto debe dar False", casilla.getMina());
 	}
 	
+	@Test
+	//(int nMinas,boolean mina,boolean state,boolean flag)
+	public void constructorParametroCAsellaTest() {
+		casilla = new Casella(18,true,true,true);
+		assertEquals("Al setear no puede tener mas de 8 minas cercanas",8, casilla.getminasCercanas());
+		assertFalse("Si la casilla esta abierta la bandera debe ser igual a FALSE", casilla.getBandera());
+		casilla = new Casella(0,false,true,true);
+		assertEquals("Al setear  puede tener 0 minas cercanas",0, casilla.getminasCercanas());
+		assertFalse("Si la casilla esta abierta la bandera debe ser igual a FALSE", casilla.getBandera());
+		casilla = new Casella(-1,true,true,false);
+		assertEquals("Al setear no puede tener minas cercanas negativas",0, casilla.getminasCercanas());
+		casilla = new Casella(8,false,true,false);
+		assertEquals("Al setear no puede tener mas de 8 minas cercanas",8, casilla.getminasCercanas());
+		
+		
+		
+		
+		
+		
+	}
+	
 	
 	@Test
 	public void testCambiarBandera() {

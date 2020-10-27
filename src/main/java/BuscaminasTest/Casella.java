@@ -1,7 +1,7 @@
 package BuscaminasTest;
 
 public class Casella {
-	private int minasCercanas; //N NUMEROS DE MINAS
+	private int minasCercanas; //N NUMEROS DE MINAS CERCANAS
 	private boolean esMina; //FALSE NO ES MINA TRUE ES MINA
 	private boolean estado; //FALSE CERRADO TRUE ABIERTO
 	private boolean bandera; // FALSE SIN BANDERA TRUE CON BANDERA
