@@ -13,13 +13,13 @@ public final class Tablero {
 		casillas=new Casella[nFilas][nColumnas];
 	}
 	
-	public void generarTablero();
+	public void generarTablero() {}
 		
-	public void pintarTablero();
+	public void pintarTablero() {}
 	
-	public void marcarCasilla(int fila, int columna);
+	public void marcarCasilla(int fila, int columna) {}
 	
-	public void ponerBandera(int fila, int columna);
+	public void ponerBandera(int fila, int columna) {}
 	
 	public int getNFilas() {return nFilas; }
 	
