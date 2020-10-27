@@ -10,7 +10,7 @@ public final class Tablero {
 		// TODO Auto-generated constructor stub
 		nFilas=filas;
 		nColumnas=columnas;
-		casillas=new Casella[nFilas][nColumnas];
+		generarTablero();
 
 	}
 	
@@ -19,6 +19,7 @@ public final class Tablero {
 	}
 	
 	public void generarTablero() {
+		casillas=new Casella[nFilas][nColumnas];
 		for (Casella[] casellas : casillas)
 			for (int i = 0; i < casellas.length; i++) 
 				casellas[i]=new Casella();

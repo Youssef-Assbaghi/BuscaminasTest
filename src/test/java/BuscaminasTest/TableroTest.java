@@ -17,7 +17,6 @@ public class TableroTest {
 	public void testGenerarTablero() {
 		Tablero tablero = new Tablero(10,10);
 		
-		tablero.generarTablero();
 		int checksum = 0;
 		for(int i = 0; i < tablero.getNFilas(); i++) {
 			for(int j = 0; j < tablero.getNColumnas(); j++) {
@@ -46,7 +45,7 @@ public class TableroTest {
 		//Al empezar no puede haber una bandera en ninguna casilla.
 		
 		Tablero tablero = new Tablero(10,10);
-		tablero.generarTablero();
+
 		assertFalse(tablero.getCasillas(1, 1).getBandera());
 		
 		tablero.getCasillas(1, 1).cambiarBandera();
