@@ -22,7 +22,7 @@ public class TableroTest {
 		for(int i = 0; i <= tablero.getNFilas()-1; i++) {
 			for(int j = 0; j <= tablero.getNColumnas()-1; j++) {
 				
-				assertFalse(tablero.getCasillas(i,j).getEstado());
+				assertFalse(tablero.getCasillas(i,j).getAbierta());
 				assertFalse(tablero.getCasillas(i,j).getBandera());
 				checksum++;
 			}
