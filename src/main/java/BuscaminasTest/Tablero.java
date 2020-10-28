@@ -20,9 +20,9 @@ public final class Tablero {
 	
 	public void generarTablero() {
 		casillas=new Casella[nFilas][nColumnas];
-		for (Casella[] casellas : casillas)
-			for (int i = 0; i < casellas.length; i++) 
-				casellas[i]=new Casella();
+		for (int j=0;j<=nFilas-1;j++)
+			for (int i = 0; i <= nColumnas-1; i++) 
+				casillas[j][i]=new Casella();
 			
 		
 	

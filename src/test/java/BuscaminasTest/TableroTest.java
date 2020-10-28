@@ -18,8 +18,8 @@ public class TableroTest {
 		Tablero tablero = new Tablero(10,10);
 		
 		int checksum = 0;
-		for(int i = 0; i < tablero.getNFilas(); i++) {
-			for(int j = 0; j < tablero.getNColumnas(); j++) {
+		for(int i = 0; i <= tablero.getNFilas()-1; i++) {
+			for(int j = 0; j <= tablero.getNColumnas()-1; j++) {
 				
 				assertFalse(tablero.getCasillas(i,j).getEstado());
 				checksum++;
