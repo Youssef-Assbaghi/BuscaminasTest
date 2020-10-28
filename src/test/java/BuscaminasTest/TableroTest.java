@@ -7,31 +7,29 @@ import org.junit.Test;
 
 public class TableroTest {
 
-	private Casella casilla;
+	private Tablero tablero;
+	
 	@Before 
 	public void setUp() {
-        casilla = new Casella();
+         tablero = new Tablero(0);
     }
+	
 	
 	@Test
 	public void testGenerarTablero() {
-		Tablero tablero = new Tablero(0);
+		
 		
 		int checksum = 0;
-		int numMinas=0;
 		for(int i = 0; i <= tablero.getNFilas()-1; i++) {
 			for(int j = 0; j <= tablero.getNColumnas()-1; j++) {
 				
-				if(tablero.getCasillas(i,j).getMina()){
-					numMinas++;
-				}
 				assertFalse(tablero.getCasillas(i,j).getEstado());
 				assertFalse(tablero.getCasillas(i,j).getBandera());
 				checksum++;
 			}
 		}
 		assertEquals(100, checksum);
-		assertEquals(10,numMinas);
+		
 		//accedemos a posiciones arroneas o extremos o negativas
 		
 		tablero=new Tablero(3);
@@ -49,8 +47,36 @@ public class TableroTest {
 	}
 	
 	@Test
+	public void testPonerMinas(){
+		
+		tablero.ponerMinas();
+		assertEquals("Dificultad 0= 10 minas" ,10,tablero.getNumMinas());
+		tablero = new Tablero(1);
+		tablero.ponerMinas();
+		assertEquals("Dificultad 0= 10 minas" ,40,tablero.getNumMinas());
+		
+		tablero = new Tablero(2);
+		tablero.ponerMinas();
+		assertEquals("Dificultad 0= 10 minas" ,99,tablero.getNumMinas());
+		
+		
+		tablero = new Tablero(-1);
+		tablero.ponerMinas();
+		assertEquals("Dificultad 0= 10 minas" ,10,tablero.getNumMinas());
+		
+		tablero = new Tablero(3);
+		tablero.ponerMinas();
+		assertEquals("Dificultad 0= 10 minas" ,10,tablero.getNumMinas());
+		
+		tablero = new Tablero(81);
+		tablero.ponerMinas();
+		assertEquals("Dificultad 0= 10 minas" ,10,tablero.getNumMinas());
+		
+	}
+	
+	@Test
 	public void testPintarTablero() {
-		Tablero tablero = new Tablero(0);
+		
 		tablero.pintarTablero();
 		
 		
@@ -66,8 +92,7 @@ public class TableroTest {
 		
 		//Al empezar no puede haber una bandera en ninguna casilla.
 		
-		Tablero tablero = new Tablero(0);
-
+		
 		assertFalse(tablero.getCasillas(1, 1).getBandera());
 		
 		tablero.getCasillas(1, 1).cambiarBandera();
