@@ -79,14 +79,14 @@ public class CasellaTest {
 	
 		assertFalse("Al crear la variable la casilla debe estar cerrada osea False", casilla.getAbierta());
 		
-		casilla.abrirCasella();
+		casilla.abrirCasilla();
 		assertTrue("Como se inicializa a false, al cambiar de estado debe ser true", casilla.getAbierta());
 		
-		casilla.abrirCasella();
+		casilla.abrirCasilla();
 		assertTrue("Como  ya se ha abierto no se puede volver a abrir", casilla.getAbierta());
 		
 		casilla.setBandera(true);
-		casilla.abrirCasella();
+		casilla.abrirCasilla();
 		assertTrue("Si abierto y bandera se queda abierto y se elimina bandera", casilla.getAbierta());
 		assertFalse("Si abierto y bandera se queda abierto y se elimina bandera", casilla.getBandera());
 		
@@ -96,18 +96,18 @@ public class CasellaTest {
 		assertFalse("Si hay bandera primero se debe quitar y luego se puede hacer", casilla.getAbierta());
 		
 		casilla.cambiarBandera();
-		casilla.abrirCasella();
+		casilla.abrirCasilla();
 		assertTrue("Como una vez se quita la bandera se puede cambiar el estado de la casilla", casilla.getAbierta());
 		
 		casilla.setAbierta(true); 
 		casilla.setBandera(true);
-		casilla.abrirCasella();
+		casilla.abrirCasilla();
 		assertFalse("Si esta abierta y tenemos bandera debemos cambiarla a false", casilla.getBandera());
 		assertTrue("El estado seria TRUE", casilla.getAbierta());
 		
 		casilla.setAbierta(false); 
 		casilla.setBandera(true);
-		casilla.abrirCasella();
+		casilla.abrirCasilla();
 		assertFalse("El estado seria false", casilla.getAbierta());
 		assertFalse("El estado seria TRUE", casilla.getBandera());
 		

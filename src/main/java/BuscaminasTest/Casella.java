@@ -47,11 +47,11 @@ public class Casella {
 
 	}
 
-	public void abrirCasella() {
-		if (!abierta && !bandera) {
+	public void abrirCasilla() {
+		if (!abierta && !bandera) 
 			abierta=true;
-		}else if(bandera) {
+		else if(bandera) 
 			bandera=false;
-		}
+		
 	}
 }

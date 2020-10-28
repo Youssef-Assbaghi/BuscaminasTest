@@ -131,7 +131,7 @@ public class TableroTest {
 		
 		//No se puede poner una bandera en una casilla abierta
 		
-		tablero.getCasillas(1,2).abrirCasella();
+		tablero.getCasillas(1,2).abrirCasilla();
 		tablero.getCasillas(1,2).cambiarBandera();
 		assertFalse(tablero.getCasillas(1,2).getBandera());
 		
