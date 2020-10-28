@@ -60,9 +60,10 @@ public final class Tablero {
 		
 	}
 	
-	public void marcarCasilla(int fila, int columna) {
+	public int marcarCasilla(int fila, int columna) {
 		
 		
+		return 0;
 	}
 	
 	public void ponerBandera(int fila, int columna) {}

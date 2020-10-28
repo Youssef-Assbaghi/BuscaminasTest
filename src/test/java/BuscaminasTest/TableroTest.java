@@ -83,7 +83,38 @@ public class TableroTest {
 	
 	@Test
 	public void testMarcarCasilla() {
-		assertTrue(true);
+		int k;
+		for(int i=-1;i<4;i++){
+			tablero=new Tablero(i);
+			tablero.ponerMinas();
+			k=tablero.marcarCasilla(0,0); // static
+			assertTrue("La casilla se abre",tablero.getCasillas(0,0).getAbierta());
+			assertEquals(0,k);
+			k=tablero.marcarCasilla(0,0); //static
+			assertTrue("La casilla no se puede cerrar",tablero.getCasillas(0,0).getAbierta());
+			assertEquals(0,k);
+			k=tablero.marcarCasilla(0,tablero.getNColumnas());
+			assertEquals(0,k);
+			assertTrue("La casilla se abre",tablero.getCasillas(0,tablero.getNColumnas()).getAbierta());
+			k=tablero.marcarCasilla(0,tablero.getNColumnas()+1);
+			assertEquals(-1,k);
+			k=tablero.marcarCasilla(tablero.getNFilas(),0);
+			assertEquals(0,k);
+			assertTrue("La casilla se abre",tablero.getCasillas(0,tablero.getNColumnas()).getAbierta());
+			k=tablero.marcarCasilla(tablero.getNFilas(),tablero.getNColumnas()+1);	
+			assertEquals(-1,k);
+			k=tablero.marcarCasilla(tablero.getNFilas(),tablero.getNColumnas());
+			assertEquals(0,k);
+			assertTrue("La casilla se abre",tablero.getCasillas(0,tablero.getNColumnas()).getAbierta());
+			k=tablero.marcarCasilla(tablero.getNFilas()+1,tablero.getNColumnas()+1);
+			assertEquals(-1,k);
+			k=tablero.marcarCasilla(-1,-1); //static
+			assertEquals(-1,k);
+			k=tablero.marcarCasilla(100,-100); //static
+			assertEquals(-1,k);
+		}
+		
+
 	}
 	
 	@Test
