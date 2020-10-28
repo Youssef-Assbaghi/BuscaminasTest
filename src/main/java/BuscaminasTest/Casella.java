@@ -36,10 +36,10 @@ public class Casella {
 	public void setEstado(boolean state) {estado=state;}
 	//public void setMinasCercanas(int nMinas) {minasCercanas=nMinas;}
 	public void setBandera(boolean flag) {bandera=flag;}
-	//public void setEsMina(boolean mina) {esMina=mina;}
+	public void setEsMina(boolean mina) {esMina=mina;}
 	public boolean getBandera() {return this.bandera;}
 	public boolean getEstado() {return this.estado;}
-	public boolean getMina() {return this.esMina;}
+	public boolean esMina() {return this.esMina;}
 	public int getminasCercanas() {return this.minasCercanas;}
 	public void cambiarBandera() {
 		if (!estado && !bandera)  bandera=true;

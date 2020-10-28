@@ -1,5 +1,7 @@
 package BuscaminasTest;
 
+import java.util.Random;
+
 public final class Tablero {
 	private final int arr[] = {10,16,24};
 	private final int nMinas[] = {10,40,99};
@@ -9,13 +11,14 @@ public final class Tablero {
 	private int nFilas;
 	private int nColumnas;
 	private Casella[][] casillas; // Debe ser privada y acceder mediante getters y setters
-	
+
 	public Tablero(int dificultad) {
 		// TODO Auto-generated constructor stub
 		this.setDificultad(dificultad);
 		nFilas=arr[dificultad];
 		nColumnas=arr[dificultad];
 		setNumMinas(nMinas[dificultad]);
+
 		generarTablero();
 
 	}
@@ -36,9 +39,27 @@ public final class Tablero {
 	
 	public void ponerMinas(){
 		
+		Random rand = new Random();
+	    int mineCount = 0;
+	    while (mineCount < numMinas)
+	    {
+	        int filaRandom = (int) (rand.nextDouble() * nFilas);
+	        int colRandom = (int) (rand.nextDouble() * nColumnas);
+	        if (casillas[filaRandom][colRandom].esMina())
+	            continue;
+	        else //SINO VER  SI LA CASILLA ESTA ABIERTA
+	        {
+	            casillas[filaRandom][colRandom].setEsMina(true);
+	            mineCount++;
+	        }
+	    }
+		
 	}
 	
-	public void marcarCasilla(int fila, int columna) {}
+	public void marcarCasilla(int fila, int columna) {
+		
+		
+	}
 	
 	public void ponerBandera(int fila, int columna) {}
 	

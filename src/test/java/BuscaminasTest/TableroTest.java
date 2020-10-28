@@ -18,7 +18,6 @@ public class TableroTest {
 	@Test
 	public void testGenerarTablero() {
 		
-		
 		int checksum = 0;
 		for(int i = 0; i <= tablero.getNFilas()-1; i++) {
 			for(int j = 0; j <= tablero.getNColumnas()-1; j++) {

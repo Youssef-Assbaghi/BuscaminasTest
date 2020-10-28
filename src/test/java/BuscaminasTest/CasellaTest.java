@@ -27,7 +27,7 @@ public class CasellaTest {
 		assertEquals("Al empezar debe tener 0 minas cercanas",0, casilla.getminasCercanas());
 		assertFalse("Al crear la variable la casilla debe estar cerrada osea False", casilla.getEstado());
 		assertFalse("Al principio de la ejecucion no es  bandera por lo tanto debe dar False", casilla.getBandera());
-		assertFalse("Al principio de la ejecucion no es mina por lo tanto debe dar False", casilla.getMina());
+		assertFalse("Al principio de la ejecucion no es mina por lo tanto debe dar False", casilla.esMina());
 	}
 	
 	@Test
