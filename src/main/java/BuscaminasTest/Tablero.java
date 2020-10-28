@@ -14,6 +14,10 @@ public final class Tablero {
 
 	public Tablero(int dificultad) {
 		// TODO Auto-generated constructor stub
+		if(dificultad<=0)
+			dificultad=0;
+		else if(dificultad>2)
+			dificultad = 0;
 		this.setDificultad(dificultad);
 		nFilas=arr[dificultad];
 		nColumnas=arr[dificultad];
