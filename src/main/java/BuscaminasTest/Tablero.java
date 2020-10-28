@@ -1,7 +1,10 @@
 package BuscaminasTest;
 
 public final class Tablero {
-	private final int arr[] = {10,16,32};
+	private final int arr[] = {10,16,24};
+	private final int nMinas[] = {10,40,99};
+	
+	int numMinas;
 	private int dificultad;
 	private int nFilas;
 	private int nColumnas;
@@ -12,7 +15,7 @@ public final class Tablero {
 		this.dificultad=dificultad;
 		nFilas=arr[dificultad];
 		nColumnas=arr[dificultad];
-
+		numMinas=nMinas[dificultad];
 		generarTablero();
 
 	}
@@ -26,6 +29,8 @@ public final class Tablero {
 		for (int j=0;j<=nFilas-1;j++)
 			for (int i = 0; i <= nColumnas-1; i++) 
 				casillas[j][i]=new Casella();
+		
+		
 				
 				
 			
