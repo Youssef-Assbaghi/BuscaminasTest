@@ -1,15 +1,18 @@
 package BuscaminasTest;
 
 public final class Tablero {
-	
+	private final int arr[] = {10,16,32};
+	private int dificultad;
 	private int nFilas;
 	private int nColumnas;
 	private Casella[][] casillas; // Debe ser privada y acceder mediante getters y setters
 	
-	public Tablero(int filas,int columnas) {
+	public Tablero(int dificultad) {
 		// TODO Auto-generated constructor stub
-		nFilas=filas;
-		nColumnas=columnas;
+		this.dificultad=dificultad;
+		nFilas=arr[dificultad];
+		nColumnas=arr[dificultad];
+
 		generarTablero();
 
 	}
@@ -23,9 +26,9 @@ public final class Tablero {
 		for (int j=0;j<=nFilas-1;j++)
 			for (int i = 0; i <= nColumnas-1; i++) 
 				casillas[j][i]=new Casella();
+				
+				
 			
-		
-	
 	}
 		
 	public void pintarTablero() {}

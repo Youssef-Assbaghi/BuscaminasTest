@@ -15,23 +15,45 @@ public class TableroTest {
 	
 	@Test
 	public void testGenerarTablero() {
-		Tablero tablero = new Tablero(10,10);
+		Tablero tablero = new Tablero(0);
 		
 		int checksum = 0;
+		int numMinas=0;
 		for(int i = 0; i <= tablero.getNFilas()-1; i++) {
 			for(int j = 0; j <= tablero.getNColumnas()-1; j++) {
 				
+				if(tablero.getCasillas(i,j).getMina()){
+					numMinas++;
+				}
 				assertFalse(tablero.getCasillas(i,j).getEstado());
+				assertFalse(tablero.getCasillas(i,j).getBandera());
 				checksum++;
 			}
 		}
 		assertEquals(100, checksum);
+		assertEquals(10,numMinas);
+		//accedemos a posiciones arroneas o extremos o negativas
+		
+		tablero=new Tablero(3);
+		assertEquals("En caso de no cumplir parametros se definira com 10,10",10,tablero.getNFilas());    
+		assertEquals("En caso de no cumplir parametros se definira com 10,10",10,tablero.getNColumnas());    
+		
+		tablero=new Tablero(-5);
+		assertEquals("En caso de no cumplir parametros se definira com 10,10",10,tablero.getNFilas());    
+		assertEquals("En caso de no cumplir parametros se definira com 10,10",10,tablero.getNColumnas());    
+		
+		tablero=new Tablero(8);
+		assertEquals("En caso de no cumplir parametros se definira com 10,10",10,tablero.getNFilas());    
+		assertEquals("En caso de no cumplir parametros se definira com 10,10",10,tablero.getNColumnas());    
 		
 	}
 	
 	@Test
 	public void testPintarTablero() {
-		assertTrue(true);
+		Tablero tablero = new Tablero(0);
+		tablero.pintarTablero();
+		
+		
 	}
 	
 	@Test
@@ -44,7 +66,7 @@ public class TableroTest {
 		
 		//Al empezar no puede haber una bandera en ninguna casilla.
 		
-		Tablero tablero = new Tablero(10,10);
+		Tablero tablero = new Tablero(0);
 
 		assertFalse(tablero.getCasillas(1, 1).getBandera());
 		
