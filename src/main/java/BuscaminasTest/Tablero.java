@@ -62,11 +62,18 @@ public final class Tablero {
 	
 	public int marcarCasilla(int fila, int columna) {
 		
+		casillas[fila][columna].abrirCasilla();
 		
-		return 0;
+		if(casillas[fila][columna].getAbierta()) {
+			return 0;
+		}else {
+			return -1;
+		}
 	}
 	
-	public void ponerBandera(int fila, int columna) {}
+	public void ponerBandera(int fila, int columna) {
+		casillas[fila][columna].cambiarBandera();
+	}
 	
 	public int getNFilas() {return nFilas; }
 	
