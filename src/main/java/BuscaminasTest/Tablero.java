@@ -61,23 +61,31 @@ public final class Tablero {
 	}
 	
 	public int marcarCasilla(int fila, int columna) {
+		if(fila<0 || fila >= nFilas) 
+			return -1;
 		
-		casillas[fila][columna].abrirCasilla();
+		if(columna < 0 || columna >= nColumnas)
+			return -1;
 		
 		if(casillas[fila][columna].getAbierta()) {
 			return 0;
 		}else {
-			return -1;
+			casillas[fila][columna].abrirCasilla();
+			return 0;
 		}
+		
+		
+		
+		
 	}
 	
 	public void ponerBandera(int fila, int columna) {
 		casillas[fila][columna].cambiarBandera();
 	}
 	
-	public int getNFilas() {return nFilas; }
+	public int getNFilas() {return nFilas-1; }
 	
-	public int getNColumnas() {return nColumnas; }
+	public int getNColumnas() {return nColumnas-1; }
 
 	public int getNumMinas() {
 		return numMinas;

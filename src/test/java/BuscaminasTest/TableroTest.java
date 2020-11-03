@@ -19,8 +19,8 @@ public class TableroTest {
 	public void testGenerarTablero() {
 		
 		int checksum = 0;
-		for(int i = 0; i <= tablero.getNFilas()-1; i++) {
-			for(int j = 0; j <= tablero.getNColumnas()-1; j++) {
+		for(int i = 0; i <= tablero.getNFilas(); i++) {
+			for(int j = 0; j <= tablero.getNColumnas(); j++) {
 				
 				assertFalse(tablero.getCasillas(i,j).getAbierta());
 				assertFalse(tablero.getCasillas(i,j).getBandera());
@@ -32,16 +32,16 @@ public class TableroTest {
 		//accedemos a posiciones arroneas o extremos o negativas
 		
 		tablero=new Tablero(3);
-		assertEquals("En caso de no cumplir parametros se definira com 10,10",10,tablero.getNFilas());    
-		assertEquals("En caso de no cumplir parametros se definira com 10,10",10,tablero.getNColumnas());    
+		assertEquals("En caso de no cumplir parametros se definira com 10,10",9,tablero.getNFilas());    
+		assertEquals("En caso de no cumplir parametros se definira com 10,10",9,tablero.getNColumnas());    
 		
 		tablero=new Tablero(-5);
-		assertEquals("En caso de no cumplir parametros se definira com 10,10",10,tablero.getNFilas());    
-		assertEquals("En caso de no cumplir parametros se definira com 10,10",10,tablero.getNColumnas());    
+		assertEquals("En caso de no cumplir parametros se definira com 10,10",9,tablero.getNFilas());    
+		assertEquals("En caso de no cumplir parametros se definira com 10,10",9,tablero.getNColumnas());    
 		
 		tablero=new Tablero(8);
-		assertEquals("En caso de no cumplir parametros se definira com 10,10",10,tablero.getNFilas());    
-		assertEquals("En caso de no cumplir parametros se definira com 10,10",10,tablero.getNColumnas());    
+		assertEquals("En caso de no cumplir parametros se definira com 10,10",9,tablero.getNFilas());    
+		assertEquals("En caso de no cumplir parametros se definira com 10,10",9,tablero.getNColumnas());    
 		
 	}
 	
