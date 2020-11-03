@@ -78,7 +78,6 @@ public class TableroTest {
 		
 		tablero.pintarTablero();
 		
-		
 	}
 	
 	@Test
@@ -103,6 +102,8 @@ public class TableroTest {
 			assertTrue("La casilla se abre",tablero.getCasillas(0,tablero.getNColumnas()).getAbierta());
 			k=tablero.marcarCasilla(tablero.getNFilas(),tablero.getNColumnas()+1);	
 			assertEquals(-1,k);
+			k=tablero.marcarCasilla(tablero.getNFilas(),-8);	
+			assertEquals(-1,k);
 			k=tablero.marcarCasilla(tablero.getNFilas(),tablero.getNColumnas());
 			assertEquals(0,k);
 			assertTrue("La casilla se abre",tablero.getCasillas(0,tablero.getNColumnas()).getAbierta());
@@ -121,7 +122,7 @@ public class TableroTest {
 	public void testPonerBandera() {
 		
 		//Al empezar no puede haber una bandera en ninguna casilla.
-		
+		//Tampoco puedes poner banderas al principio del juego
 		
 		assertFalse(tablero.getCasillas(1, 1).getBandera());
 		

@@ -12,8 +12,11 @@ public final class Tablero {
 	private int nColumnas;
 	private Casella[][] casillas; // Debe ser privada y acceder mediante getters y setters
 
+	
 	public Tablero(int dificultad) {
-		// TODO Auto-generated constructor stub
+		//creamos random aqui
+		//interfaz rndom en una clase
+		//y cuando la llamemmos la vamos llamando poco a poco
 		if(dificultad<=0)
 			dificultad=0;
 		else if(dificultad>2)
@@ -42,21 +45,21 @@ public final class Tablero {
 	public void pintarTablero() {}
 	
 	public void ponerMinas(){
-		
-		Random rand = new Random();
+		Random rand=new Random();
 	    int mineCount = 0;
 	    while (mineCount < numMinas)
 	    {
-	        int filaRandom = (int) (rand.nextDouble() * nFilas);
-	        int colRandom = (int) (rand.nextDouble() * nColumnas);
+	        int filaRandom = (int) (rand.nextDouble() * nFilas-1);
+	        int colRandom = (int) (rand.nextDouble() * nColumnas-1);
 	        if (casillas[filaRandom][colRandom].esMina())
 	            continue;
-	        else //SINO VER  SI LA CASILLA ESTA ABIERTA
+	        else if(!casillas[filaRandom][colRandom].getAbierta()) // Ver hacer un mock para testearlo
 	        {
 	            casillas[filaRandom][colRandom].setEsMina(true);
 	            mineCount++;
 	        }
 	    }
+
 		
 	}
 	
@@ -73,10 +76,7 @@ public final class Tablero {
 			casillas[fila][columna].abrirCasilla();
 			return 0;
 		}
-		
-		
-		
-		
+			
 	}
 	
 	public void ponerBandera(int fila, int columna) {
@@ -104,3 +104,16 @@ public final class Tablero {
 	}
 
 }
+/**
+ * Al haberse creado las minas el jugador selecciona una casilla para abrir, la casilla
+seleccionada y las casillas cercanas se igualan a “0” de forma que si habia minas estas se
+borran.
+Despues de haber borrado las minas cercanas a la casilla seleccionada se checa cada casilla
+para verificar si tiene una bomba cerca, si tiene una bomba cerca se le suma 1 a menos de
+que sea bomba o este fuera del rango de la matriz.
+La casilla que selecciono el jugador se abre reemplazando la casilla de la matriz que el
+jugador ve con la casilla que esta en el mismo lugar de la matriz que contiene toda la
+informacion de las minas junto con las 8 casillas vecinas, si alguna de las casillas que se
+abrio es cero todas las casillas cercanas a estas tambien se abren hasta que todas las casillas
+cercanas a un ya abierto 0 esten tambien abiertas.*/
+
