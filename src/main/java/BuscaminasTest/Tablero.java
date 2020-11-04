@@ -72,9 +72,14 @@ public final class Tablero {
 			return 0;
 		} else {
 			casillas[fila][columna].abrirCasilla();
+
+			if (casillas[fila][columna].getminasCercanas() == 0) {
+				for (int i = fila - 1; i <= fila + 1; i++)
+					for (int j = columna - 1; j <= columna + 1; j++)
+						marcarCasilla(i, j);
+			}
 			return 0;
 		}
-
 	}
 
 	public int ponerBandera(int fila, int columna) {
