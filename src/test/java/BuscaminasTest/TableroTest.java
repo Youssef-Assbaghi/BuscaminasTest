@@ -1,4 +1,4 @@
-package BuscaminasTest;
+	package BuscaminasTest;
 
 import static org.junit.Assert.*;
 
@@ -84,6 +84,7 @@ public class TableroTest {
 	public void testMarcarCasilla() {
 		int k;
 		for(int i=-1;i<4;i++){
+			MockRandom random=new MockRandom(0.0);
 			tablero=new Tablero(i);
 			tablero.ponerMinas();
 			k=tablero.marcarCasilla(0,0); // static
@@ -117,65 +118,6 @@ public class TableroTest {
 		
 
 	}
-	/**
-            N.W   N   N.E 
-              \   |   / 
-               \  |  / 
-            W----Cell----E 
-                /  | \ 
-               /   |  \ 
-            S.W    S   S.E 
-  
-        Cell-->Current Cell (row, col) 
-        N -->  North        (row-1, col) 
-        S -->  South        (row+1, col) 
-        E -->  East         (row, col+1) 
-        W -->  West            (row, col-1) 
-        N.E--> North-East   (row-1, col+1) 
-        N.W--> North-West   (row-1, col-1) 
-        S.E--> South-East   (row+1, col+1) 
-        S.W--> South-West   (row+1, col-1)
-	 */
-	@Test
-	public void testNumMinasAlrededor() {
-		
-		int fila = 5;
-		int col = 5;
-		
-		//1 mina
-		
-		tablero.getCasillas(fila,col).setEsMina(true);
-		
-		tablero.numMinasAlrededor(fila-1,col);
-		assertEquals(tablero.getCasillas(fila-1,col).getminasCercanas(), 1);
-		
-		tablero.numMinasAlrededor(fila+1,col);
-		assertEquals(tablero.getCasillas(fila+1, col).getminasCercanas(), 1);
-		
-		tablero.numMinasAlrededor(fila,col+1);
-		assertEquals(tablero.getCasillas(fila, col+1).getminasCercanas(), 1);
-		
-		tablero.numMinasAlrededor(fila,col-1);
-		assertEquals(tablero.getCasillas(fila,col-1).getminasCercanas(), 1);
-		
-		tablero.numMinasAlrededor(fila-1,col+1);
-		assertEquals(tablero.getCasillas(fila-1,col+1).getminasCercanas(), 1);
-		
-		tablero.numMinasAlrededor(fila-1,col-1);
-		assertEquals(tablero.getCasillas(fila-1,col+1).getminasCercanas(), 1);
-		
-		tablero.numMinasAlrededor(fila+1,col+1);
-		assertEquals(tablero.getCasillas(fila,col).getminasCercanas(), 1);
-		
-		tablero.numMinasAlrededor(fila+1,col-1);
-		assertEquals(tablero.getCasillas(fila,col).getminasCercanas(), 1);
-		
-		
-		
-		
-		
-		}
-		
 	
 	@Test
 	public void testPonerBandera() {
@@ -194,8 +136,7 @@ public class TableroTest {
 		tablero.getCasillas(1,2).abrirCasilla();
 		tablero.getCasillas(1,2).cambiarBandera();
 		assertFalse(tablero.getCasillas(1,2).getBandera());
-		
-		
+
 	}
 
 }

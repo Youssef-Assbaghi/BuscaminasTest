@@ -46,6 +46,8 @@ public class Casella {
 		else bandera=false;
 
 	}
+	
+	public void sumarMinaCercana() {}
 
 	public void abrirCasilla() {
 		if (!abierta && !bandera) 

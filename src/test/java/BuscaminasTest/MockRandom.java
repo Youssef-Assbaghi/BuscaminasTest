@@ -2,8 +2,8 @@ package BuscaminasTest;
 
 public class MockRandom implements Random { 
 	
-	private int fila;
-	public MockRandom(int fake_fila){
+	private double fila;
+	public MockRandom(double fake_fila){
 		fila=fake_fila;
 	}
 

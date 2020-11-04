@@ -112,6 +112,18 @@ public class CasellaTest {
 		assertFalse("El estado seria TRUE", casilla.getBandera());
 		
 	}
+	@Test
+	public void testSumarMina() {
+		assertEquals("Al principio no hay minas cercanas",0,casilla.getminasCercanas());
+		for(int i=0; i<15;i++) {
+			casilla.sumarMinaCercana();
+			if(casilla.getminasCercanas()>=8)
+				assertEquals("El maximo de minas son 8",8,casilla.getminasCercanas());
+			else
+				assertEquals("El numero de minas cercanas debe ser : " +i ,i,casilla.getminasCercanas());
+		}
+	}
+	
 	
 
 
