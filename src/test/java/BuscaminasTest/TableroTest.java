@@ -113,7 +113,32 @@ public class TableroTest {
 			assertEquals(-1, k);
 			k = tablero.marcarCasilla(100, -100); // static
 			assertEquals(-1, k);
+
 		}
+
+		tablero = new Tablero(0);
+
+		tablero.getCasillas(0, 2).setEsMina(true);
+		tablero.sumarMinasAlrededor(0, 2);
+
+		tablero.getCasillas(1, 2).setEsMina(true);
+		tablero.sumarMinasAlrededor(1, 2);
+
+		tablero.getCasillas(2, 2).setEsMina(true);
+		tablero.sumarMinasAlrededor(2, 2);
+
+		tablero.getCasillas(2, 0).setEsMina(true);
+		tablero.sumarMinasAlrededor(2, 0);
+
+		tablero.getCasillas(2, 1).setEsMina(true);
+		tablero.sumarMinasAlrededor(2, 1);
+
+		tablero.marcarCasilla(0, 0);
+
+		assertTrue("La casilla se abre", tablero.getCasillas(0, 0).getAbierta());
+		assertTrue("La casilla se abre", tablero.getCasillas(0, 1).getAbierta());
+		assertTrue("La casilla se abre", tablero.getCasillas(1, 0).getAbierta());
+		assertTrue("La casilla se abre", tablero.getCasillas(1, 1).getAbierta());
 
 	}
 
