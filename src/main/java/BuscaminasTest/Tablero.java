@@ -13,7 +13,7 @@ public final class Tablero {
 	private int nFilas;
 	private int nColumnas;
 	private Casella[][] casillas; // Debe ser privada y acceder mediante getters y setters
-
+	
 	
 	public Tablero(int dificultad) {
 		//creamos random aqui
@@ -45,14 +45,14 @@ public final class Tablero {
 	}
 		
 	public void pintarTablero() {}
-	
-	public void ponerMinas(/*Random rand*/){
+
+	public void ponerMinas() {
 		Random rand=new Random();
 	    int mineCount = 0;
 	    while (mineCount < numMinas)
 	    {
-	        int filaRandom = (int) (rand.nextDouble() * nFilas-1);
-	        int colRandom = (int) (rand.nextDouble() * nColumnas-1);
+	        int filaRandom =  (int) (rand.nextDouble() * nFilas-1);
+	        int colRandom =  (int) (rand.nextDouble() * nColumnas-1);
 	        if (casillas[filaRandom][colRandom].esMina())
 	            continue;
 	        else if(!casillas[filaRandom][colRandom].getAbierta()) // Ver hacer un mock para testearlo

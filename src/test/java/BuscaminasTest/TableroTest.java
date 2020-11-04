@@ -1,4 +1,4 @@
-package BuscaminasTest;
+	package BuscaminasTest;
 
 import static org.junit.Assert.*;
 
@@ -84,6 +84,7 @@ public class TableroTest {
 	public void testMarcarCasilla() {
 		int k;
 		for(int i=-1;i<4;i++){
+			MockRandom random=new MockRandom(0.0);
 			tablero=new Tablero(i);
 			tablero.ponerMinas();
 			k=tablero.marcarCasilla(0,0); // static
@@ -233,8 +234,7 @@ public class TableroTest {
 		tablero.getCasillas(1,2).abrirCasilla();
 		tablero.getCasillas(1,2).cambiarBandera();
 		assertFalse(tablero.getCasillas(1,2).getBandera());
-		
-		
+
 	}
 
 }
