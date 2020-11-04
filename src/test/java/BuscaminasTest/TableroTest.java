@@ -142,6 +142,32 @@ public class TableroTest {
 		int fila = 5;
 		int col = 5;
 		
+		//0 minas
+		
+		tablero.numMinasAlrededor(fila-1,col);
+		assertEquals(tablero.getCasillas(fila-1,col).getminasCercanas(), 0);
+		
+		tablero.numMinasAlrededor(fila+1,col);
+		assertEquals(tablero.getCasillas(fila+1, col).getminasCercanas(), 0);
+		
+		tablero.numMinasAlrededor(fila,col+1);
+		assertEquals(tablero.getCasillas(fila, col+1).getminasCercanas(), 0);
+		
+		tablero.numMinasAlrededor(fila,col-1);
+		assertEquals(tablero.getCasillas(fila,col-1).getminasCercanas(), 0);
+		
+		tablero.numMinasAlrededor(fila-1,col+1);
+		assertEquals(tablero.getCasillas(fila-1,col+1).getminasCercanas(), 0);
+		
+		tablero.numMinasAlrededor(fila-1,col-1);
+		assertEquals(tablero.getCasillas(fila-1,col+1).getminasCercanas(), 0);
+		
+		tablero.numMinasAlrededor(fila+1,col+1);
+		assertEquals(tablero.getCasillas(fila,col).getminasCercanas(), 0);
+		
+		tablero.numMinasAlrededor(fila+1,col-1);
+		assertEquals(tablero.getCasillas(fila,col).getminasCercanas(), 0);
+		
 		//1 mina
 		
 		tablero.getCasillas(fila,col).setEsMina(true);
@@ -170,7 +196,20 @@ public class TableroTest {
 		tablero.numMinasAlrededor(fila+1,col-1);
 		assertEquals(tablero.getCasillas(fila,col).getminasCercanas(), 1);
 		
+		//8 minas
+		tablero = new Tablero(0);
 		
+		tablero.getCasillas(fila-1,col).setEsMina(true);
+		tablero.getCasillas(fila+1,col).setEsMina(true);
+		tablero.getCasillas(fila,col+1).setEsMina(true);
+		tablero.getCasillas(fila,col-1).setEsMina(true);
+		tablero.getCasillas(fila-1,col+1).setEsMina(true);
+		tablero.getCasillas(fila-1,col-1).setEsMina(true);
+		tablero.getCasillas(fila+1,col+1).setEsMina(true);
+		tablero.getCasillas(fila+1,col-1).setEsMina(true);
+		
+		tablero.numMinasAlrededor(fila,col);
+		assertEquals(tablero.getCasillas(fila,col).getminasCercanas(),8);
 		
 		
 		
