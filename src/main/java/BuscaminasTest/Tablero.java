@@ -1,5 +1,7 @@
 package BuscaminasTest;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.Random;
 
 public final class Tablero {
@@ -112,6 +114,29 @@ public final class Tablero {
 	}
 
 	public void numMinasAlrededor(int fila, int col) {
+
+		if(fila - 1 >= 0 && col + 1 >= 0) {
+			casillas[fila-1][col+1].sumarMinaCercana();
+		}else if(fila - 1 >= 0 && col - 1 >= 0) {
+			casillas[fila-1][col-1].sumarMinaCercana();
+		}else if(fila + 1 < nFilas-1 && col + 1 < nColumnas-1) {
+			casillas[fila+1][col+1].sumarMinaCercana();
+		}else if(fila + 1 < nFilas-1 && col - 1 >= 0) {
+			casillas[fila+1][col-1].sumarMinaCercana();
+		}else if(fila - 1 >= 0) {  
+			casillas[fila-1][col].sumarMinaCercana();
+			
+		}else if(fila + 1 >= nFilas-1) {
+			casillas[fila+1][col].sumarMinaCercana();
+			
+		}else if(col + 1 < nColumnas-1) {
+			casillas[fila][col + 1].sumarMinaCercana();
+			
+		}else if(col - 1 >= 0) {
+			casillas[fila][col-1].sumarMinaCercana();
+			
+		}
+		
 		
 	}
 }
