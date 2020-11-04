@@ -44,7 +44,7 @@ public final class Tablero {
 		
 	public void pintarTablero() {}
 	
-	public void ponerMinas(){
+	public void ponerMinas(/*Random rand*/){
 		Random rand=new Random();
 	    int mineCount = 0;
 	    while (mineCount < numMinas)
@@ -79,8 +79,16 @@ public final class Tablero {
 			
 	}
 	
-	public void ponerBandera(int fila, int columna) {
+	public int ponerBandera(int fila, int columna) {
+		if(fila<0 || fila >= nFilas) 
+			return -1;
+		
+		if(columna < 0 || columna >= nColumnas)
+			return -1;
+		
 		casillas[fila][columna].cambiarBandera();
+		return 0;
+
 	}
 	
 	public int getNFilas() {return nFilas-1; }
@@ -103,10 +111,15 @@ public final class Tablero {
 		this.dificultad = dificultad;
 	}
 
+	public void numMinasAlrededor(int fila, int col) {
+		
+	}
 }
+
+
 /**
  * Al haberse creado las minas el jugador selecciona una casilla para abrir, la casilla
-seleccionada y las casillas cercanas se igualan a “0” de forma que si habia minas estas se
+seleccionada y las casillas cercanas se igualan a zero forma que si habia minas estas se
 borran.
 Despues de haber borrado las minas cercanas a la casilla seleccionada se checa cada casilla
 para verificar si tiene una bomba cerca, si tiene una bomba cerca se le suma 1 a menos de
@@ -117,3 +130,16 @@ informacion de las minas junto con las 8 casillas vecinas, si alguna de las casi
 abrio es cero todas las casillas cercanas a estas tambien se abren hasta que todas las casillas
 cercanas a un ya abierto 0 esten tambien abiertas.*/
 
+
+/*private void ClickSquare(int x, int y)
+{
+   // Did the user click an already exposed square?  If so, ignore
+   if (matriz[x][y].getDiscovered()) return;
+   matriz[x][y].SetDiscovered(true);
+   if (matriz[x][y].getNumberOfMinesAround != 0) return;
+   // If empty, click all the neighbors
+   for (int xloop = x - 1; xloop <= x + 1; xloop++)
+       for (int yloop = y - 1; yloop <= y + 1; yloop++)
+           ClickSquare(xloop, yloop);
+}
+*/
