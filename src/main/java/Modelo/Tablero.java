@@ -1,4 +1,4 @@
-package BuscaminasTest;
+package Modelo;
 
 import java.util.Random;
 

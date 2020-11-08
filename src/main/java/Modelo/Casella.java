@@ -1,4 +1,4 @@
-package BuscaminasTest;
+package Modelo;
 
 public class Casella {
 	private int minasCercanas; //N NUMEROS DE MINAS CERCANAS
