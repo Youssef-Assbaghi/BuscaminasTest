@@ -79,8 +79,8 @@ public final class Tablero {
 		} else {
 
 			if (primerMovimiento && casillas[fila][columna].esMina()) {
-				casillas[fila][columna].quitarMina();
-				casillas[fila][columna].restarMinasCercanas();
+				casillas[fila][columna].setEsMina(false);
+				restarMinasCercanas();
 
 				primerMovimiento = false;
 
@@ -95,6 +95,10 @@ public final class Tablero {
 			}
 			return 0;
 		}
+	}
+
+	public void restarMinasCercanas(int fila, int columna) {
+
 	}
 
 	public int ponerBandera(int fila, int columna) {

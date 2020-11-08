@@ -282,6 +282,11 @@ public class TableroTest {
 	}
 
 	@Test
+	public void testrestarMinasCercanas() {
+
+	}
+
+	@Test
 	public void testPonerBandera() {
 
 		assertFalse(tablero.getCasillas(1, 1).getBandera());
