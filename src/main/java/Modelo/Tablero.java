@@ -11,6 +11,7 @@ public final class Tablero {
 	private int nFilas;
 	private int nColumnas;
 	private Casella[][] casillas; // Debe ser privada y acceder mediante getters y setters
+	private boolean primerMovimiento;
 
 	public Tablero(int dificultad) {
 		// creamos random aqui
@@ -24,7 +25,7 @@ public final class Tablero {
 		nFilas = arr[dificultad];
 		nColumnas = arr[dificultad];
 		setNumMinas(nMinas[dificultad]);
-
+		primerMovimiento = true;
 		generarTablero();
 
 	}
@@ -55,6 +56,7 @@ public final class Tablero {
 			else if (!casillas[filaRandom][colRandom].getAbierta()) // Ver hacer un mock para testearlo
 			{
 				casillas[filaRandom][colRandom].setEsMina(true);
+				sumarMinasAlrededor(filaRandom, colRandom);
 				mineCount++;
 			}
 		}
@@ -75,6 +77,15 @@ public final class Tablero {
 		if (casillas[fila][columna].getAbierta()) {
 			return 0;
 		} else {
+
+			if (primerMovimiento && casillas[fila][columna].esMina()) {
+				casillas[fila][columna].quitarMina();
+				casillas[fila][columna].restarMinasCercanas();
+
+				primerMovimiento = false;
+
+			}
+
 			casillas[fila][columna].abrirCasilla();
 
 			if (casillas[fila][columna].getminasCercanas() == 0) {

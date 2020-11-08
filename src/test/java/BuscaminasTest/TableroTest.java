@@ -180,6 +180,50 @@ public class TableroTest {
 		assertTrue("La casilla se abre", tablero.getCasillas(1, 0).getAbierta());
 		assertTrue("La casilla se abre", tablero.getCasillas(1, 1).getAbierta());
 
+		tablero = new Tablero(0);
+		tablero.ponerMinas();
+
+		for (int w = 0; w <= tablero.getNFilas(); w++) {
+			for (int j = 0; j <= tablero.getNColumnas(); j++) {
+				if (tablero.getCasillas(w, j).esMina())
+					System.out.print("X");
+				else
+					System.out.print("0");
+			}
+			System.out.println(" ");
+		}
+		System.out.println("----------------");
+		for (int w = 0; w <= tablero.getNFilas(); w++) {
+			for (int j = 0; j <= tablero.getNColumnas(); j++) {
+				System.out.print(tablero.getCasillas(w, j).getminasCercanas());
+			}
+			System.out.println(" ");
+		}
+
+		System.out.println("----------------");
+		for (int w = 0; w <= tablero.getNFilas(); w++) {
+			for (int j = 0; j <= tablero.getNColumnas(); j++) {
+				if (tablero.getCasillas(w, j).getAbierta())
+					System.out.print("O");
+				else
+					System.out.print("C");
+			}
+			System.out.println(" ");
+		}
+
+		k = tablero.marcarCasilla(0, 0);
+
+		System.out.println("----------------");
+		for (int w = 0; w <= tablero.getNFilas(); w++) {
+			for (int j = 0; j <= tablero.getNColumnas(); j++) {
+				if (tablero.getCasillas(w, j).getAbierta())
+					System.out.print("O");
+				else
+					System.out.print("C");
+			}
+			System.out.println(" ");
+		}
+
 	}
 
 	@Test
