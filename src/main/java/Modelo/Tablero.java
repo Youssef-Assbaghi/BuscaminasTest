@@ -61,6 +61,10 @@ public final class Tablero {
 
 	}
 
+	public boolean alrededorPrimerMovimiento(int fila, int columna) {
+		return true;
+	}
+
 	public int marcarCasilla(int fila, int columna) {
 		if (fila < 0 || fila >= nFilas)
 			return -1;

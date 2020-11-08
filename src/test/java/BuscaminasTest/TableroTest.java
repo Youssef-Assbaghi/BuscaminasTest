@@ -19,6 +19,11 @@ public class TableroTest {
 	}
 
 	@Test
+	public void testAlrededorPrimerMovimiento() {
+
+	}
+
+	@Test
 	public void testGenerarTablero() {
 
 		int checksum = 0;
