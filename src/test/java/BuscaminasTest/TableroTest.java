@@ -282,7 +282,61 @@ public class TableroTest {
 	}
 
 	@Test
-	public void testrestarMinasCercanas() {
+	public void testRestarMinasAlrededor() {
+
+		int fila = 5;
+		int col = 5;
+
+		// 1 minas
+		tablero.getCasillas(fila, col).setEsMina(true);
+		tablero.sumarMinasAlrededor(fila, col);
+
+		assertEquals(tablero.getCasillas(fila - 1, col).getminasCercanas(), 1);
+		assertEquals(tablero.getCasillas(fila, col + 1).getminasCercanas(), 1);
+		assertEquals(tablero.getCasillas(fila, col - 1).getminasCercanas(), 1);
+		assertEquals(tablero.getCasillas(fila - 1, col + 1).getminasCercanas(), 1);
+		assertEquals(tablero.getCasillas(fila - 1, col - 1).getminasCercanas(), 1);
+		assertEquals(tablero.getCasillas(fila + 1, col + 1).getminasCercanas(), 1);
+		assertEquals(tablero.getCasillas(fila + 1, col - 1).getminasCercanas(), 1);
+
+		tablero.getCasillas(fila, col).setEsMina(false);
+		tablero.restarMinasAlrededor(fila, col);
+
+		assertEquals(tablero.getCasillas(fila - 1, col).getminasCercanas(), 0);
+		assertEquals(tablero.getCasillas(fila, col + 1).getminasCercanas(), 0);
+		assertEquals(tablero.getCasillas(fila, col - 1).getminasCercanas(), 0);
+		assertEquals(tablero.getCasillas(fila - 1, col + 1).getminasCercanas(), 0);
+		assertEquals(tablero.getCasillas(fila - 1, col - 1).getminasCercanas(), 0);
+		assertEquals(tablero.getCasillas(fila + 1, col + 1).getminasCercanas(), 0);
+		assertEquals(tablero.getCasillas(fila + 1, col - 1).getminasCercanas(), 0);
+
+		// 8 minas
+		tablero = new Tablero(0);
+
+		tablero.getCasillas(fila - 1, col).setEsMina(true);
+		tablero.sumarMinasAlrededor(fila - 1, col);
+		tablero.getCasillas(fila + 1, col).setEsMina(true);
+		tablero.sumarMinasAlrededor(fila + 1, col);
+		tablero.getCasillas(fila, col + 1).setEsMina(true);
+		tablero.sumarMinasAlrededor(fila, col + 1);
+		tablero.getCasillas(fila, col - 1).setEsMina(true);
+		tablero.sumarMinasAlrededor(fila, col - 1);
+
+		tablero.getCasillas(fila - 1, col + 1).setEsMina(true);
+		tablero.sumarMinasAlrededor(fila - 1, col + 1);
+		tablero.getCasillas(fila - 1, col - 1).setEsMina(true);
+		tablero.sumarMinasAlrededor(fila - 1, col - 1);
+		tablero.getCasillas(fila + 1, col + 1).setEsMina(true);
+		tablero.sumarMinasAlrededor(fila + 1, col + 1);
+		tablero.getCasillas(fila + 1, col - 1).setEsMina(true);
+		tablero.sumarMinasAlrededor(fila + 1, col - 1);
+
+		assertEquals(tablero.getCasillas(fila, col).getminasCercanas(), 8);
+
+		tablero.getCasillas(fila - 1, col).setEsMina(false);
+		tablero.restarMinasAlrededor(fila - 1, col);
+
+		assertEquals(tablero.getCasillas(fila, col).getminasCercanas(), 7);
 
 	}
 

@@ -97,7 +97,7 @@ public final class Tablero {
 		}
 	}
 
-	public void restarMinasCercanas(int fila, int columna) {
+	public void restarMinasAlrededor(int fila, int columna) {
 
 	}
 
