@@ -21,6 +21,39 @@ public class TableroTest {
 	@Test
 	public void testAlrededorPrimerMovimiento() {
 
+		tablero = new Tablero(0);
+		tablero.marcarCasilla(0, 0);
+		assertTrue("La casilla es adyacente", tablero.alrededorPrimerMovimiento(0, 0));
+		assertTrue("La casilla es adyacente", tablero.alrededorPrimerMovimiento(0, 1));
+		assertTrue("La casilla es adyacente", tablero.alrededorPrimerMovimiento(1, 0));
+		assertTrue("La casilla es adyacente", tablero.alrededorPrimerMovimiento(1, 1));
+		assertFalse("La casilla no existe", tablero.alrededorPrimerMovimiento(-1, -1));
+		assertFalse("La casilla no existe", tablero.alrededorPrimerMovimiento(-1, 0));
+		assertFalse("La casilla no existe", tablero.alrededorPrimerMovimiento(0, -1));
+		assertFalse("La casilla no existe", tablero.alrededorPrimerMovimiento(5, 5));
+
+		tablero = new Tablero(0);
+		tablero.marcarCasilla(0, 9);
+		assertTrue("La casilla es adyacente", tablero.alrededorPrimerMovimiento(0, 9));
+		assertTrue("La casilla es adyacente", tablero.alrededorPrimerMovimiento(1, 8));
+		assertTrue("La casilla es adyacente", tablero.alrededorPrimerMovimiento(1, 9));
+		assertTrue("La casilla es adyacente", tablero.alrededorPrimerMovimiento(0, 8));
+		assertFalse("La casilla no existe", tablero.alrededorPrimerMovimiento(0, 10));
+		assertFalse("La casilla no existe", tablero.alrededorPrimerMovimiento(-1, 10));
+		assertFalse("La casilla no existe", tablero.alrededorPrimerMovimiento(-1, 9));
+		assertFalse("La casilla no existe", tablero.alrededorPrimerMovimiento(5, 5));
+
+		tablero = new Tablero(0);
+		tablero.marcarCasilla(9, 9);
+		assertTrue("La casilla es adyacente", tablero.alrededorPrimerMovimiento(9, 9));
+		assertTrue("La casilla es adyacente", tablero.alrededorPrimerMovimiento(9, 8));
+		assertTrue("La casilla es adyacente", tablero.alrededorPrimerMovimiento(8, 9));
+		assertTrue("La casilla es adyacente", tablero.alrededorPrimerMovimiento(8, 8));
+		assertFalse("La casilla no existe", tablero.alrededorPrimerMovimiento(9, 10));
+		assertFalse("La casilla no existe", tablero.alrededorPrimerMovimiento(8, 10));
+		assertFalse("La casilla no existe", tablero.alrededorPrimerMovimiento(10, 9));
+		assertFalse("La casilla no existe", tablero.alrededorPrimerMovimiento(5, 5));
+
 	}
 
 	@Test
