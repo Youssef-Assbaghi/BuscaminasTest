@@ -1,7 +1,5 @@
 package Modelo;
 
-import java.util.Random;
-
 public final class Tablero {
 	private final int arr[] = { 10, 16, 24 };
 	private final int nMinas[] = { 15, 40, 99 };
@@ -45,12 +43,11 @@ public final class Tablero {
 	public void pintarTablero() {
 	}
 
-	public void ponerMinas() {
-		Random rand = new Random();
+	public void ponerMinas(RandomPos r) {
 		int mineCount = 0;
 		while (mineCount < numMinas) {
-			int filaRandom = (int) (rand.nextDouble() * nFilas - 1);
-			int colRandom = (int) (rand.nextDouble() * nColumnas - 1);
+			int filaRandom = r.getValor(nFilas);
+			int colRandom = r.getValor(nColumnas);
 			if (casillas[filaRandom][colRandom].esMina())
 				continue;
 			else if (!casillas[filaRandom][colRandom].getAbierta()) // Ver hacer un mock para testearlo
@@ -148,9 +145,9 @@ public final class Tablero {
 		this.numMinas = numMinas;
 	}
 
-	public int getDificultad() {
-		return dificultad;
-	}
+//	public int getDificultad() {
+//		return dificultad;
+//	}
 
 	public void setDificultad(int dificultad) {
 		this.dificultad = dificultad;

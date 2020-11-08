@@ -8,14 +8,17 @@ import org.junit.Before;
 import org.junit.Test;
 
 import Modelo.Tablero;
+import Modelo.ValorRandom;
 
 public class TableroTest {
 
 	private Tablero tablero;
+	private ValorRandom r;
 
 	@Before
 	public void setUp() {
 		tablero = new Tablero(0);
+		r = new ValorRandom();
 	}
 
 	@Test
@@ -51,28 +54,35 @@ public class TableroTest {
 	@Test
 	public void testPonerMinas() {
 
-		tablero.ponerMinas();
+		tablero.ponerMinas(r);
 		assertEquals("Dificultad 0= 10 minas", 15, tablero.getNumMinas());
 		tablero = new Tablero(1);
-		tablero.ponerMinas();
+		tablero.ponerMinas(r);
 		assertEquals("Dificultad 0= 10 minas", 40, tablero.getNumMinas());
 
 		tablero = new Tablero(2);
-		tablero.ponerMinas();
+		tablero.ponerMinas(r);
 		assertEquals("Dificultad 0= 10 minas", 99, tablero.getNumMinas());
 
 		tablero = new Tablero(-1);
-		tablero.ponerMinas();
+		tablero.ponerMinas(r);
 		assertEquals("Dificultad 0= 10 minas", 15, tablero.getNumMinas());
 
 		tablero = new Tablero(3);
-		tablero.ponerMinas();
+		tablero.ponerMinas(r);
 		assertEquals("Dificultad 0= 10 minas", 15, tablero.getNumMinas());
 
 		tablero = new Tablero(81);
-		tablero.ponerMinas();
+		tablero.ponerMinas(r);
 		assertEquals("Dificultad 0= 10 minas", 15, tablero.getNumMinas());
 
+	}
+
+	@Test
+	public void testValorRandom() {
+		MockRandom r = new MockRandom();
+
+		tablero.ponerMinas(r);
 	}
 
 	@Test
@@ -87,7 +97,7 @@ public class TableroTest {
 		int k;
 		for (int i = -1; i < 4; i++) {
 			tablero = new Tablero(i);
-			tablero.ponerMinas();
+			tablero.ponerMinas(r);
 			k = tablero.marcarCasilla(0, 0); // static
 			assertTrue("La casilla se abre", tablero.getCasillas(0, 0).getAbierta());
 			assertEquals(0, k);
@@ -143,7 +153,7 @@ public class TableroTest {
 		assertTrue("La casilla se abre", tablero.getCasillas(1, 1).getAbierta());
 
 		tablero = new Tablero(0);
-		tablero.ponerMinas();
+		tablero.ponerMinas(r);
 
 		for (int w = 0; w <= tablero.getNFilas(); w++) {
 			for (int j = 0; j <= tablero.getNColumnas(); j++) {
