@@ -133,12 +133,12 @@ public class CasellaTest {
 				assertEquals("El numero de minas cercanas debe ser : " + i, i, casilla.getminasCercanas());
 		}
 
-		for (int i = 1; i < 15; i++) {
-			casilla.restarMinaCercana();
+		for (int i = 8; i > -15; i--) {
 			if (casilla.getminasCercanas() <= 0)
 				assertEquals("El maximo de minas son 0", 0, casilla.getminasCercanas());
 			else
 				assertEquals("El numero de minas cercanas debe ser : " + i, i, casilla.getminasCercanas());
+			casilla.restarMinaCercana();
 		}
 
 	}

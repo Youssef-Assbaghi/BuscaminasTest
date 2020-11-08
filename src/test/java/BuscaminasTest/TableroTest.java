@@ -19,44 +19,6 @@ public class TableroTest {
 	}
 
 	@Test
-	public void testAlrededorPrimerMovimiento() {
-
-		tablero = new Tablero(0);
-		tablero.marcarCasilla(0, 0);
-		assertTrue("La casilla es adyacente", tablero.alrededorPrimerMovimiento(0, 0));
-		assertTrue("La casilla es adyacente", tablero.alrededorPrimerMovimiento(0, 1));
-		assertTrue("La casilla es adyacente", tablero.alrededorPrimerMovimiento(1, 0));
-		assertTrue("La casilla es adyacente", tablero.alrededorPrimerMovimiento(1, 1));
-		assertFalse("La casilla no existe", tablero.alrededorPrimerMovimiento(-1, -1));
-		assertFalse("La casilla no existe", tablero.alrededorPrimerMovimiento(-1, 0));
-		assertFalse("La casilla no existe", tablero.alrededorPrimerMovimiento(0, -1));
-		assertFalse("La casilla no existe", tablero.alrededorPrimerMovimiento(5, 5));
-
-		tablero = new Tablero(0);
-		tablero.marcarCasilla(0, 9);
-		assertTrue("La casilla es adyacente", tablero.alrededorPrimerMovimiento(0, 9));
-		assertTrue("La casilla es adyacente", tablero.alrededorPrimerMovimiento(1, 8));
-		assertTrue("La casilla es adyacente", tablero.alrededorPrimerMovimiento(1, 9));
-		assertTrue("La casilla es adyacente", tablero.alrededorPrimerMovimiento(0, 8));
-		assertFalse("La casilla no existe", tablero.alrededorPrimerMovimiento(0, 10));
-		assertFalse("La casilla no existe", tablero.alrededorPrimerMovimiento(-1, 10));
-		assertFalse("La casilla no existe", tablero.alrededorPrimerMovimiento(-1, 9));
-		assertFalse("La casilla no existe", tablero.alrededorPrimerMovimiento(5, 5));
-
-		tablero = new Tablero(0);
-		tablero.marcarCasilla(9, 9);
-		assertTrue("La casilla es adyacente", tablero.alrededorPrimerMovimiento(9, 9));
-		assertTrue("La casilla es adyacente", tablero.alrededorPrimerMovimiento(9, 8));
-		assertTrue("La casilla es adyacente", tablero.alrededorPrimerMovimiento(8, 9));
-		assertTrue("La casilla es adyacente", tablero.alrededorPrimerMovimiento(8, 8));
-		assertFalse("La casilla no existe", tablero.alrededorPrimerMovimiento(9, 10));
-		assertFalse("La casilla no existe", tablero.alrededorPrimerMovimiento(8, 10));
-		assertFalse("La casilla no existe", tablero.alrededorPrimerMovimiento(10, 9));
-		assertFalse("La casilla no existe", tablero.alrededorPrimerMovimiento(5, 5));
-
-	}
-
-	@Test
 	public void testGenerarTablero() {
 
 		int checksum = 0;
@@ -90,7 +52,7 @@ public class TableroTest {
 	public void testPonerMinas() {
 
 		tablero.ponerMinas();
-		assertEquals("Dificultad 0= 10 minas", 10, tablero.getNumMinas());
+		assertEquals("Dificultad 0= 10 minas", 15, tablero.getNumMinas());
 		tablero = new Tablero(1);
 		tablero.ponerMinas();
 		assertEquals("Dificultad 0= 10 minas", 40, tablero.getNumMinas());
@@ -101,15 +63,15 @@ public class TableroTest {
 
 		tablero = new Tablero(-1);
 		tablero.ponerMinas();
-		assertEquals("Dificultad 0= 10 minas", 10, tablero.getNumMinas());
+		assertEquals("Dificultad 0= 10 minas", 15, tablero.getNumMinas());
 
 		tablero = new Tablero(3);
 		tablero.ponerMinas();
-		assertEquals("Dificultad 0= 10 minas", 10, tablero.getNumMinas());
+		assertEquals("Dificultad 0= 10 minas", 15, tablero.getNumMinas());
 
 		tablero = new Tablero(81);
 		tablero.ponerMinas();
-		assertEquals("Dificultad 0= 10 minas", 10, tablero.getNumMinas());
+		assertEquals("Dificultad 0= 10 minas", 15, tablero.getNumMinas());
 
 	}
 
@@ -192,6 +154,7 @@ public class TableroTest {
 			}
 			System.out.println(" ");
 		}
+
 		System.out.println("----------------");
 		for (int w = 0; w <= tablero.getNFilas(); w++) {
 			for (int j = 0; j <= tablero.getNColumnas(); j++) {
@@ -200,18 +163,26 @@ public class TableroTest {
 			System.out.println(" ");
 		}
 
+		k = tablero.marcarCasilla(0, 0);
+
 		System.out.println("----------------");
 		for (int w = 0; w <= tablero.getNFilas(); w++) {
 			for (int j = 0; j <= tablero.getNColumnas(); j++) {
-				if (tablero.getCasillas(w, j).getAbierta())
-					System.out.print("O");
+				if (tablero.getCasillas(w, j).esMina())
+					System.out.print("X");
 				else
-					System.out.print("C");
+					System.out.print("0");
 			}
 			System.out.println(" ");
 		}
 
-		k = tablero.marcarCasilla(0, 0);
+		System.out.println("----------------");
+		for (int w = 0; w <= tablero.getNFilas(); w++) {
+			for (int j = 0; j <= tablero.getNColumnas(); j++) {
+				System.out.print(tablero.getCasillas(w, j).getminasCercanas());
+			}
+			System.out.println(" ");
+		}
 
 		System.out.println("----------------");
 		for (int w = 0; w <= tablero.getNFilas(); w++) {

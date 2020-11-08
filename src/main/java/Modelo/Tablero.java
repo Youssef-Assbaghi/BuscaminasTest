@@ -4,7 +4,7 @@ import java.util.Random;
 
 public final class Tablero {
 	private final int arr[] = { 10, 16, 24 };
-	private final int nMinas[] = { 10, 40, 99 };
+	private final int nMinas[] = { 15, 40, 99 };
 
 	private int numMinas;
 	private int dificultad;
@@ -63,10 +63,6 @@ public final class Tablero {
 
 	}
 
-	public boolean alrededorPrimerMovimiento(int fila, int columna) {
-		return true;
-	}
-
 	public int marcarCasilla(int fila, int columna) {
 		if (fila < 0 || fila >= nFilas)
 			return -1;
@@ -80,8 +76,7 @@ public final class Tablero {
 
 			if (primerMovimiento && casillas[fila][columna].esMina()) {
 				casillas[fila][columna].setEsMina(false);
-				restarMinasCercanas();
-
+				restarMinasAlrededor(fila, columna);
 				primerMovimiento = false;
 
 			}
@@ -98,6 +93,30 @@ public final class Tablero {
 	}
 
 	public void restarMinasAlrededor(int fila, int col) {
+
+		if (fila - 1 >= 0 && col + 1 >= 0)
+			casillas[fila - 1][col + 1].restarMinaCercana();
+
+		if (fila - 1 >= 0 && col - 1 >= 0)
+			casillas[fila - 1][col - 1].restarMinaCercana();
+
+		if (fila + 1 < nFilas - 1 && col + 1 < nColumnas - 1)
+			casillas[fila + 1][col + 1].restarMinaCercana();
+
+		if (fila + 1 < nFilas - 1 && col - 1 >= 0)
+			casillas[fila + 1][col - 1].restarMinaCercana();
+
+		if (fila - 1 >= 0)
+			casillas[fila - 1][col].restarMinaCercana();
+
+		if (fila + 1 <= nFilas - 1)
+			casillas[fila + 1][col].restarMinaCercana();
+
+		if (col + 1 < nColumnas - 1)
+			casillas[fila][col + 1].restarMinaCercana();
+
+		if (col - 1 >= 0)
+			casillas[fila][col - 1].restarMinaCercana();
 
 	}
 
