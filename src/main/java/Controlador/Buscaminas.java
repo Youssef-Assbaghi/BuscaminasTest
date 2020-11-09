@@ -1,6 +1,7 @@
 package Controlador;
 
 import Modelo.Tablero;
+import Modelo.ValorRandom;
 import Vista.Vista;
 
 public class Buscaminas {
@@ -24,8 +25,8 @@ public class Buscaminas {
 		int columna = vista.pedirColumna();
 
 		tablero.marcarCasilla(fila, columna);
-
-		tablero.ponerMinas();
+		ValorRandom r=new ValorRandom();
+		tablero.ponerMinas(r);
 
 		do {
 
