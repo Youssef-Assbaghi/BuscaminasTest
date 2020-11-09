@@ -78,17 +78,7 @@ public class TableroTest {
 
 	}
 
-	@Test
-	public void testValorRandom() {
-		MockRandom r = new MockRandom();
-		tablero.ponerMinas(r);
-		
-		for(int i=-6;i<=5;i++) {
-			tablero=new Tablero(i);
-			tablero.ponerMinas(r);
-			
-		}
-	}
+
 
 	@Test
 	public void testPintarTablero() {
@@ -372,6 +362,17 @@ public class TableroTest {
 			assertEquals(-1, k);
 		}
 
+	}
+	@Test
+	public void testValorRandom() {
+		MockRandom r = new MockRandom();
+		tablero.ponerMinas(r);
+		
+		for(int i=-6;i<=5;i++) {
+			tablero=new Tablero(i);
+			tablero.ponerMinas(r);
+			
+		}
 	}
 
 }
