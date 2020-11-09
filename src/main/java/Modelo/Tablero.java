@@ -48,13 +48,15 @@ public final class Tablero {
 		while (mineCount < numMinas) {
 			int filaRandom = r.getValor(nFilas);
 			int colRandom = r.getValor(nColumnas);
-			if (casillas[filaRandom][colRandom].esMina())
-				continue;
-			else if (!casillas[filaRandom][colRandom].getAbierta()) // Ver hacer un mock para testearlo
-			{
-				casillas[filaRandom][colRandom].setEsMina(true);
-				sumarMinasAlrededor(filaRandom, colRandom);
-				mineCount++;
+			if(filaRandom>=0&&filaRandom<nFilas&&colRandom>=0&& colRandom<nColumnas) {
+				if (casillas[filaRandom][colRandom].esMina())
+					continue;
+				else if (!casillas[filaRandom][colRandom].getAbierta()) // Ver hacer un mock para testearlo
+				{
+					casillas[filaRandom][colRandom].setEsMina(true);
+					sumarMinasAlrededor(filaRandom, colRandom);
+					mineCount++;
+				}
 			}
 		}
 
