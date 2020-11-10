@@ -8,12 +8,22 @@ public class MockView implements VistaInterfaz{
 	@Override
 	public int pedirColumna() {
 		// TODO Auto-generated method stub
+		cuento++;
+		if(cuento ==30) {
+			cuento=0;
+			return 0;
+		}
 		return -154;
 	}
 
 	@Override
 	public int pedirFila() {
 		// TODO Auto-generated method stub
+		cuento++;
+		if(cuento ==30) {
+			cuento=0;
+			return 0;
+		}
 		return 99;
 	}
 
@@ -26,6 +36,11 @@ public class MockView implements VistaInterfaz{
 	@Override
 	public int pedirDificultad() {
 		// TODO Auto-generated method stub
+		cuento++;
+		if(cuento ==30) {
+			cuento=0;
+			return 0;
+		}
 		return -1;
 	}
 
@@ -39,8 +54,10 @@ public class MockView implements VistaInterfaz{
 	public int pedirTipoJugada() {
 		// TODO Auto-generated method stub
 		cuento ++;
-		if(cuento ==30)
+		if(cuento ==30) {
+			cuento=0;
 			return 0;
+		}
 		return -8;
 	}
 

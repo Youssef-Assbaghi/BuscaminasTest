@@ -11,31 +11,35 @@ public class Buscaminas {
 
 	//private static Vista vista;
 	private static boolean salir = false;
+	private static VistaInterfaz vista;
 	public Tablero getTablero() {return tablero;}
+	public Buscaminas(VistaInterfaz vistaa) {vista=vistaa;
+	tablero=new Tablero(0);}
 
-	public static void main(VistaInterfaz vista) {
+
+	public static void main() {
 		// TODO Auto-generated method stub
 
 		vista.printBienvenido();
-		int dificultad = vista.pedirDificultad();
+		int dificultad = pedirDificultad();
 
 		tablero = new Tablero(dificultad);
 
 		vista.printTablero();
 
-		int fila = vista.pedirFila();
-		int columna = vista.pedirColumna();
-
-		tablero.marcarCasilla(fila, columna);
+		int fila = pedirFilaCol(tablero.getNFilas());
+		int columna = pedirFilaCol(tablero.getNColumnas());
+		
 		ValorRandom r=new ValorRandom();
 		tablero.ponerMinas(r);
+		tablero.marcarCasilla(fila, columna);
 
 		do {
 
-			fila = vista.pedirFila();
-			columna = vista.pedirColumna();
+			fila = pedirFilaCol(tablero.getNFilas());
+			columna = pedirFilaCol(tablero.getNColumnas());
 
-			int tipoJugada = vista.pedirTipoJugada();
+			int tipoJugada = pedirJugada();
 
 			switch (tipoJugada) {
 			case 0:
@@ -56,5 +60,41 @@ public class Buscaminas {
 		} while (!salir);
 
 	}
+
+	private static int pedirJugada() {
+		
+		boolean acierto=false;
+		int tipoJugada=0;
+		while(!acierto) {
+			tipoJugada = vista.pedirTipoJugada();
+			if(tipoJugada>=0&&tipoJugada<=2)
+				acierto=true;
+		}
+		return tipoJugada;
+	}
+	
+	private static int pedirFilaCol(int valor) {
+		
+		boolean acierto=false;
+		int value=0;
+		while(!acierto) {
+			value=vista.pedirFila();
+			if(value<=valor&& value>=0)
+				acierto=true;
+		}
+		return value;
+	}
+	
+	private static int pedirDificultad() {
+		int valor=0;
+		boolean acierto=false;
+		while(!acierto) {
+			valor=vista.pedirDificultad();
+			if(valor>=0&& valor<=2)
+				acierto=true;
+		}
+		return valor;
+	}
+	
 
 }
