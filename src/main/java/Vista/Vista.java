@@ -2,7 +2,7 @@ package Vista;
 
 import java.util.Scanner;
 
-public class Vista {
+public class Vista implements VistaInterfaz{
 
 	private Scanner input = new Scanner(System.in);
 
@@ -29,7 +29,7 @@ public class Vista {
 
 	public int pedirDificultad() {
 		// TODO Auto-generated method stub
-		System.out.print("Introduce la dificultad (0=Fàcil, 1 = Intermedio, 2=Díficil): ");
+		System.out.print("Introduce la dificultad (0=Fï¿½cil, 1 = Intermedio, 2=Dï¿½ficil): ");
 		return 0;
 	}
 

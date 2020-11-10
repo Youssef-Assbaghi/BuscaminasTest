@@ -3,15 +3,17 @@ package Controlador;
 import Modelo.Tablero;
 import Modelo.ValorRandom;
 import Vista.Vista;
+import Vista.VistaInterfaz;
 
 public class Buscaminas {
 
 	private static Tablero tablero;
 
-	private static Vista vista;
+	//private static Vista vista;
 	private static boolean salir = false;
+	public Tablero getTablero() {return tablero;}
 
-	public static void main(String[] args) {
+	public static void main(VistaInterfaz vista) {
 		// TODO Auto-generated method stub
 
 		vista.printBienvenido();

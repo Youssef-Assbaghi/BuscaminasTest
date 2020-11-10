@@ -146,6 +146,7 @@ public final class Tablero {
 	public void setNumMinas(int numMinas) {
 		this.numMinas = numMinas;
 	}
+	public int getDificultad() {return dificultad;}
 
 //	public int getDificultad() {
 //		return dificultad;
