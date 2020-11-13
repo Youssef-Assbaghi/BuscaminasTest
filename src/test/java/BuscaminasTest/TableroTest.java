@@ -54,6 +54,7 @@ public class TableroTest {
 	@Test
 	public void testPonerMinas() {
 
+		// Comprobamos que se pongan el número de minas correctas.
 		tablero.ponerMinas(r);
 		assertEquals("Dificultad 0= 10 minas", 15, tablero.getNumMinas());
 		tablero = new Tablero(1);
@@ -77,8 +78,6 @@ public class TableroTest {
 		assertEquals("Dificultad 0= 10 minas", 15, tablero.getNumMinas());
 
 	}
-
-
 
 	@Test
 	public void testPintarTablero() {
@@ -123,6 +122,8 @@ public class TableroTest {
 
 		}
 
+		// Comprobamos que se abran múltiples casillas si se le da a una casilla con 0
+		// minas alrededor.
 		tablero = new Tablero(0);
 
 		tablero.getCasillas(0, 2).setEsMina(true);
@@ -363,15 +364,16 @@ public class TableroTest {
 		}
 
 	}
+
 	@Test
 	public void testValorRandom() {
 		MockRandom r = new MockRandom();
 		tablero.ponerMinas(r);
-		
-		for(int i=-6;i<=5;i++) {
-			tablero=new Tablero(i);
+
+		for (int i = -6; i <= 5; i++) {
+			tablero = new Tablero(i);
 			tablero.ponerMinas(r);
-			
+
 		}
 	}
 

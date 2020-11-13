@@ -8,13 +8,16 @@ public final class Tablero {
 	private int dificultad;
 	private int nFilas;
 	private int nColumnas;
-	private Casella[][] casillas; // Debe ser privada y acceder mediante getters y setters
+	private Casella[][] casillas;
 	private boolean primerMovimiento;
 
+	/**
+	 * Constructor, en caso de que no se indique una dificultad se inicializa a
+	 * dificultad 0.
+	 * 
+	 * @param dificultad es el valor (0,1,2) que indica la dificultad del juego.
+	 */
 	public Tablero(int dificultad) {
-		// creamos random aqui
-		// interfaz rndom en una clase
-		// y cuando la llamemmos la vamos llamando poco a poco
 		if (dificultad <= 0)
 			dificultad = 0;
 		else if (dificultad > 2)
@@ -28,10 +31,20 @@ public final class Tablero {
 
 	}
 
+	/**
+	 * Retorna una casilla.
+	 * 
+	 * @param fila    es el índice de la fila.
+	 * @param columna es el índice de la columna.
+	 * @return
+	 */
 	public Casella getCasillas(int fila, int columna) {
 		return casillas[fila][columna];
 	}
 
+	/**
+	 * Inicializa el tablero con casillas vacias, cerradas y sin bombas.
+	 */
 	public void generarTablero() {
 		casillas = new Casella[nFilas][nColumnas];
 		for (int j = 0; j <= nFilas - 1; j++)
@@ -43,12 +56,17 @@ public final class Tablero {
 	public void pintarTablero() {
 	}
 
+	/**
+	 * Pone bombas de forma aleatoria según el resultado de un valor random.
+	 * 
+	 * @param r
+	 */
 	public void ponerMinas(RandomPos r) {
 		int mineCount = 0;
 		while (mineCount < numMinas) {
 			int filaRandom = r.getValor(nFilas);
 			int colRandom = r.getValor(nColumnas);
-			if(filaRandom>=0&&filaRandom<nFilas&&colRandom>=0&& colRandom<nColumnas) {
+			if (filaRandom >= 0 && filaRandom < nFilas && colRandom >= 0 && colRandom < nColumnas) {
 				if (casillas[filaRandom][colRandom].esMina())
 					continue;
 				else if (!casillas[filaRandom][colRandom].getAbierta()) // Ver hacer un mock para testearlo
@@ -62,6 +80,13 @@ public final class Tablero {
 
 	}
 
+	/**
+	 * Está función marca i abre una casilla en el tablero.
+	 * 
+	 * @param fila    es el índice de la fila.
+	 * @param columna es el índice de la columna.
+	 * @return
+	 */
 	public int marcarCasilla(int fila, int columna) {
 		if (fila < 0 || fila >= nFilas)
 			return -1;
@@ -91,6 +116,15 @@ public final class Tablero {
 		}
 	}
 
+	/**
+	 * Esta función resta 1 al contador de minasCercanas que tienen las casillas
+	 * alrededor de la casilla que se pasa. Esto se utiliza si borramos una mina en
+	 * el tablero (primer click del jugador) y hay que actualizar el número de minas
+	 * alrededor de las casillas alrededor.
+	 * 
+	 * @param fila es el índice de la fila.
+	 * @param col  es el índice de la columna
+	 */
 	public void restarMinasAlrededor(int fila, int col) {
 
 		if (fila - 1 >= 0 && col + 1 >= 0)
@@ -119,6 +153,14 @@ public final class Tablero {
 
 	}
 
+	/**
+	 * Pone una bandera en la casilla. En el caso de que ya haya una bandera en esa
+	 * casilla, se quita.
+	 * 
+	 * @param fila    índice de la fila.
+	 * @param columna índice de la columna.
+	 * @return
+	 */
 	public int ponerBandera(int fila, int columna) {
 		if (fila < 0 || fila >= nFilas)
 			return -1;
@@ -146,7 +188,10 @@ public final class Tablero {
 	public void setNumMinas(int numMinas) {
 		this.numMinas = numMinas;
 	}
-	public int getDificultad() {return dificultad;}
+
+	public int getDificultad() {
+		return dificultad;
+	}
 
 //	public int getDificultad() {
 //		return dificultad;
@@ -156,8 +201,16 @@ public final class Tablero {
 		this.dificultad = dificultad;
 	}
 
-	public void sumarMinasAlrededor(int fila, int col) { // A ESTA FILA Y A ESTA COLUMNA LE PONEMOS UNA MINA
-// SUMAMOS 1 A TODAS LAS DE ALREDEDOR
+	/**
+	 * Esta función suma 1 al contador de minasCercanas que tienen las casillas
+	 * alrededor de la casilla que se pasa. Esto se utiliza al añadir una mina,
+	 * entonces hay que actualizar el número de minas alrededor de las casillas
+	 * alrededor.
+	 * 
+	 * @param fila es el índice de la fila.
+	 * @param col  es el índice de la columna.
+	 */
+	public void sumarMinasAlrededor(int fila, int col) {
 		if (fila - 1 >= 0 && col + 1 >= 0)
 			casillas[fila - 1][col + 1].sumarMinaCercana();
 
@@ -184,17 +237,3 @@ public final class Tablero {
 	}
 
 }
-
-/**
- * Al haberse creado las minas el jugador selecciona una casilla para abrir, la
- * casilla seleccionada y las casillas cercanas se igualan a zero forma que si
- * habia minas estas se borran. Despues de haber borrado las minas cercanas a la
- * casilla seleccionada se checa cada casilla para verificar si tiene una bomba
- * cerca, si tiene una bomba cerca se le suma 1 a menos de que sea bomba o este
- * fuera del rango de la matriz. La casilla que selecciono el jugador se abre
- * reemplazando la casilla de la matriz que el jugador ve con la casilla que
- * esta en el mismo lugar de la matriz que contiene toda la informacion de las
- * minas junto con las 8 casillas vecinas, si alguna de las casillas que se
- * abrio es cero todas las casillas cercanas a estas tambien se abren hasta que
- * todas las casillas cercanas a un ya abierto 0 esten tambien abiertas.
- */
