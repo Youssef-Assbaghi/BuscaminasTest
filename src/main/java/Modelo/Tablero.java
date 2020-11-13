@@ -34,8 +34,8 @@ public final class Tablero {
 	/**
 	 * Retorna una casilla.
 	 * 
-	 * @param fila    es el índice de la fila.
-	 * @param columna es el índice de la columna.
+	 * @param fila    es el ï¿½ndice de la fila.
+	 * @param columna es el ï¿½ndice de la columna.
 	 * @return
 	 */
 	public Casella getCasillas(int fila, int columna) {
@@ -57,7 +57,7 @@ public final class Tablero {
 	}
 
 	/**
-	 * Pone bombas de forma aleatoria según el resultado de un valor random.
+	 * Pone bombas de forma aleatoria segï¿½n el resultado de un valor random.
 	 * 
 	 * @param r
 	 */
@@ -79,12 +79,19 @@ public final class Tablero {
 		}
 
 	}
-
 	/**
-	 * Está función marca i abre una casilla en el tablero.
 	 * 
-	 * @param fila    es el índice de la fila.
-	 * @param columna es el índice de la columna.
+	 * @return Devuelve la matriz de casillas
+	 */
+
+	public Casella[][]  getTablero() {
+		return casillas;
+	}
+	/**
+	 * Estï¿½ funciï¿½n marca i abre una casilla en el tablero.
+	 * 
+	 * @param fila    es el ï¿½ndice de la fila.
+	 * @param columna es el ï¿½ndice de la columna.
 	 * @return
 	 */
 	public int marcarCasilla(int fila, int columna) {
@@ -117,13 +124,13 @@ public final class Tablero {
 	}
 
 	/**
-	 * Esta función resta 1 al contador de minasCercanas que tienen las casillas
+	 * Esta funciï¿½n resta 1 al contador de minasCercanas que tienen las casillas
 	 * alrededor de la casilla que se pasa. Esto se utiliza si borramos una mina en
-	 * el tablero (primer click del jugador) y hay que actualizar el número de minas
+	 * el tablero (primer click del jugador) y hay que actualizar el nï¿½mero de minas
 	 * alrededor de las casillas alrededor.
 	 * 
-	 * @param fila es el índice de la fila.
-	 * @param col  es el índice de la columna
+	 * @param fila es el ï¿½ndice de la fila.
+	 * @param col  es el ï¿½ndice de la columna
 	 */
 	public void restarMinasAlrededor(int fila, int col) {
 
@@ -157,8 +164,8 @@ public final class Tablero {
 	 * Pone una bandera en la casilla. En el caso de que ya haya una bandera en esa
 	 * casilla, se quita.
 	 * 
-	 * @param fila    índice de la fila.
-	 * @param columna índice de la columna.
+	 * @param fila    ï¿½ndice de la fila.
+	 * @param columna ï¿½ndice de la columna.
 	 * @return
 	 */
 	public int ponerBandera(int fila, int columna) {
@@ -202,13 +209,13 @@ public final class Tablero {
 	}
 
 	/**
-	 * Esta función suma 1 al contador de minasCercanas que tienen las casillas
-	 * alrededor de la casilla que se pasa. Esto se utiliza al añadir una mina,
-	 * entonces hay que actualizar el número de minas alrededor de las casillas
+	 * Esta funciï¿½n suma 1 al contador de minasCercanas que tienen las casillas
+	 * alrededor de la casilla que se pasa. Esto se utiliza al aï¿½adir una mina,
+	 * entonces hay que actualizar el nï¿½mero de minas alrededor de las casillas
 	 * alrededor.
 	 * 
-	 * @param fila es el índice de la fila.
-	 * @param col  es el índice de la columna.
+	 * @param fila es el ï¿½ndice de la fila.
+	 * @param col  es el ï¿½ndice de la columna.
 	 */
 	public void sumarMinasAlrededor(int fila, int col) {
 		if (fila - 1 >= 0 && col + 1 >= 0)

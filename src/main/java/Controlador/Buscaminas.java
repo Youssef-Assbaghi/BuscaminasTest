@@ -17,27 +17,32 @@ public class Buscaminas {
 	tablero=new Tablero(0);}
 
 
-	public static void main() {
+	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		if(vista==null) {
+			vista=new Vista();
+		}
 		vista.printBienvenido();
 		int dificultad = pedirDificultad();
-
-		tablero = new Tablero(dificultad);
-
-		vista.printTablero();
-
-		int fila = pedirFilaCol(tablero.getNFilas());
-		int columna = pedirFilaCol(tablero.getNColumnas());
-		
 		ValorRandom r=new ValorRandom();
+		tablero = new Tablero(dificultad);
+		
+		vista.printTablero(tablero.getTablero());
+
+		System.out.println("Donde sera tu primer movimiento?");
+		int fila = pedirFila(tablero.getNFilas());
+		int columna = pedirColumna(tablero.getNColumnas());
+		
+		
 		tablero.ponerMinas(r);
 		tablero.marcarCasilla(fila, columna);
+		vista.printTablero(tablero.getTablero());
 
 		do {
 
-			fila = pedirFilaCol(tablero.getNFilas());
-			columna = pedirFilaCol(tablero.getNColumnas());
+			System.out.println("Sobre que posicion deseas interactuar");
+			fila = pedirFila(tablero.getNFilas());
+			columna = pedirColumna(tablero.getNColumnas());
 
 			int tipoJugada = pedirJugada();
 
@@ -57,6 +62,7 @@ public class Buscaminas {
 				break;
 			}
 
+			vista.printTablero(tablero.getTablero());
 		} while (!salir);
 
 	}
@@ -73,7 +79,7 @@ public class Buscaminas {
 		return tipoJugada;
 	}
 	
-	private static int pedirFilaCol(int valor) {
+	private static int pedirFila(int valor) {
 		
 		boolean acierto=false;
 		int value=0;
@@ -81,6 +87,22 @@ public class Buscaminas {
 			value=vista.pedirFila();
 			if(value<=valor&& value>=0)
 				acierto=true;
+			else
+				System.out.println("La fila debe ser una valor entre 0 y "+valor);
+		}
+		return value;
+	}
+	
+	private static int pedirColumna(int valor) {
+		
+		boolean acierto=false;
+		int value=0;
+		while(!acierto) {
+			value=vista.pedirColumna();
+			if(value<=valor&& value>=0)
+				acierto=true;
+			else
+				System.out.println("La columna debe ser una valor entre 0 y "+valor);
 		}
 		return value;
 	}

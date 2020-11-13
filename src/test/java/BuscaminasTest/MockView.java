@@ -1,5 +1,6 @@
 package BuscaminasTest;
 
+import Modelo.Casella;
 import Vista.VistaInterfaz;
 
 public class MockView implements VistaInterfaz{
@@ -28,7 +29,7 @@ public class MockView implements VistaInterfaz{
 	}
 
 	@Override
-	public void printTablero() {
+	public void printTablero(Casella[][] casilla) {
 		// TODO Auto-generated method stub
 		
 	}
