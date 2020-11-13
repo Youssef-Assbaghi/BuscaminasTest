@@ -209,13 +209,13 @@ public final class Tablero {
 	}
 
 	/**
-	 * Esta funci�n suma 1 al contador de minasCercanas que tienen las casillas
+	 * Esta funcion suma 1 al contador de minasCercanas que tienen las casillas
 	 * alrededor de la casilla que se pasa. Esto se utiliza al a�adir una mina,
-	 * entonces hay que actualizar el n�mero de minas alrededor de las casillas
+	 * entonces hay que actualizar el numero de minas alrededor de las casillas
 	 * alrededor.
 	 * 
-	 * @param fila es el �ndice de la fila.
-	 * @param col  es el �ndice de la columna.
+	 * @param fila es el indice de la fila.
+	 * @param col  es el indice de la columna.
 	 */
 	public void sumarMinasAlrededor(int fila, int col) {
 		if (fila - 1 >= 0 && col + 1 >= 0)

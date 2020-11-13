@@ -42,19 +42,18 @@ public class Vista implements VistaInterfaz{
 		System.out.println("");
 		for (int i = 0; i < casilla.length; i++) {
 			for (int j = 0; j < casilla[i].length; j++) {
+				
 				if(casilla[i][j].getAbierta()) {
 					int casillasCercanas=casilla[i][j].getminasCercanas();
-					if(casillasCercanas!=0)
+					if(casillasCercanas!=0) {
 						System.out.print(casillasCercanas);
-					else
+					}else
 						System.out.print(" ");
-						
-				}
-				else {
-					System.out.print("C");
-				}
-				
-			}
+				}else if(casilla[i][j].getBandera()){
+					System.out.print("B");
+					}else
+						System.out.print("C");
+			}	
 			System.out.println("");
 		}
 		
