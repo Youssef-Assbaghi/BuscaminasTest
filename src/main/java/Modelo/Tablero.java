@@ -1,7 +1,7 @@
 package Modelo;
 
 public final class Tablero {
-	private final int arr[] = { 10, 16, 24 };
+	private final int filasColumnas[] = { 10, 16, 24 };
 	private final int nMinas[] = { 15, 40, 99 };
 
 	private int numMinas;
@@ -23,8 +23,8 @@ public final class Tablero {
 		else if (dificultad > 2)
 			dificultad = 0;
 		this.setDificultad(dificultad);
-		nFilas = arr[dificultad];
-		nColumnas = arr[dificultad];
+		nFilas = filasColumnas[dificultad];
+		nColumnas = filasColumnas[dificultad];
 		setNumMinas(nMinas[dificultad]);
 		primerMovimiento = true;
 		generarTablero();
@@ -51,9 +51,6 @@ public final class Tablero {
 			for (int i = 0; i <= nColumnas - 1; i++)
 				casillas[j][i] = new Casella();
 
-	}
-
-	public void pintarTablero() {
 	}
 
 	/**
