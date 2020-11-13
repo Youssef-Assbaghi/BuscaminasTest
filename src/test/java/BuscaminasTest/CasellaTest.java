@@ -35,36 +35,48 @@ public class CasellaTest {
 	@Test
 	// (int nMinas,boolean mina,boolean state,boolean flag)
 	public void constructorParametroCAsellaTest() {
-		casilla = new Casella(18, true, true, true);
-		assertEquals("Al setear no puede tener mas de 8 minas cercanas", 8, casilla.getminasCercanas());
-		assertFalse("Si la casilla esta abierta la bandera debe ser igual a FALSE", casilla.getBandera());
-		casilla = new Casella(0, false, true, true);
-		assertEquals("Al setear  puede tener 0 minas cercanas", 0, casilla.getminasCercanas());
-		assertFalse("Si la casilla esta abierta la bandera debe ser igual a FALSE", casilla.getBandera());
-		casilla = new Casella(-1, true, true, false);
-		assertEquals("Al setear no puede tener minas cercanas negativas", 0, casilla.getminasCercanas());
+		//Particion equivalente[0,8] Valido, fuera de esto invalido
+		//Valores Interiores
+		casilla = new Casella(5, false, false, false);
+		assertEquals("Al setear puede tener 5 minas", 5, casilla.getminasCercanas());
+		//Valores Frontera
 		casilla = new Casella(8, false, true, false);
 		assertEquals("Al setear no puede tener mas de 8 minas cercanas", 8, casilla.getminasCercanas());
-		casilla = new Casella(5, false, false, false);
-		assertFalse("Al setear no puede tener mas de 8 minas cercanas", casilla.getBandera());
+		casilla = new Casella(0, false, true, true);
+		assertEquals("Al setear  puede tener 0 minas cercanas", 0, casilla.getminasCercanas());
+		//Valores interiores a frontera
+		casilla = new Casella(1, false, true, true);
+		assertEquals("Al setear  puede tener 0 minas cercanas", 1, casilla.getminasCercanas());
+		casilla = new Casella(7, false, true, true);
+		assertEquals("Al setear  puede tener 0 minas cercanas", 7, casilla.getminasCercanas());
+		
+		//Valores exteriores a frontera
+		casilla = new Casella(9, true, true, true);
+		assertEquals("Al setear no puede tener mas de 8 minas cercanas", 8, casilla.getminasCercanas());
+		casilla = new Casella(-1, true, true, false);
+		assertEquals("Al setear no puede tener minas cercanas negativas", 0, casilla.getminasCercanas());
+		
+		
 
 	}
 
 	@Test
 	public void testCambiarBandera() {
 
+		//Comprobacion inicial de que las casillas no tienen bandera
 		assertFalse("Al principio de la ejecucion debe dar False", casilla.getBandera());
-
 		casilla.cambiarBandera();
 
+		//Comprobamos de que se ha puesto la bandera
 		assertTrue("Como se inicializa a zero debe devolver un True conforme hay Bandera", casilla.getBandera());
 
+		//Comprobamos que se  quita
 		casilla.cambiarBandera();
 		assertFalse("Una vez cambia de bandera al volver a darle se debe quitar y devolver False",
 				casilla.getBandera());
 
+		//Comprobamos que si esta abierta no se puede poner banderas.
 		casilla.setAbierta(true);
-		casilla.setBandera(true);
 		casilla.cambiarBandera();
 		assertFalse("Si la mina es abierta no se puede poner bandera a la casilla", casilla.getBandera());
 
@@ -73,18 +85,22 @@ public class CasellaTest {
 	@Test
 	public void testAbrirCasella() {
 
+		//Comprobamos que al inicializar esta cerrada
 		assertFalse("Al crear la variable la casilla debe estar cerrada osea False", casilla.getAbierta());
 
+		//Abrimos casilla
 		casilla.abrirCasilla();
 		assertTrue("Como se inicializa a false, al cambiar de estado debe ser true", casilla.getAbierta());
 
+		//No se puede abrir lo abierto
 		casilla.abrirCasilla();
 		assertTrue("Como  ya se ha abierto no se puede volver a abrir", casilla.getAbierta());
 
+		
 		casilla.setBandera(true);
 		casilla.abrirCasilla();
-		assertTrue("Si abierto y bandera se queda abierto y se elimina bandera", casilla.getAbierta());
-		assertFalse("Si abierto y bandera se queda abierto y se elimina bandera", casilla.getBandera());
+		assertTrue("Si casilla esta abierta y pones bandera, se queda abierto y se elimina bandera", casilla.getAbierta());
+		assertFalse("Si abierto y pones una bandera se queda abierto y se elimina bandera", casilla.getBandera());
 
 		casilla.setAbierta(false); // Seteamos para poder volver al estrado inicial y seguir haciedo test
 		casilla.cambiarBandera();
