@@ -10,6 +10,7 @@ public final class Tablero {
 	private int nColumnas;
 	private Casella[][] casillas;
 	private boolean primerMovimiento;
+	private int numCasillasCerradas;
 
 	/**
 	 * Constructor, en caso de que no se indique una dificultad se inicializa a
@@ -28,6 +29,7 @@ public final class Tablero {
 		setNumMinas(nMinas[dificultad]);
 		primerMovimiento = true;
 		generarTablero();
+		setNumCasillasCerradas(filasColumnas[dificultad] * filasColumnas[dificultad]);
 
 	}
 
@@ -107,9 +109,10 @@ public final class Tablero {
 				casillas[fila][columna].setEsMina(false);
 				restarMinasAlrededor(fila, columna);
 				primerMovimiento = false;
+				numMinas--;
 			}
-
 			casillas[fila][columna].abrirCasilla();
+			setNumCasillasCerradas(getNumCasillasCerradas() - 1);
 			if (casillas[fila][columna].getminasCercanas() == 0) {
 				for (int i = fila - 1; i <= fila + 1; i++)
 					for (int j = columna - 1; j <= columna + 1; j++)
@@ -257,6 +260,14 @@ public final class Tablero {
 		if (fila + 1 < nFilas && col - 1 >= 0) {
 			casillas[fila + 1][col - 1].sumarMinaCercana();
 		}
+	}
+
+	public int getNumCasillasCerradas() {
+		return numCasillasCerradas;
+	}
+
+	public void setNumCasillasCerradas(int numCasillasCerradas) {
+		this.numCasillasCerradas = numCasillasCerradas;
 	}
 
 }

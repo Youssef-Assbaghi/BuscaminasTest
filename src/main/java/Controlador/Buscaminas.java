@@ -56,6 +56,10 @@ public class Buscaminas {
 				break;
 
 			case 1:
+				if (tablero.getCasillas(fila, columna).esMina()) {
+					salir = true;
+					System.out.println("Eres malísimo. BG.");
+				}
 				tablero.marcarCasilla(fila, columna);
 				break;
 			case 2:
@@ -65,8 +69,11 @@ public class Buscaminas {
 			default:
 				break;
 			}
-
 			vista.printTablero(tablero.getTablero());
+			if (tablero.getNumCasillasCerradas() == tablero.getNumMinas()) {
+				salir = true;
+				System.out.println("Felicidades, eres el único que ha ganado en este juego.");
+			}
 		} while (!salir);
 
 	}
