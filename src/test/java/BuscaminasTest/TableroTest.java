@@ -23,11 +23,9 @@ public class TableroTest {
 
 	@Test
 	public void testGenerarTablero() {
-		
 
-
-		//VALORES FRONTERA
-		//Tablero 0
+		// VALORES FRONTERA
+		// Tablero 0
 		int checksum = 0;
 		for (int i = 0; i <= tablero.getNFilas(); i++) {
 			for (int j = 0; j <= tablero.getNColumnas(); j++) {
@@ -38,7 +36,7 @@ public class TableroTest {
 			}
 		}
 		assertEquals(100, checksum);
-		
+
 		tablero = new Tablero(2);
 		assertEquals("En caso de no cumplir parametros se definira com 10,10", 23, tablero.getNFilas());
 		assertEquals("En caso de no cumplir parametros se definira com 10,10", 23, tablero.getNColumnas());
@@ -52,11 +50,11 @@ public class TableroTest {
 			}
 		}
 		assertEquals(576, checksum);
-		
-		//VALORES INTERIORES
-		
+
+		// VALORES INTERIORES
+
 		checksum = 0;
-		tablero=new Tablero(1);
+		tablero = new Tablero(1);
 		for (int i = 0; i <= tablero.getNFilas(); i++) {
 			for (int j = 0; j <= tablero.getNColumnas(); j++) {
 
@@ -66,8 +64,8 @@ public class TableroTest {
 			}
 		}
 		assertEquals(256, checksum);
-		
-		//Valores exteriores a frontera
+
+		// Valores exteriores a frontera
 		tablero = new Tablero(3);
 		assertEquals("En caso de no cumplir parametros se definira com 10,10", 9, tablero.getNFilas());
 		assertEquals("En caso de no cumplir parametros se definira com 10,10", 9, tablero.getNColumnas());
@@ -96,17 +94,16 @@ public class TableroTest {
 		}
 		assertEquals(100, checksum);
 
-
 	}
 
 	@Test
 	public void testPonerMinas() {
 
 		// Comprobamos que se pongan el numero de minas correctas.
-		//Valores frontera i interiores
+		// Valores frontera i interiores
 		tablero.ponerMinas(r);
 		assertEquals("Dificultad 0= 10 minas", 15, tablero.getNumMinas());
-		
+
 		tablero = new Tablero(1);
 		tablero.ponerMinas(r);
 		assertEquals("Dificultad 0= 10 minas", 40, tablero.getNumMinas());
@@ -115,7 +112,7 @@ public class TableroTest {
 		tablero.ponerMinas(r);
 		assertEquals("Dificultad 0= 10 minas", 99, tablero.getNumMinas());
 
-		//Valores exteriores a frontera
+		// Valores exteriores a frontera
 		tablero = new Tablero(-1);
 		tablero.ponerMinas(r);
 		assertEquals("Dificultad 0= 10 minas", 15, tablero.getNumMinas());
@@ -126,11 +123,10 @@ public class TableroTest {
 
 	}
 
-
 	@Test
 	public void testMarcarCasilla() {
 		int k;
-		//Testeamos valores limite y frontera de tablero
+		// Testeamos valores limite y frontera de tablero
 		for (int i = -1; i < 3; i++) {
 			tablero = new Tablero(i);
 			tablero.ponerMinas(r);
@@ -167,9 +163,9 @@ public class TableroTest {
 		// Comprobamos que se abran m�ltiples casillas si se le da a una casilla con 0
 		// minas alrededor.
 
-		for(int i=0;i<3;i++) {
+		for (int i = 0; i < 3; i++) {
 			tablero = new Tablero(i);
-			//ARRIBA IZQUIERDA
+			// ARRIBA IZQUIERDA
 			tablero.getCasillas(0, 2).setEsMina(true);
 			tablero.sumarMinasAlrededor(0, 2);
 			tablero.getCasillas(1, 2).setEsMina(true);
@@ -185,64 +181,62 @@ public class TableroTest {
 			assertTrue("La casilla se abre", tablero.getCasillas(0, 1).getAbierta());
 			assertTrue("La casilla se abre", tablero.getCasillas(1, 0).getAbierta());
 			assertTrue("La casilla se abre", tablero.getCasillas(1, 1).getAbierta());
-			//ARRIBA DERECHA
-			tablero.getCasillas(0, tablero.getNFilas()-2).setEsMina(true); //en posicion 0, final-2
-			tablero.sumarMinasAlrededor(0, tablero.getNFilas()-2);
-			tablero.getCasillas(1, tablero.getNFilas()-2).setEsMina(true); //en posicion 1, final-2
-			tablero.sumarMinasAlrededor(1, tablero.getNFilas()-2);
-			tablero.getCasillas(2, tablero.getNFilas()-2).setEsMina(true); //en posicion 2, final-2
-			tablero.sumarMinasAlrededor(2, tablero.getNFilas()-2);
-			tablero.getCasillas(2, tablero.getNFilas()-1).setEsMina(true); //en posicion 2, final-1
-			tablero.sumarMinasAlrededor(2, tablero.getNFilas()-1);
-			tablero.getCasillas(2, tablero.getNFilas()).setEsMina(true); //en posicion 2, final
+			// ARRIBA DERECHA
+			tablero.getCasillas(0, tablero.getNFilas() - 2).setEsMina(true); // en posicion 0, final-2
+			tablero.sumarMinasAlrededor(0, tablero.getNFilas() - 2);
+			tablero.getCasillas(1, tablero.getNFilas() - 2).setEsMina(true); // en posicion 1, final-2
+			tablero.sumarMinasAlrededor(1, tablero.getNFilas() - 2);
+			tablero.getCasillas(2, tablero.getNFilas() - 2).setEsMina(true); // en posicion 2, final-2
+			tablero.sumarMinasAlrededor(2, tablero.getNFilas() - 2);
+			tablero.getCasillas(2, tablero.getNFilas() - 1).setEsMina(true); // en posicion 2, final-1
+			tablero.sumarMinasAlrededor(2, tablero.getNFilas() - 1);
+			tablero.getCasillas(2, tablero.getNFilas()).setEsMina(true); // en posicion 2, final
 			tablero.sumarMinasAlrededor(2, tablero.getNFilas());
 			tablero.marcarCasilla(0, tablero.getNFilas());
 			assertTrue("La casilla se abre", tablero.getCasillas(0, tablero.getNFilas()).getAbierta());
-			assertTrue("La casilla se abre", tablero.getCasillas(0, tablero.getNFilas()-1).getAbierta());
+			assertTrue("La casilla se abre", tablero.getCasillas(0, tablero.getNFilas() - 1).getAbierta());
 			assertTrue("La casilla se abre", tablero.getCasillas(1, tablero.getNFilas()).getAbierta());
-			assertTrue("La casilla se abre", tablero.getCasillas(1, tablero.getNFilas()-1).getAbierta());
-			
-			//ABAJO IZQUIERDA
-			tablero.getCasillas(tablero.getNFilas()-2, 2).setEsMina(true);
-			tablero.sumarMinasAlrededor(tablero.getNFilas()-2, 2);
-			tablero.getCasillas(tablero.getNFilas()-1, 2).setEsMina(true);
-			tablero.sumarMinasAlrededor(tablero.getNFilas()-1, 2);
+			assertTrue("La casilla se abre", tablero.getCasillas(1, tablero.getNFilas() - 1).getAbierta());
+
+			// ABAJO IZQUIERDA
+			tablero.getCasillas(tablero.getNFilas() - 2, 2).setEsMina(true);
+			tablero.sumarMinasAlrededor(tablero.getNFilas() - 2, 2);
+			tablero.getCasillas(tablero.getNFilas() - 1, 2).setEsMina(true);
+			tablero.sumarMinasAlrededor(tablero.getNFilas() - 1, 2);
 			tablero.getCasillas(tablero.getNFilas(), 2).setEsMina(true);
 			tablero.sumarMinasAlrededor(tablero.getNFilas(), 2);
-			tablero.getCasillas(tablero.getNFilas()-2, 0).setEsMina(true);
-			tablero.sumarMinasAlrededor(tablero.getNFilas()-2, 0);
-			tablero.getCasillas(tablero.getNFilas()-2, 1).setEsMina(true);
-			tablero.sumarMinasAlrededor(tablero.getNFilas()-2, 1);
-			tablero.marcarCasilla(tablero.getNFilas(), 0);//Marcamos casilla
+			tablero.getCasillas(tablero.getNFilas() - 2, 0).setEsMina(true);
+			tablero.sumarMinasAlrededor(tablero.getNFilas() - 2, 0);
+			tablero.getCasillas(tablero.getNFilas() - 2, 1).setEsMina(true);
+			tablero.sumarMinasAlrededor(tablero.getNFilas() - 2, 1);
+			tablero.marcarCasilla(tablero.getNFilas(), 0);// Marcamos casilla
 			assertTrue("La casilla se abre", tablero.getCasillas(tablero.getNFilas(), 0).getAbierta());
 			assertTrue("La casilla se abre", tablero.getCasillas(tablero.getNFilas(), 1).getAbierta());
-			assertTrue("La casilla se abre", tablero.getCasillas(tablero.getNFilas()-1, 0).getAbierta());
-			assertTrue("La casilla se abre", tablero.getCasillas(tablero.getNFilas()-1, 1).getAbierta());
-			
-			
-			//ABAJO IZQUIERDA
-			tablero.getCasillas(tablero.getNFilas()-2, tablero.getNColumnas()).setEsMina(true); // -2/ac
-			tablero.sumarMinasAlrededor(tablero.getNFilas()-2, tablero.getNColumnas());
-			tablero.getCasillas(tablero.getNFilas()-1, tablero.getNColumnas()-2).setEsMina(true); // -1/-2
-			tablero.sumarMinasAlrededor(tablero.getNFilas()-1, tablero.getNColumnas()-2);
-			tablero.getCasillas(tablero.getNFilas(), tablero.getNColumnas()-2).setEsMina(true); // ac/-2
-			tablero.sumarMinasAlrededor(tablero.getNFilas(), tablero.getNColumnas()-2);
-			tablero.getCasillas(tablero.getNFilas()-2, tablero.getNColumnas()-1).setEsMina(true);  //-2/-1
-			tablero.sumarMinasAlrededor(tablero.getNFilas()-2, tablero.getNColumnas()-1);
-			tablero.getCasillas(tablero.getNFilas()-2, tablero.getNColumnas()-2).setEsMina(true); //-2/-2
-			tablero.sumarMinasAlrededor(tablero.getNFilas()-2, tablero.getNColumnas()-2);
-			tablero.marcarCasilla(tablero.getNFilas(), tablero.getNColumnas());//Marcamos casilla
-			assertTrue("La casilla se abre", tablero.getCasillas(tablero.getNFilas(), tablero.getNColumnas()).getAbierta());
-			assertTrue("La casilla se abre", tablero.getCasillas(tablero.getNFilas(), tablero.getNColumnas()-1).getAbierta());
-			assertTrue("La casilla se abre", tablero.getCasillas(tablero.getNFilas()-1, tablero.getNColumnas()).getAbierta());
-			assertTrue("La casilla se abre", tablero.getCasillas(tablero.getNFilas()-1, tablero.getNColumnas()-1).getAbierta());
+			assertTrue("La casilla se abre", tablero.getCasillas(tablero.getNFilas() - 1, 0).getAbierta());
+			assertTrue("La casilla se abre", tablero.getCasillas(tablero.getNFilas() - 1, 1).getAbierta());
 
-			
+			// ABAJO IZQUIERDA
+			tablero.getCasillas(tablero.getNFilas() - 2, tablero.getNColumnas()).setEsMina(true); // -2/ac
+			tablero.sumarMinasAlrededor(tablero.getNFilas() - 2, tablero.getNColumnas());
+			tablero.getCasillas(tablero.getNFilas() - 1, tablero.getNColumnas() - 2).setEsMina(true); // -1/-2
+			tablero.sumarMinasAlrededor(tablero.getNFilas() - 1, tablero.getNColumnas() - 2);
+			tablero.getCasillas(tablero.getNFilas(), tablero.getNColumnas() - 2).setEsMina(true); // ac/-2
+			tablero.sumarMinasAlrededor(tablero.getNFilas(), tablero.getNColumnas() - 2);
+			tablero.getCasillas(tablero.getNFilas() - 2, tablero.getNColumnas() - 1).setEsMina(true); // -2/-1
+			tablero.sumarMinasAlrededor(tablero.getNFilas() - 2, tablero.getNColumnas() - 1);
+			tablero.getCasillas(tablero.getNFilas() - 2, tablero.getNColumnas() - 2).setEsMina(true); // -2/-2
+			tablero.sumarMinasAlrededor(tablero.getNFilas() - 2, tablero.getNColumnas() - 2);
+			tablero.marcarCasilla(tablero.getNFilas(), tablero.getNColumnas());// Marcamos casilla
+			assertTrue("La casilla se abre",
+					tablero.getCasillas(tablero.getNFilas(), tablero.getNColumnas()).getAbierta());
+			assertTrue("La casilla se abre",
+					tablero.getCasillas(tablero.getNFilas(), tablero.getNColumnas() - 1).getAbierta());
+			assertTrue("La casilla se abre",
+					tablero.getCasillas(tablero.getNFilas() - 1, tablero.getNColumnas()).getAbierta());
+			assertTrue("La casilla se abre",
+					tablero.getCasillas(tablero.getNFilas() - 1, tablero.getNColumnas() - 1).getAbierta());
 
 		}
-
-
-
 
 	}
 
@@ -262,7 +256,6 @@ public class TableroTest {
 		assertEquals(tablero.getCasillas(fila - 1, col - 1).getminasCercanas(), 0);
 		assertEquals(tablero.getCasillas(fila + 1, col + 1).getminasCercanas(), 0);
 		assertEquals(tablero.getCasillas(fila + 1, col - 1).getminasCercanas(), 0);
-		
 
 		// 8 minas
 		tablero = new Tablero(0);
@@ -285,7 +278,6 @@ public class TableroTest {
 		tablero.sumarMinasAlrededor(fila + 1, col - 1);
 		assertEquals(tablero.getCasillas(fila, col).getminasCercanas(), 8);
 
-
 		// 1 minas
 		tablero = new Tablero(0);
 		tablero.getCasillas(fila, col).setEsMina(true);
@@ -298,8 +290,8 @@ public class TableroTest {
 		assertEquals(tablero.getCasillas(fila - 1, col - 1).getminasCercanas(), 1);
 		assertEquals(tablero.getCasillas(fila + 1, col + 1).getminasCercanas(), 1);
 		assertEquals(tablero.getCasillas(fila + 1, col - 1).getminasCercanas(), 1);
-		
-		//7 MINAS	
+
+		// 7 MINAS
 		tablero = new Tablero(0);
 		tablero.getCasillas(fila - 1, col).setEsMina(true);
 		tablero.sumarMinasAlrededor(fila - 1, col);
@@ -317,7 +309,7 @@ public class TableroTest {
 		tablero.getCasillas(fila + 1, col + 1).setEsMina(true);
 		tablero.sumarMinasAlrededor(fila + 1, col + 1);
 
-		assertEquals(tablero.getCasillas(fila+1, col-1).getminasCercanas(), 2);
+		assertEquals(tablero.getCasillas(fila + 1, col - 1).getminasCercanas(), 2);
 		assertEquals(tablero.getCasillas(fila, col).getminasCercanas(), 7);
 
 	}
@@ -327,6 +319,11 @@ public class TableroTest {
 
 		int fila = 5;
 		int col = 5;
+
+		// 0 minas- No puede dar menos de 0.
+
+		tablero.restarMinasAlrededor(fila, col);
+		assertEquals(tablero.getCasillas(fila, col).getminasCercanas(), 0);
 
 		// 1 minas
 		tablero.getCasillas(fila, col).setEsMina(true);
@@ -351,7 +348,53 @@ public class TableroTest {
 		assertEquals(tablero.getCasillas(fila + 1, col + 1).getminasCercanas(), 0);
 		assertEquals(tablero.getCasillas(fila + 1, col - 1).getminasCercanas(), 0);
 
-		// 8 minas
+		// Restamos 8 minas
+		tablero = new Tablero(0);
+
+		tablero.getCasillas(fila - 1, col).setEsMina(true);
+		tablero.sumarMinasAlrededor(fila - 1, col);
+		tablero.getCasillas(fila + 1, col).setEsMina(true);
+		tablero.sumarMinasAlrededor(fila + 1, col);
+		tablero.getCasillas(fila, col + 1).setEsMina(true);
+		tablero.sumarMinasAlrededor(fila, col + 1);
+		tablero.getCasillas(fila, col - 1).setEsMina(true);
+		tablero.sumarMinasAlrededor(fila, col - 1);
+
+		tablero.getCasillas(fila - 1, col + 1).setEsMina(true);
+		tablero.sumarMinasAlrededor(fila - 1, col + 1);
+		tablero.getCasillas(fila - 1, col - 1).setEsMina(true);
+		tablero.sumarMinasAlrededor(fila - 1, col - 1);
+		tablero.getCasillas(fila + 1, col + 1).setEsMina(true);
+		tablero.sumarMinasAlrededor(fila + 1, col + 1);
+		tablero.getCasillas(fila + 1, col - 1).setEsMina(true);
+		tablero.sumarMinasAlrededor(fila + 1, col - 1);
+
+		assertEquals(tablero.getCasillas(fila, col).getminasCercanas(), 8);
+
+		tablero.getCasillas(fila - 1, col).setEsMina(true);
+		tablero.restarMinasAlrededor(fila - 1, col);
+		tablero.getCasillas(fila + 1, col).setEsMina(true);
+		tablero.restarMinasAlrededor(fila + 1, col);
+		tablero.getCasillas(fila, col + 1).setEsMina(true);
+		tablero.restarMinasAlrededor(fila, col + 1);
+		tablero.getCasillas(fila, col - 1).setEsMina(true);
+		tablero.restarMinasAlrededor(fila, col - 1);
+
+		tablero.getCasillas(fila - 1, col + 1).setEsMina(true);
+		tablero.restarMinasAlrededor(fila - 1, col + 1);
+		tablero.getCasillas(fila - 1, col - 1).setEsMina(true);
+		tablero.restarMinasAlrededor(fila - 1, col - 1);
+		tablero.getCasillas(fila + 1, col + 1).setEsMina(true);
+		tablero.restarMinasAlrededor(fila + 1, col + 1);
+		tablero.getCasillas(fila + 1, col - 1).setEsMina(true);
+		tablero.restarMinasAlrededor(fila + 1, col - 1);
+
+		assertEquals(tablero.getCasillas(fila, col).getminasCercanas(), 0);
+
+		// Restamos 9 minas (Tiene que dar 0 igual)
+
+		fila = 1;
+		col = 1;
 		tablero = new Tablero(0);
 
 		tablero.getCasillas(fila - 1, col).setEsMina(true);
@@ -376,8 +419,26 @@ public class TableroTest {
 
 		tablero.getCasillas(fila - 1, col).setEsMina(false);
 		tablero.restarMinasAlrededor(fila - 1, col);
+		tablero.getCasillas(fila + 1, col).setEsMina(false);
+		tablero.restarMinasAlrededor(fila + 1, col);
+		tablero.getCasillas(fila, col + 1).setEsMina(false);
+		tablero.restarMinasAlrededor(fila, col + 1);
+		tablero.getCasillas(fila, col - 1).setEsMina(false);
+		tablero.restarMinasAlrededor(fila, col - 1);
 
-		assertEquals(tablero.getCasillas(fila, col).getminasCercanas(), 7);
+		tablero.getCasillas(fila - 1, col + 1).setEsMina(false);
+		tablero.restarMinasAlrededor(fila - 1, col + 1);
+		tablero.getCasillas(fila - 1, col - 1).setEsMina(false);
+		tablero.restarMinasAlrededor(fila - 1, col - 1);
+		tablero.getCasillas(fila + 1, col + 1).setEsMina(false);
+		tablero.restarMinasAlrededor(fila + 1, col + 1);
+		tablero.getCasillas(fila + 1, col - 1).setEsMina(false);
+		tablero.restarMinasAlrededor(fila + 1, col - 1);
+
+		tablero.getCasillas(fila + 1, col - 1).setEsMina(false);
+		tablero.restarMinasAlrededor(fila + 1, col - 1);
+
+		assertEquals(tablero.getCasillas(fila, col).getminasCercanas(), 0);
 
 	}
 
