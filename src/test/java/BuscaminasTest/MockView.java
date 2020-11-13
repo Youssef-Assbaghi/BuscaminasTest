@@ -25,7 +25,7 @@ public class MockView implements VistaInterfaz{
 			cuento=0;
 			return 0;
 		}
-		return 99;
+		return -1;
 	}
 
 	@Override

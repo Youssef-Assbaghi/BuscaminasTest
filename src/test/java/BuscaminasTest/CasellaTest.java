@@ -142,5 +142,14 @@ public class CasellaTest {
 		}
 
 	}
+	
+	@Test
+	public void testSetMina() {
+		assertFalse(casilla.esMina());
+		casilla.setEsMina(false);
+		assertFalse(casilla.esMina());
+		casilla.setEsMina(true);
+		assertTrue(casilla.esMina());
+	}
 
 }

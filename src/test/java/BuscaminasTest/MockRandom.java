@@ -21,7 +21,7 @@ public class MockRandom implements RandomPos {
 		
 			
 		if (intentos>=5) {
-			return n+15;
+			return n+22;
 		}
 		return n;
 	}
