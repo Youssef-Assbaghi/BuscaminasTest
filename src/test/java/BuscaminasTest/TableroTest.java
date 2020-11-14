@@ -241,8 +241,10 @@ public class TableroTest {
 	}
 
 	@Test
-	public void testNumMinasAlrededor() {
+	public void testSumaMinasAlrededor() {
 
+		
+		
 		int fila = 5;
 		int col = 5;
 
@@ -311,6 +313,13 @@ public class TableroTest {
 
 		assertEquals(tablero.getCasillas(fila + 1, col - 1).getminasCercanas(), 2);
 		assertEquals(tablero.getCasillas(fila, col).getminasCercanas(), 7);
+		
+		
+		fila=-1;
+		col=-1;
+		tablero=new Tablero(0);
+		tablero.sumarMinasAlrededor(fila, col);
+		assertEquals(tablero.getCasillas(fila, col).getminasCercanas(), 0);
 
 	}
 	
@@ -365,9 +374,23 @@ public class TableroTest {
 
 	@Test
 	public void testRestarMinasAlrededor() {
-
+		
 		int fila = 5;
 		int col = 5;
+		for (int i = 0; i < 3; i++) {
+			tablero=new Tablero(i);
+			tablero.getCasillas(0, tablero.getNColumnas()).setEsMina(true);
+			tablero.sumarMinasAlrededor(0, tablero.getNColumnas());
+			
+			
+			tablero.getCasillas(tablero.getNFilas(), 0).setEsMina(true);
+			tablero.sumarMinasAlrededor(tablero.getNFilas(), 0);
+			
+			tablero.getCasillas(tablero.getNFilas()-1, 0).setEsMina(true);
+			tablero.sumarMinasAlrededor(tablero.getNFilas()-1, 0);
+		}
+
+		
 
 		// 0 minas- No puede dar menos de 0.
 
@@ -488,6 +511,15 @@ public class TableroTest {
 		tablero.restarMinasAlrededor(fila + 1, col - 1);
 
 		assertEquals(tablero.getCasillas(fila, col).getminasCercanas(), 0);
+		
+		fila=-1;
+		col=-1;
+		tablero.restarMinasAlrededor(fila, col);
+		assertEquals(tablero.getCasillas(fila, col).getminasCercanas(), 0);
+		
+		//miramos extremos
+		fila =9;
+		col=9;
 
 	}
 	@Test 
