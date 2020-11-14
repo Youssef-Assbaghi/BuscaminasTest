@@ -494,7 +494,7 @@ public class TableroTest {
 	public void testEsAbierta() {
 		
 		//casillas[filaRandom][colRandom].getAbierta()
-		tablero.getCasillas(0, 0).setEsMina(true);
+		
 		tablero.getCasillas(0, 0).setAbierta(true);
 		assertFalse("Esta abierta, no cerrada",tablero.casillaCerrada(0,0));
 		

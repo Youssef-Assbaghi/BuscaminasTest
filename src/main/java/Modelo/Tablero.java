@@ -71,7 +71,7 @@ public final class Tablero {
 			if (posicionValida(filaRandom, colRandom)) {
 				if (casillas[filaRandom][colRandom].esMina())
 					continue;
-				else if (!casillas[filaRandom][colRandom].getAbierta()) // Ver hacer un mock para testearlo
+				else if (casillaCerrada(filaRandom,colRandom)) // Ver hacer un mock para testearlo
 				{
 					casillas[filaRandom][colRandom].setEsMina(true);
 					sumarMinasAlrededor(filaRandom, colRandom);
@@ -82,7 +82,7 @@ public final class Tablero {
 
 	}
 	public boolean casillaCerrada(int fila, int columna) {
-		return false;
+		return (!casillas[fila][columna].getAbierta());
 	}
 	
 	public boolean posicionValida(int fila, int columna) {
