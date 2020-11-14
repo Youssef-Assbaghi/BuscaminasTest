@@ -41,7 +41,10 @@ public final class Tablero {
 	 * @return
 	 */
 	public Casella getCasillas(int fila, int columna) {
-		return casillas[fila][columna];
+		if(posicionValida(fila, columna))
+			return casillas[fila][columna];
+		System.out.println("Intenats acceder a una posicion que no existe, te devolvemos la 0,0");
+		return casillas[0][0];
 	}
 
 	/**
@@ -78,12 +81,12 @@ public final class Tablero {
 		}
 
 	}
-	public boolean esAbierta() {
+	public boolean casillaCerrada(int fila, int columna) {
 		return false;
 	}
 	
 	public boolean posicionValida(int fila, int columna) {
-		System.out.println("Fila:"+fila+" Columna: "+columna);
+		//System.out.println("Fila:"+fila+" Columna: "+columna);
 		return (fila >= 0 && fila < nFilas && columna >= 0 && columna < nColumnas);
 			
 	}

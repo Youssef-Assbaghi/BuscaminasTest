@@ -342,7 +342,9 @@ public class TableroTest {
 			assertFalse("Estamos dentro de la matriz",tablero.posicionValida(tablero.getNFilas()+1, tablero.getNColumnas()+1));
 			assertFalse("Estamos dentro de la matriz",tablero.posicionValida(tablero.getNFilas(),-1));
 			
-			/*FILA=0 Y LO DEMAS TRUE SI
+			/*
+			 * Esto ira en el informe 
+			 * FILA=0 Y LO DEMAS TRUE SI
 		
 			FILA=9 Y LO DEMAS TRUE
 			
@@ -358,7 +360,7 @@ public class TableroTest {
 			COLUMNA=-1 Y LO DEMAS TRUE*/
 			
 		}
-		System.out.println("TESTTTT");
+
 	}
 
 	@Test
@@ -487,6 +489,20 @@ public class TableroTest {
 
 		assertEquals(tablero.getCasillas(fila, col).getminasCercanas(), 0);
 
+	}
+	@Test 
+	public void testEsAbierta() {
+		
+		//casillas[filaRandom][colRandom].getAbierta()
+		tablero.getCasillas(0, 0).setEsMina(true);
+		tablero.getCasillas(0, 0).setAbierta(true);
+		assertFalse("Esta abierta, no cerrada",tablero.casillaCerrada(0,0));
+		
+		tablero.getCasillas(0, 0).setAbierta(false);
+		assertTrue("Esta cerrada, no abierta",tablero.casillaCerrada(0,0));
+
+		
+		
 	}
 
 	@Test
