@@ -7,6 +7,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
+import Modelo.Casella;
 import Modelo.Tablero;
 import Modelo.ValorRandom;
 
@@ -22,7 +23,7 @@ public class TableroTest {
 	}
 
 	@Test
-	public void testGenerarTablero() {
+	public void testGenerarTablero() { // Statement coverage
 
 		// VALORES FRONTERA
 		// Tablero 0
@@ -97,7 +98,7 @@ public class TableroTest {
 	}
 
 	@Test
-	public void testEsMina() {
+	public void testEsMina() { // Decision coverage, Condition coverage
 		for (int i = 0; i < 3; i++) {
 			tablero = new Tablero(i);
 			tablero.getCasillas(0, 0).setEsMina(true);
@@ -111,7 +112,7 @@ public class TableroTest {
 	}
 
 	@Test
-	public void testPonerMinas() {
+	public void testPonerMinas() { // Decision coverage, condition coverage, loop simple
 
 		int minasPuestas;
 		// Comprobamos que se pongan el numero de minas correctas.
@@ -179,7 +180,19 @@ public class TableroTest {
 	}
 
 	@Test
-	public void testMarcarCasilla() {
+	public void testMockValorRandom() {
+		MockRandom r = new MockRandom();
+		tablero.ponerMinas(r);
+
+		for (int i = -6; i <= 5; i++) {
+			tablero = new Tablero(i);
+			tablero.ponerMinas(r);
+
+		}
+	}
+
+	@Test
+	public void testMarcarCasilla() { // Condition coverage, Decision coverage.
 		int k;
 		// Testeamos valores limite y frontera de tablero
 		for (int i = -1; i < 3; i++) {
@@ -296,7 +309,7 @@ public class TableroTest {
 	}
 
 	@Test
-	public void testSumaMinasAlrededor() {
+	public void testSumaMinasAlrededor() { // DECISION AND CONDITION COVERAGE.
 
 		int fila = 5;
 		int col = 5;
@@ -373,10 +386,22 @@ public class TableroTest {
 		tablero.sumarMinasAlrededor(fila, col);
 		assertEquals(tablero.getCasillas(fila, col).getminasCercanas(), 0);
 
+		fila = 0;
+		col = 0;
+		tablero = new Tablero(0);
+		tablero.sumarMinasAlrededor(fila, col);
+		assertEquals(tablero.getCasillas(fila, col).getminasCercanas(), 1);
+
+		fila = 9;
+		col = 9;
+		tablero = new Tablero(0);
+		tablero.sumarMinasAlrededor(fila, col);
+		assertEquals(tablero.getCasillas(fila, col).getminasCercanas(), 1);
+
 	}
 
 	@Test
-	public void testPosicionValida() {
+	public void testPosicionValida() { // Decision coverage, Condition Coverage.
 		for (int i = 0; i < 3; i++) {
 			tablero = new Tablero(i);
 			// Particion equivalente [0,Nfila]-[0,nColumna]
@@ -425,7 +450,7 @@ public class TableroTest {
 	}
 
 	@Test
-	public void testRestarMinasAlrededor() {
+	public void testRestarMinasAlrededor() { // Decision coverage, condition coverage.
 
 		int fila = 5;
 		int col = 5;
@@ -561,21 +586,23 @@ public class TableroTest {
 
 		assertEquals(tablero.getCasillas(fila, col).getminasCercanas(), 0);
 
+		tablero = new Tablero(0);
 		fila = -1;
 		col = -1;
 		tablero.restarMinasAlrededor(fila, col);
 		assertEquals(tablero.getCasillas(fila, col).getminasCercanas(), 0);
 
 		// miramos extremos
+		tablero = new Tablero(0);
 		fila = 9;
 		col = 9;
+		tablero.restarMinasAlrededor(fila, col);
+		assertEquals(tablero.getCasillas(fila, col).getminasCercanas(), 0);
 
 	}
 
 	@Test
-	public void testEsAbierta() {
-
-		// casillas[filaRandom][colRandom].getAbierta()
+	public void testCasillaCerrada() { // Decision coverage.
 
 		tablero.getCasillas(0, 0).setAbierta(true);
 		assertFalse("Esta abierta, no cerrada", tablero.casillaCerrada(0, 0));
@@ -583,10 +610,12 @@ public class TableroTest {
 		tablero.getCasillas(0, 0).setAbierta(false);
 		assertTrue("Esta cerrada, no abierta", tablero.casillaCerrada(0, 0));
 
+		assertFalse("Esta cerrada, no abierta", tablero.casillaCerrada(-89, 3));
+
 	}
 
 	@Test
-	public void testPonerBandera() {
+	public void testPonerBandera() { // decision coverage condition coverage
 
 		assertFalse(tablero.getCasillas(1, 1).getBandera());
 		tablero.getCasillas(1, 1).cambiarBandera();
@@ -634,15 +663,15 @@ public class TableroTest {
 	}
 
 	@Test
-	public void testValorRandom() {
-		MockRandom r = new MockRandom();
-		tablero.ponerMinas(r);
+	public void testGetTablero() {
+		Casella[][] casillas = tablero.getTablero();
 
-		for (int i = -6; i <= 5; i++) {
-			tablero = new Tablero(i);
-			tablero.ponerMinas(r);
+		for (int i = 0; i < casillas.length; i++) {
+			for (int j = 0; j < casillas.length; j++) {
+				assertFalse(casillas[i][j].getAbierta());
+			}
 
 		}
-	}
 
+	}
 }

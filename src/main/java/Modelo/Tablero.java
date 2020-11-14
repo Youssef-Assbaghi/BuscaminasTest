@@ -92,7 +92,9 @@ public final class Tablero {
 	}
 
 	public boolean casillaCerrada(int fila, int columna) {
-		return (!casillas[fila][columna].getAbierta());
+		if (posicionValida(fila, columna))
+			return (!casillas[fila][columna].getAbierta());
+		return false;
 	}
 
 	public boolean posicionValida(int fila, int columna) {
@@ -155,36 +157,36 @@ public final class Tablero {
 	public void restarMinasAlrededor(int fila, int col) {
 
 		if (posicionValida(fila, col)) {
-			if (fila - 1 >= 0) {
+			if (posicionValida(fila - 1, col)) {
 				casillas[fila - 1][col].restarMinaCercana();
 			}
 
-			if (fila + 1 < nFilas) {
+			if (posicionValida(fila + 1, col)) {
 				casillas[fila + 1][col].restarMinaCercana();
 			}
 
-			if (col + 1 < nColumnas) {
+			if (posicionValida(fila, col + 1)) {
 				casillas[fila][col + 1].restarMinaCercana();
 			}
 
-			if (col - 1 >= 0) {
+			if (posicionValida(fila, col - 1)) {
 				casillas[fila][col - 1].restarMinaCercana();
 			}
 
 			// Diagonales
-			if (fila - 1 >= 0 && col + 1 < nColumnas) {
+			if (posicionValida(fila - 1, col + 1)) {
 				casillas[fila - 1][col + 1].restarMinaCercana();
 			}
 
-			if (fila - 1 >= 0 && col - 1 >= 0) {
+			if (posicionValida(fila - 1, col - 1)) {
 				casillas[fila - 1][col - 1].restarMinaCercana();
 			}
 
-			if (fila + 1 < nFilas && col + 1 < nColumnas) {
+			if (posicionValida(fila + 1, col + 1)) {
 				casillas[fila + 1][col + 1].restarMinaCercana();
 			}
 
-			if (fila + 1 < nFilas && col - 1 >= 0) {
+			if (posicionValida(fila + 1, col - 1)) {
 				casillas[fila + 1][col - 1].restarMinaCercana();
 			}
 		}
@@ -255,36 +257,36 @@ public final class Tablero {
 
 			// Vertical y horizontal
 
-			if (fila - 1 >= 0) {
+			if (posicionValida(fila - 1, col)) {
 				casillas[fila - 1][col].sumarMinaCercana();
 			}
 
-			if (fila + 1 < nFilas) {
+			if (posicionValida(fila + 1, col)) {
 				casillas[fila + 1][col].sumarMinaCercana();
 			}
 
-			if (col + 1 < nColumnas) {
+			if (posicionValida(fila, col + 1)) {
 				casillas[fila][col + 1].sumarMinaCercana();
 			}
 
-			if (col - 1 >= 0) {
+			if (posicionValida(fila, col - 1)) {
 				casillas[fila][col - 1].sumarMinaCercana();
 			}
 
 			// Diagonales
-			if (fila - 1 >= 0 && col + 1 < nColumnas) {
+			if (posicionValida(fila - 1, col + 1)) {
 				casillas[fila - 1][col + 1].sumarMinaCercana();
 			}
 
-			if (fila - 1 >= 0 && col - 1 >= 0) {
+			if (posicionValida(fila - 1, col - 1)) {
 				casillas[fila - 1][col - 1].sumarMinaCercana();
 			}
 
-			if (fila + 1 < nFilas && col + 1 < nColumnas) {
+			if (posicionValida(fila + 1, col + 1)) {
 				casillas[fila + 1][col + 1].sumarMinaCercana();
 			}
 
-			if (fila + 1 < nFilas && col - 1 >= 0) {
+			if (posicionValida(fila + 1, col - 1)) {
 				casillas[fila + 1][col - 1].sumarMinaCercana();
 			}
 		}
