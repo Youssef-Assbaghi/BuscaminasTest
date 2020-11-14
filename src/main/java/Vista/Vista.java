@@ -59,7 +59,7 @@ public class Vista implements VistaInterfaz {
 			System.out.println("");
 		}
 
-		for (int i = 0; i < casilla.length; i++) {
+		/*for (int i = 0; i < casilla.length; i++) {
 			for (int j = 0; j < casilla[i].length; j++) {
 				boolean min = casilla[i][j].esMina();
 				if (min) {
@@ -78,7 +78,7 @@ public class Vista implements VistaInterfaz {
 				System.out.print(casilla[i][j].getminasCercanas());
 			}
 			System.out.println("");
-		}
+		}*/
 
 	}
 

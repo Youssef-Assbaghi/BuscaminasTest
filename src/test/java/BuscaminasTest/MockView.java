@@ -5,13 +5,13 @@ import Vista.VistaInterfaz;
 
 public class MockView implements VistaInterfaz{
 
-	int cuento =0;
+	int cuento =-1;
 	@Override
 	public int pedirColumna() {
 		// TODO Auto-generated method stub
 		cuento++;
 		if(cuento ==30) {
-			cuento=0;
+			cuento=-1;
 			return 0;
 		}
 		return -154;
@@ -22,7 +22,7 @@ public class MockView implements VistaInterfaz{
 		// TODO Auto-generated method stub
 		cuento++;
 		if(cuento ==30) {
-			cuento=0;
+			cuento=-1;
 			return 0;
 		}
 		return -1;
@@ -39,7 +39,7 @@ public class MockView implements VistaInterfaz{
 		// TODO Auto-generated method stub
 		cuento++;
 		if(cuento ==30) {
-			cuento=0;
+			cuento=-1;
 			return 0;
 		}
 		return -1;
@@ -56,7 +56,7 @@ public class MockView implements VistaInterfaz{
 		// TODO Auto-generated method stub
 		cuento ++;
 		if(cuento ==30) {
-			cuento=0;
+			cuento=-1;
 			return 0;
 		}
 		return -8;

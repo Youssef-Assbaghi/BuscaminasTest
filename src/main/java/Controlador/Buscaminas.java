@@ -28,15 +28,15 @@ public class Buscaminas {
 			vista = new Vista();
 		}
 		vista.printBienvenido();
-		int dificultad = pedirDificultad();
+		int dificultad = pedirAccion(1);
 		ValorRandom r = new ValorRandom();
 		tablero = new Tablero(dificultad);
 
 		vista.printTablero(tablero.getTablero());
 
 		System.out.println("Donde sera tu primer movimiento?");
-		int fila = pedirFila(tablero.getNFilas());
-		int columna = pedirColumna(tablero.getNColumnas());
+		int fila = pedirPosicion(tablero.getNFilas(),0);
+		int columna = pedirPosicion(tablero.getNColumnas(),1);
 
 		tablero.ponerMinas(r);
 		tablero.marcarCasilla(fila, columna);
@@ -45,10 +45,10 @@ public class Buscaminas {
 		do {
 
 			System.out.println("Sobre que posicion deseas interactuar");
-			fila = pedirFila(tablero.getNFilas());
-			columna = pedirColumna(tablero.getNColumnas());
+			fila = pedirPosicion(tablero.getNFilas(),0);
+			columna = pedirPosicion(tablero.getNColumnas(),1);
 
-			int tipoJugada = pedirJugada();
+			int tipoJugada = pedirAccion(0);
 
 			switch (tipoJugada) {
 			case 0:
@@ -58,7 +58,7 @@ public class Buscaminas {
 			case 1:
 				if (tablero.getCasillas(fila, columna).esMina()) {
 					salir = true;
-					System.out.println("Eres malísimo. BG.");
+					System.out.println("Eres malï¿½simo. BG.");
 				}
 				tablero.marcarCasilla(fila, columna);
 				break;
@@ -72,61 +72,50 @@ public class Buscaminas {
 			vista.printTablero(tablero.getTablero());
 			if (tablero.getNumCasillasCerradas() == tablero.getNumMinas()) {
 				salir = true;
-				System.out.println("Felicidades, eres el único que ha ganado en este juego.");
+				System.out.println("Felicidades, eres el ï¿½nico que ha ganado en este juego.");
 			}
 		} while (!salir);
 
 	}
-
-	private static int pedirJugada() {
-
+	
+	private static int pedirAccion(int accion) {
 		boolean acierto = false;
-		int tipoJugada = 0;
+		int queHacer = 0;
 		while (!acierto) {
-			tipoJugada = vista.pedirTipoJugada();
-			if (tipoJugada >= 0 && tipoJugada <= 2)
+			if(accion==0) {
+				queHacer=vista.pedirTipoJugada();
+			}else {
+				queHacer= vista.pedirDificultad();
+			}
+			if (queHacer >= 0 && queHacer <= 2)
 				acierto = true;
 		}
-		return tipoJugada;
+		return queHacer;
 	}
-
-	private static int pedirFila(int valor) {
-
-		boolean acierto = false;
-		int value = 0;
-		while (!acierto) {
-			value = vista.pedirFila();
-			if (value <= valor && value >= 0)
-				acierto = true;
-			else
-				System.out.println("La fila debe ser una valor entre 0 y " + valor);
-		}
-		return value;
-	}
-
-	private static int pedirColumna(int valor) {
-
+	
+	private static int pedirPosicion(int valor,int filaOColumna) {
 		boolean acierto = false;
 		int value = 0;
 		while (!acierto) {
-			value = vista.pedirColumna();
+			if(filaOColumna==0) {
+				value = vista.pedirFila();
+			}else {
+				value = vista.pedirColumna();
+			}
+			
 			if (value <= valor && value >= 0)
 				acierto = true;
-			else
-				System.out.println("La columna debe ser una valor entre 0 y " + valor);
+			else {
+				if(filaOColumna==0)
+					System.out.println("La fila debe ser una valor entre 0 y " + valor);
+				else
+					System.out.println("La columna debe ser una valor entre 0 y " + valor);
+			}
+				
 		}
 		return value;
 	}
+		
 
-	private static int pedirDificultad() {
-		int valor = 0;
-		boolean acierto = false;
-		while (!acierto) {
-			valor = vista.pedirDificultad();
-			if (valor >= 0 && valor <= 2)
-				acierto = true;
-		}
-		return valor;
-	}
 
 }
