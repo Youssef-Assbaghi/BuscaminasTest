@@ -95,6 +95,56 @@ public class TableroTest {
 		}
 		assertEquals(100, checksum);
 
+		// LOOP TESTING
+		// FOR FILA
+		// FOR COLUMNA
+		// LOOP Testing
+
+		tablero = new Tablero(0);
+		tablero.setnFilas(1);
+
+		// Evitar loop
+		tablero.setnColumnas(0);
+		tablero.generarTablero();
+		try {
+			tablero.getCasillas(0, 0).getAbierta();
+		} catch (IndexOutOfBoundsException e) {
+			assertTrue(true);
+		}
+		// Una pasada por el loop
+		tablero.setnColumnas(1);
+		tablero.generarTablero();
+		for (int i = 0; i < tablero.getNFilas(); i++) {
+			for (int j = 0; j < tablero.getNColumnas(); j++) {
+				assertFalse(tablero.getCasillas(i, j).getAbierta());
+			}
+		}
+
+		// Dues pasadas por el loop
+		tablero.setnColumnas(2);
+		tablero.generarTablero();
+		for (int i = 0; i < tablero.getNFilas(); i++) {
+			for (int j = 0; j < tablero.getNColumnas(); j++) {
+				assertFalse(tablero.getCasillas(i, j).getAbierta());
+			}
+		}
+		// m pasadas por el loop m<n
+		tablero.setnColumnas(5);
+		tablero.generarTablero();
+
+		for (int i = 0; i < tablero.getNFilas(); i++) {
+			for (int j = 0; j < tablero.getNColumnas(); j++) {
+				assertFalse(tablero.getCasillas(i, j).getAbierta());
+			}
+		}
+		// (n-1), n pasadas por el loop (n es el número máximo de pasadas)
+
+		// n-1
+
+		// n
+
+		// FINAL TESTING
+
 	}
 
 	@Test

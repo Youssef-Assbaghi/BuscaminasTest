@@ -12,6 +12,14 @@ public final class Tablero {
 	private boolean primerMovimiento;
 	private int numCasillasCerradas;
 
+	public void setnFilas(int nFilas) {
+		this.nFilas = nFilas;
+	}
+
+	public void setnColumnas(int nColumnas) {
+		this.nColumnas = nColumnas;
+	}
+
 	/**
 	 * Constructor, en caso de que no se indique una dificultad se inicializa a
 	 * dificultad 0.
