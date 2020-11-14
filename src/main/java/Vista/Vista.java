@@ -59,26 +59,25 @@ public class Vista implements VistaInterfaz {
 			System.out.println("");
 		}
 
-		/*for (int i = 0; i < casilla.length; i++) {
-			for (int j = 0; j < casilla[i].length; j++) {
-				boolean min = casilla[i][j].esMina();
-				if (min) {
-					System.out.print("X");
-				} else {
-					System.out.print("0");
-				}
-			}
-			System.out.println("");
-		}
+//		for (int i = 0; i < casilla.length; i++) {
+//			for (int j = 0; j < casilla[i].length; j++) {
+//				boolean min = casilla[i][j].esMina();
+//				if (min) {
+//					System.out.print("X");
+//				} else {
+//					System.out.print("0");
+//				}
+//			}
+//			System.out.println("");
+//		}
 
-		System.out.println("ARBOL MINAS CERCANAS");
-		for (int i = 0; i < casilla.length; i++) {
-			for (int j = 0; j < casilla[i].length; j++) {
-
-				System.out.print(casilla[i][j].getminasCercanas());
-			}
-			System.out.println("");
-		}*/
+		/*
+		 * System.out.println("ARBOL MINAS CERCANAS"); for (int i = 0; i <
+		 * casilla.length; i++) { for (int j = 0; j < casilla[i].length; j++) {
+		 * 
+		 * System.out.print(casilla[i][j].getminasCercanas()); } System.out.println("");
+		 * }
+		 */
 
 	}
 

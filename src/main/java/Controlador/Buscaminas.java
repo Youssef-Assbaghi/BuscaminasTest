@@ -56,10 +56,17 @@ public class Buscaminas {
 				break;
 
 			case 1:
-				if (tablero.getCasillas(fila, columna).esMina()) { // getMIna tablero
-					salir = true;
-					System.out.println("Eres mal�simo. BG.");
+				if (!tablero.getCasillas(fila, columna).getBandera()) {
+					if (tablero.esMina(fila, columna)) {
+						salir = true;
+						System.out.println("Eres mal�simo. BG.");
+					}
 				}
+				/*
+				 * if (tablero.esMina(fila, columna)) { if (!tablero.getCasillas(fila,
+				 * columna).getBandera()) { salir = true;
+				 * System.out.println("Eres mal�simo. BG."); } }
+				 */
 				tablero.marcarCasilla(fila, columna);
 				break;
 			case 2:

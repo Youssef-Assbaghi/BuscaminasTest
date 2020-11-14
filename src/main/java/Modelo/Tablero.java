@@ -85,11 +85,9 @@ public final class Tablero {
 	}
 
 	public boolean esMina(int fila, int columna) {
-		if (posicionValida(fila, columna)) {
+		if (posicionValida(fila, columna))
 			if (casillas[fila][columna].esMina())
 				return true;
-
-		}
 		return false;
 	}
 
@@ -120,9 +118,7 @@ public final class Tablero {
 	 * @return
 	 */
 	public int marcarCasilla(int fila, int columna) {
-		if (fila < 0 || fila >= nFilas)
-			return -1;
-		if (columna < 0 || columna >= nColumnas)
+		if (!posicionValida(fila, columna))
 			return -1;
 		if (casillas[fila][columna].getAbierta()) {
 			return 0;
@@ -254,7 +250,11 @@ public final class Tablero {
 	 */
 	public void sumarMinasAlrededor(int fila, int col) {
 		if (posicionValida(fila, col)) {
+
+			casillas[fila][col].sumarMinaCercana(); // Ella misma
+
 			// Vertical y horizontal
+
 			if (fila - 1 >= 0) {
 				casillas[fila - 1][col].sumarMinaCercana();
 			}
