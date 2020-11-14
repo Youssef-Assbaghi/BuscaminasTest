@@ -78,7 +78,10 @@ public final class Tablero {
 		}
 
 	}
-
+	
+	public boolean posicionValida(int fila, int columna) {
+		return false;
+	}
 	/**
 	 * 
 	 * @return Devuelve la matriz de casillas

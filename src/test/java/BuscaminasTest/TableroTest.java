@@ -313,6 +313,36 @@ public class TableroTest {
 		assertEquals(tablero.getCasillas(fila, col).getminasCercanas(), 7);
 
 	}
+	
+	@Test
+	public void testPosicionValida() {
+		for (int i = 0; i < 3; i++) {
+			tablero=new Tablero(i);
+			//Particion equivalente [0,Nfila]-[0,nColumna]
+			//Valores internos
+			assertTrue("Estamos dentro de la matriz",tablero.posicionValida(5, 5));
+			
+			//Valores frontera
+			assertTrue("Estamos dentro de la matriz",tablero.posicionValida(0, 0));
+			assertTrue("Estamos dentro de la matriz",tablero.posicionValida(0, tablero.getNColumnas()));
+			assertTrue("Estamos dentro de la matriz",tablero.posicionValida(tablero.getNFilas(), tablero.getNColumnas()));
+			assertTrue("Estamos dentro de la matriz",tablero.posicionValida(tablero.getNFilas(),0));
+			
+			//Valores interiores a frontera
+			assertTrue("Estamos dentro de la matriz",tablero.posicionValida(1, 1));
+			assertTrue("Estamos dentro de la matriz",tablero.posicionValida(1, tablero.getNColumnas()-1));
+			assertTrue("Estamos dentro de la matriz",tablero.posicionValida(tablero.getNFilas()-1, tablero.getNColumnas()-1));
+			assertTrue("Estamos dentro de la matriz",tablero.posicionValida(tablero.getNFilas()-1,1));
+			
+			//Valores exteriores a frontera
+			assertTrue("Estamos dentro de la matriz",tablero.posicionValida(-1, -1));
+			assertTrue("Estamos dentro de la matriz",tablero.posicionValida(1, tablero.getNColumnas()+1));
+			assertTrue("Estamos dentro de la matriz",tablero.posicionValida(tablero.getNFilas()+1, tablero.getNColumnas()+1));
+			assertTrue("Estamos dentro de la matriz",tablero.posicionValida(tablero.getNFilas()+1,-1));
+			
+			
+		}
+	}
 
 	@Test
 	public void testRestarMinasAlrededor() {
