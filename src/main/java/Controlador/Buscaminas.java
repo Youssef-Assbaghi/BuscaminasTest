@@ -35,8 +35,8 @@ public class Buscaminas {
 		vista.printTablero(tablero.getTablero());
 
 		System.out.println("Donde sera tu primer movimiento?");
-		int fila = pedirPosicion(tablero.getNFilas(),0);
-		int columna = pedirPosicion(tablero.getNColumnas(),1);
+		int fila = pedirPosicion(tablero.getNFilas(), 0);
+		int columna = pedirPosicion(tablero.getNColumnas(), 1);
 
 		tablero.ponerMinas(r);
 		tablero.marcarCasilla(fila, columna);
@@ -45,8 +45,8 @@ public class Buscaminas {
 		do {
 
 			System.out.println("Sobre que posicion deseas interactuar");
-			fila = pedirPosicion(tablero.getNFilas(),0);
-			columna = pedirPosicion(tablero.getNColumnas(),1);
+			fila = pedirPosicion(tablero.getNFilas(), 0);
+			columna = pedirPosicion(tablero.getNColumnas(), 1);
 
 			int tipoJugada = pedirAccion(0);
 
@@ -56,7 +56,7 @@ public class Buscaminas {
 				break;
 
 			case 1:
-				if (tablero.getCasillas(fila, columna).esMina()) {
+				if (tablero.getCasillas(fila, columna).esMina()) { // getMIna tablero
 					salir = true;
 					System.out.println("Eres mal�simo. BG.");
 				}
@@ -77,45 +77,43 @@ public class Buscaminas {
 		} while (!salir);
 
 	}
-	
+
 	private static int pedirAccion(int accion) {
 		boolean acierto = false;
 		int queHacer = 0;
 		while (!acierto) {
-			if(accion==0) {
-				queHacer=vista.pedirTipoJugada();
-			}else {
-				queHacer= vista.pedirDificultad();
+			if (accion == 0) {
+				queHacer = vista.pedirTipoJugada();
+			} else {
+				queHacer = vista.pedirDificultad();
 			}
 			if (queHacer >= 0 && queHacer <= 2)
 				acierto = true;
 		}
 		return queHacer;
 	}
-	
-	private static int pedirPosicion(int valor,int filaOColumna) {
+
+	private static int pedirPosicion(int valor, int filaOColumna) {
 		boolean acierto = false;
 		int value = 0;
 		while (!acierto) {
-			if(filaOColumna==0) {
+			if (filaOColumna == 0) {
 				value = vista.pedirFila();
-			}else {
+			} else {
 				value = vista.pedirColumna();
 			}
-			
+
 			if (value <= valor && value >= 0)
 				acierto = true;
 			else {
-				if(filaOColumna==0)
+				if (filaOColumna == 0)
 					System.out.println("La fila debe ser una valor entre 0 y " + valor);
 				else
 					System.out.println("La columna debe ser una valor entre 0 y " + valor);
 			}
-				
+
 		}
 		return value;
 	}
-		
-
 
 }

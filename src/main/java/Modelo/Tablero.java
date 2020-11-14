@@ -41,7 +41,7 @@ public final class Tablero {
 	 * @return
 	 */
 	public Casella getCasillas(int fila, int columna) {
-		if(posicionValida(fila, columna))
+		if (posicionValida(fila, columna))
 			return casillas[fila][columna];
 		System.out.println("Intenats acceder a una posicion que no existe, te devolvemos la 0,0");
 		return casillas[0][0];
@@ -63,16 +63,17 @@ public final class Tablero {
 	 * 
 	 * @param r
 	 */
-	public void ponerMinas(RandomPos r) {
+	public int ponerMinas(RandomPos r) {
 		int mineCount = 0;
+		int filaRandom = 0;
+		int colRandom = 0;
 		while (mineCount < numMinas) {
-			int filaRandom = r.getValor(nFilas);
-			int colRandom = r.getValor(nColumnas);
+			filaRandom = r.getValor(nFilas);
+			colRandom = r.getValor(nColumnas);
 			if (posicionValida(filaRandom, colRandom)) {
 				if (casillas[filaRandom][colRandom].esMina())
 					continue;
-				else if (casillaCerrada(filaRandom,colRandom)) // Ver hacer un mock para testearlo
-				{
+				else {
 					casillas[filaRandom][colRandom].setEsMina(true);
 					sumarMinasAlrededor(filaRandom, colRandom);
 					mineCount++;
@@ -80,16 +81,23 @@ public final class Tablero {
 			}
 		}
 
+		return mineCount;
 	}
+
+	public boolean esMina(int fila, int columna) {
+		return false;
+	}
+
 	public boolean casillaCerrada(int fila, int columna) {
 		return (!casillas[fila][columna].getAbierta());
 	}
-	
+
 	public boolean posicionValida(int fila, int columna) {
-		//System.out.println("Fila:"+fila+" Columna: "+columna);
+		// System.out.println("Fila:"+fila+" Columna: "+columna);
 		return (fila >= 0 && fila < nFilas && columna >= 0 && columna < nColumnas);
-			
+
 	}
+
 	/**
 	 * 
 	 * @return Devuelve la matriz de casillas
@@ -145,36 +153,36 @@ public final class Tablero {
 	 */
 	public void restarMinasAlrededor(int fila, int col) {
 
-		if(posicionValida(fila, col)) {
+		if (posicionValida(fila, col)) {
 			if (fila - 1 >= 0) {
 				casillas[fila - 1][col].restarMinaCercana();
 			}
-	
+
 			if (fila + 1 < nFilas) {
 				casillas[fila + 1][col].restarMinaCercana();
 			}
-	
+
 			if (col + 1 < nColumnas) {
 				casillas[fila][col + 1].restarMinaCercana();
 			}
-	
+
 			if (col - 1 >= 0) {
 				casillas[fila][col - 1].restarMinaCercana();
 			}
-	
+
 			// Diagonales
 			if (fila - 1 >= 0 && col + 1 < nColumnas) {
 				casillas[fila - 1][col + 1].restarMinaCercana();
 			}
-	
+
 			if (fila - 1 >= 0 && col - 1 >= 0) {
 				casillas[fila - 1][col - 1].restarMinaCercana();
 			}
-	
+
 			if (fila + 1 < nFilas && col + 1 < nColumnas) {
 				casillas[fila + 1][col + 1].restarMinaCercana();
 			}
-	
+
 			if (fila + 1 < nFilas && col - 1 >= 0) {
 				casillas[fila + 1][col - 1].restarMinaCercana();
 			}
@@ -240,37 +248,37 @@ public final class Tablero {
 	 * @param col  es el indice de la columna.
 	 */
 	public void sumarMinasAlrededor(int fila, int col) {
-		if(posicionValida(fila, col)) {
+		if (posicionValida(fila, col)) {
 			// Vertical y horizontal
 			if (fila - 1 >= 0) {
 				casillas[fila - 1][col].sumarMinaCercana();
 			}
-	
+
 			if (fila + 1 < nFilas) {
 				casillas[fila + 1][col].sumarMinaCercana();
 			}
-	
+
 			if (col + 1 < nColumnas) {
 				casillas[fila][col + 1].sumarMinaCercana();
 			}
-	
+
 			if (col - 1 >= 0) {
 				casillas[fila][col - 1].sumarMinaCercana();
 			}
-	
+
 			// Diagonales
 			if (fila - 1 >= 0 && col + 1 < nColumnas) {
 				casillas[fila - 1][col + 1].sumarMinaCercana();
 			}
-	
+
 			if (fila - 1 >= 0 && col - 1 >= 0) {
 				casillas[fila - 1][col - 1].sumarMinaCercana();
 			}
-	
+
 			if (fila + 1 < nFilas && col + 1 < nColumnas) {
 				casillas[fila + 1][col + 1].sumarMinaCercana();
 			}
-	
+
 			if (fila + 1 < nFilas && col - 1 >= 0) {
 				casillas[fila + 1][col - 1].sumarMinaCercana();
 			}

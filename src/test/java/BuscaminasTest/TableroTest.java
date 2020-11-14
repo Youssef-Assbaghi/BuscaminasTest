@@ -97,29 +97,65 @@ public class TableroTest {
 	}
 
 	@Test
+	public void testEsMina() {
+		for (int i = 0; i < 3; i++) {
+			tablero = new Tablero(i);
+			tablero.getCasillas(0, 0).setEsMina(true);
+			assertTrue("Como es mina debe dar true", tablero.esMina(0, 0));
+			assertFalse("Como es mina debe dar true", tablero.esMina(-1, 0));
+			assertFalse("Como es mina debe dar true", tablero.esMina(1, tablero.getNColumnas() + 1));
+			assertFalse("Como es mina debe dar true", tablero.esMina(tablero.getNFilas() + 1, tablero.getNColumnas()));
+
+		}
+	}
+
+	@Test
 	public void testPonerMinas() {
 
+		int minasPuestas;
 		// Comprobamos que se pongan el numero de minas correctas.
 		// Valores frontera i interiores
-		tablero.ponerMinas(r);
-		assertEquals("Dificultad 0= 10 minas", 15, tablero.getNumMinas());
+		minasPuestas = tablero.ponerMinas(r);
+		assertEquals("Dificultad 0= 10 minas", minasPuestas, tablero.getNumMinas());
 
 		tablero = new Tablero(1);
-		tablero.ponerMinas(r);
-		assertEquals("Dificultad 0= 10 minas", 40, tablero.getNumMinas());
+		minasPuestas = tablero.ponerMinas(r);
+		assertEquals("Dificultad 0= 10 minas", minasPuestas, tablero.getNumMinas());
 
 		tablero = new Tablero(2);
-		tablero.ponerMinas(r);
-		assertEquals("Dificultad 0= 10 minas", 99, tablero.getNumMinas());
+		minasPuestas = tablero.ponerMinas(r);
+		assertEquals("Dificultad 0= 10 minas", minasPuestas, tablero.getNumMinas());
 
 		// Valores exteriores a frontera
 		tablero = new Tablero(-1);
-		tablero.ponerMinas(r);
-		assertEquals("Dificultad 0= 10 minas", 15, tablero.getNumMinas());
+		minasPuestas = tablero.ponerMinas(r);
+		assertEquals("Dificultad 0= 10 minas", minasPuestas, tablero.getNumMinas());
 
 		tablero = new Tablero(3);
-		tablero.ponerMinas(r);
-		assertEquals("Dificultad 0= 10 minas", 15, tablero.getNumMinas());
+		minasPuestas = tablero.ponerMinas(r);
+		assertEquals("Dificultad 0= 10 minas", minasPuestas, tablero.getNumMinas());
+
+		// LOOP Testing
+
+		// Evitar loop
+		tablero = new Tablero(1);
+		tablero.setNumMinas(0);
+		minasPuestas = tablero.ponerMinas(r);
+
+		// Una pasada por el loop
+		tablero = new Tablero(1);
+		tablero.setNumMinas(1);
+		minasPuestas = tablero.ponerMinas(r);
+
+		// Dues pasadas por el loop
+
+		tablero = new Tablero(2);
+		tablero.setNumMinas(1);
+		minasPuestas = tablero.ponerMinas(r);
+
+		// m pasadas por el loop m<n
+
+		// (n-1), n pasadas por el loop (n es el número máximo de pasadas)
 
 	}
 
@@ -243,8 +279,6 @@ public class TableroTest {
 	@Test
 	public void testSumaMinasAlrededor() {
 
-		
-		
 		int fila = 5;
 		int col = 5;
 
@@ -313,84 +347,80 @@ public class TableroTest {
 
 		assertEquals(tablero.getCasillas(fila + 1, col - 1).getminasCercanas(), 2);
 		assertEquals(tablero.getCasillas(fila, col).getminasCercanas(), 7);
-		
-		
-		fila=-1;
-		col=-1;
-		tablero=new Tablero(0);
+
+		fila = -1;
+		col = -1;
+		tablero = new Tablero(0);
 		tablero.sumarMinasAlrededor(fila, col);
 		assertEquals(tablero.getCasillas(fila, col).getminasCercanas(), 0);
 
 	}
-	
+
 	@Test
 	public void testPosicionValida() {
-		System.out.println("TESTTTT");
 		for (int i = 0; i < 3; i++) {
-			tablero=new Tablero(i);
-			//Particion equivalente [0,Nfila]-[0,nColumna]
-			//Valores internos
-			assertTrue("Estamos dentro de la matriz",tablero.posicionValida(5, 5));
-			
-			//Valores frontera
-			assertTrue("Estamos dentro de la matriz",tablero.posicionValida(0, 0));
-			assertTrue("Estamos dentro de la matriz",tablero.posicionValida(0, tablero.getNColumnas()));
-			assertTrue("Estamos dentro de la matriz",tablero.posicionValida(tablero.getNFilas(), tablero.getNColumnas()));
-			assertTrue("Estamos dentro de la matriz",tablero.posicionValida(tablero.getNFilas(),0));
-			
-			//Valores interiores a frontera
-			assertTrue("Estamos dentro de la matriz",tablero.posicionValida(1, 1));
-			assertTrue("Estamos dentro de la matriz",tablero.posicionValida(1, tablero.getNColumnas()-1));
-			assertTrue("Estamos dentro de la matriz",tablero.posicionValida(tablero.getNFilas()-1, tablero.getNColumnas()-1));
-			assertTrue("Estamos dentro de la matriz",tablero.posicionValida(tablero.getNFilas()-1,1));
-			
-			//Valores exteriores a frontera
-			assertFalse("Estamos dentro de la matriz",tablero.posicionValida(-1, 1));
-			
-			assertFalse("Estamos dentro de la matriz",tablero.posicionValida(1, tablero.getNColumnas()+1));
-			assertFalse("Estamos dentro de la matriz",tablero.posicionValida(tablero.getNFilas()+1, tablero.getNColumnas()+1));
-			assertFalse("Estamos dentro de la matriz",tablero.posicionValida(tablero.getNFilas(),-1));
-			
+			tablero = new Tablero(i);
+			// Particion equivalente [0,Nfila]-[0,nColumna]
+			// Valores internos
+			assertTrue("Estamos dentro de la matriz", tablero.posicionValida(5, 5));
+
+			// Valores frontera
+			assertTrue("Estamos dentro de la matriz", tablero.posicionValida(0, 0));
+			assertTrue("Estamos dentro de la matriz", tablero.posicionValida(0, tablero.getNColumnas()));
+			assertTrue("Estamos dentro de la matriz",
+					tablero.posicionValida(tablero.getNFilas(), tablero.getNColumnas()));
+			assertTrue("Estamos dentro de la matriz", tablero.posicionValida(tablero.getNFilas(), 0));
+
+			// Valores interiores a frontera
+			assertTrue("Estamos dentro de la matriz", tablero.posicionValida(1, 1));
+			assertTrue("Estamos dentro de la matriz", tablero.posicionValida(1, tablero.getNColumnas() - 1));
+			assertTrue("Estamos dentro de la matriz",
+					tablero.posicionValida(tablero.getNFilas() - 1, tablero.getNColumnas() - 1));
+			assertTrue("Estamos dentro de la matriz", tablero.posicionValida(tablero.getNFilas() - 1, 1));
+
+			// Valores exteriores a frontera
+			assertFalse("Estamos dentro de la matriz", tablero.posicionValida(-1, 1));
+
+			assertFalse("Estamos dentro de la matriz", tablero.posicionValida(1, tablero.getNColumnas() + 1));
+			assertFalse("Estamos dentro de la matriz",
+					tablero.posicionValida(tablero.getNFilas() + 1, tablero.getNColumnas() + 1));
+			assertFalse("Estamos dentro de la matriz", tablero.posicionValida(tablero.getNFilas(), -1));
+
 			/*
-			 * Esto ira en el informe 
-			 * FILA=0 Y LO DEMAS TRUE SI
-		
-			FILA=9 Y LO DEMAS TRUE
-			
-			
-			COLUMNA=0 Y LO DEMAS TRUE
-			
-			COLUMNA=9 Y LO DEMAS TRUE
-			
-			
-			FILA=-1 Y LO DEMAS TRUE SI
-			FILA=10 Y LO DEMAS TRUE
-			COLUMNA=10 Y O DEMAS TRUE SI
-			COLUMNA=-1 Y LO DEMAS TRUE*/
-			
+			 * Esto ira en el informe FILA=0 Y LO DEMAS TRUE SI
+			 * 
+			 * FILA=9 Y LO DEMAS TRUE
+			 * 
+			 * 
+			 * COLUMNA=0 Y LO DEMAS TRUE
+			 * 
+			 * COLUMNA=9 Y LO DEMAS TRUE
+			 * 
+			 * 
+			 * FILA=-1 Y LO DEMAS TRUE SI FILA=10 Y LO DEMAS TRUE COLUMNA=10 Y O DEMAS TRUE
+			 * SI COLUMNA=-1 Y LO DEMAS TRUE
+			 */
+
 		}
 
 	}
 
 	@Test
 	public void testRestarMinasAlrededor() {
-		
+
 		int fila = 5;
 		int col = 5;
 		for (int i = 0; i < 3; i++) {
-			tablero=new Tablero(i);
+			tablero = new Tablero(i);
 			tablero.getCasillas(0, tablero.getNColumnas()).setEsMina(true);
 			tablero.sumarMinasAlrededor(0, tablero.getNColumnas());
-			
-			
+
 			tablero.getCasillas(tablero.getNFilas(), 0).setEsMina(true);
 			tablero.sumarMinasAlrededor(tablero.getNFilas(), 0);
-			
-			tablero.getCasillas(tablero.getNFilas()-1, 0).setEsMina(true);
-			tablero.sumarMinasAlrededor(tablero.getNFilas()-1, 0);
-		}
 
-		
+			tablero.getCasillas(tablero.getNFilas() - 1, 0).setEsMina(true);
+			tablero.sumarMinasAlrededor(tablero.getNFilas() - 1, 0);
+		}
 
 		// 0 minas- No puede dar menos de 0.
 
@@ -511,30 +541,29 @@ public class TableroTest {
 		tablero.restarMinasAlrededor(fila + 1, col - 1);
 
 		assertEquals(tablero.getCasillas(fila, col).getminasCercanas(), 0);
-		
-		fila=-1;
-		col=-1;
+
+		fila = -1;
+		col = -1;
 		tablero.restarMinasAlrededor(fila, col);
 		assertEquals(tablero.getCasillas(fila, col).getminasCercanas(), 0);
-		
-		//miramos extremos
-		fila =9;
-		col=9;
+
+		// miramos extremos
+		fila = 9;
+		col = 9;
 
 	}
-	@Test 
-	public void testEsAbierta() {
-		
-		//casillas[filaRandom][colRandom].getAbierta()
-		
-		tablero.getCasillas(0, 0).setAbierta(true);
-		assertFalse("Esta abierta, no cerrada",tablero.casillaCerrada(0,0));
-		
-		tablero.getCasillas(0, 0).setAbierta(false);
-		assertTrue("Esta cerrada, no abierta",tablero.casillaCerrada(0,0));
 
-		
-		
+	@Test
+	public void testEsAbierta() {
+
+		// casillas[filaRandom][colRandom].getAbierta()
+
+		tablero.getCasillas(0, 0).setAbierta(true);
+		assertFalse("Esta abierta, no cerrada", tablero.casillaCerrada(0, 0));
+
+		tablero.getCasillas(0, 0).setAbierta(false);
+		assertTrue("Esta cerrada, no abierta", tablero.casillaCerrada(0, 0));
+
 	}
 
 	@Test
