@@ -104,8 +104,9 @@ public class TableroTest {
 			assertTrue("Como es mina debe dar true", tablero.esMina(0, 0));
 			assertFalse("Como es mina debe dar true", tablero.esMina(-1, 0));
 			assertFalse("Como es mina debe dar true", tablero.esMina(1, tablero.getNColumnas() + 1));
-			assertFalse("Como es mina debe dar true", tablero.esMina(tablero.getNFilas() + 1, tablero.getNColumnas()));
-
+			assertFalse("Como esta fuerda de rango debe dar false",
+					tablero.esMina(tablero.getNFilas() + 1, tablero.getNColumnas()));
+			assertFalse("Como no es mina debe dar false", tablero.esMina(0, 1));
 		}
 	}
 
@@ -136,27 +137,45 @@ public class TableroTest {
 		assertEquals("Dificultad 0= 10 minas", minasPuestas, tablero.getNumMinas());
 
 		// LOOP Testing
-
 		// Evitar loop
-		tablero = new Tablero(1);
+		tablero = new Tablero(0);
 		tablero.setNumMinas(0);
 		minasPuestas = tablero.ponerMinas(r);
+		assertEquals("Dificultad 0= 10 minas", 0, minasPuestas);
 
 		// Una pasada por el loop
-		tablero = new Tablero(1);
+		tablero = new Tablero(0);
 		tablero.setNumMinas(1);
 		minasPuestas = tablero.ponerMinas(r);
+		assertEquals("Dificultad 0= 10 minas", 1, minasPuestas);
 
 		// Dues pasadas por el loop
 
-		tablero = new Tablero(2);
-		tablero.setNumMinas(1);
+		tablero = new Tablero(0);
+		tablero.setNumMinas(2);
 		minasPuestas = tablero.ponerMinas(r);
+		assertEquals("Dificultad 0= 10 minas", 2, minasPuestas);
 
 		// m pasadas por el loop m<n
 
+		tablero = new Tablero(0);
+		tablero.setNumMinas(5);
+		minasPuestas = tablero.ponerMinas(r);
+		assertEquals("Dificultad 0= 10 minas", 5, minasPuestas);
+
 		// (n-1), n pasadas por el loop (n es el número máximo de pasadas)
 
+		// n-1
+		tablero = new Tablero(0);
+		tablero.setNumMinas((tablero.getNMinasPorDificultad(tablero.getDificultad())) - 1);
+		minasPuestas = tablero.ponerMinas(r);
+		assertEquals("Dificultad 0= 10 minas", 14, minasPuestas);
+
+		// n
+		tablero = new Tablero(0);
+		tablero.setNumMinas((tablero.getNMinasPorDificultad(tablero.getDificultad())));
+		minasPuestas = tablero.ponerMinas(r);
+		assertEquals("Dificultad 0= 10 minas", 15, minasPuestas);
 	}
 
 	@Test

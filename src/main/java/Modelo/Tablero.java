@@ -1,8 +1,8 @@
 package Modelo;
 
 public final class Tablero {
-	private final int filasColumnas[] = { 10, 16, 24 };
-	private final int nMinas[] = { 15, 40, 99 };
+	private int filasColumnas[] = { 10, 16, 24 };
+	private int nMinas[] = { 15, 40, 99 };
 
 	private int numMinas;
 	private int dificultad;
@@ -85,6 +85,11 @@ public final class Tablero {
 	}
 
 	public boolean esMina(int fila, int columna) {
+		if (posicionValida(fila, columna)) {
+			if (casillas[fila][columna].esMina())
+				return true;
+
+		}
 		return false;
 	}
 
@@ -230,9 +235,9 @@ public final class Tablero {
 		return dificultad;
 	}
 
-//	public int getDificultad() {
-//		return dificultad;
-//	}
+	public int getNMinasPorDificultad(int dificultad) {
+		return nMinas[dificultad];
+	}
 
 	public void setDificultad(int dificultad) {
 		this.dificultad = dificultad;
