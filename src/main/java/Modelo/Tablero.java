@@ -65,7 +65,7 @@ public final class Tablero {
 		while (mineCount < numMinas) {
 			int filaRandom = r.getValor(nFilas);
 			int colRandom = r.getValor(nColumnas);
-			if (filaRandom >= 0 && filaRandom < nFilas && colRandom >= 0 && colRandom < nColumnas) {
+			if (posicionValida(filaRandom, colRandom)) {
 				if (casillas[filaRandom][colRandom].esMina())
 					continue;
 				else if (!casillas[filaRandom][colRandom].getAbierta()) // Ver hacer un mock para testearlo
@@ -78,9 +78,14 @@ public final class Tablero {
 		}
 
 	}
+	public boolean esAbierta() {
+		return false;
+	}
 	
 	public boolean posicionValida(int fila, int columna) {
-		return false;
+		System.out.println("Fila:"+fila+" Columna: "+columna);
+		return (fila >= 0 && fila < nFilas && columna >= 0 && columna < nColumnas);
+			
 	}
 	/**
 	 * 

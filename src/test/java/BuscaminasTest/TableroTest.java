@@ -316,6 +316,7 @@ public class TableroTest {
 	
 	@Test
 	public void testPosicionValida() {
+		System.out.println("TESTTTT");
 		for (int i = 0; i < 3; i++) {
 			tablero=new Tablero(i);
 			//Particion equivalente [0,Nfila]-[0,nColumna]
@@ -335,13 +336,29 @@ public class TableroTest {
 			assertTrue("Estamos dentro de la matriz",tablero.posicionValida(tablero.getNFilas()-1,1));
 			
 			//Valores exteriores a frontera
-			assertTrue("Estamos dentro de la matriz",tablero.posicionValida(-1, -1));
-			assertTrue("Estamos dentro de la matriz",tablero.posicionValida(1, tablero.getNColumnas()+1));
-			assertTrue("Estamos dentro de la matriz",tablero.posicionValida(tablero.getNFilas()+1, tablero.getNColumnas()+1));
-			assertTrue("Estamos dentro de la matriz",tablero.posicionValida(tablero.getNFilas()+1,-1));
+			assertFalse("Estamos dentro de la matriz",tablero.posicionValida(-1, 1));
 			
+			assertFalse("Estamos dentro de la matriz",tablero.posicionValida(1, tablero.getNColumnas()+1));
+			assertFalse("Estamos dentro de la matriz",tablero.posicionValida(tablero.getNFilas()+1, tablero.getNColumnas()+1));
+			assertFalse("Estamos dentro de la matriz",tablero.posicionValida(tablero.getNFilas(),-1));
+			
+			/*FILA=0 Y LO DEMAS TRUE SI
+		
+			FILA=9 Y LO DEMAS TRUE
+			
+			
+			COLUMNA=0 Y LO DEMAS TRUE
+			
+			COLUMNA=9 Y LO DEMAS TRUE
+			
+			
+			FILA=-1 Y LO DEMAS TRUE SI
+			FILA=10 Y LO DEMAS TRUE
+			COLUMNA=10 Y O DEMAS TRUE SI
+			COLUMNA=-1 Y LO DEMAS TRUE*/
 			
 		}
+		System.out.println("TESTTTT");
 	}
 
 	@Test
