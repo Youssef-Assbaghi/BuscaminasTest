@@ -22,6 +22,9 @@ public class BuscaminasTest {
 		assertEquals("Debe ser zero",0,testeable.getDificultad());
 		assertTrue("Esta casilla se abre",testeable.getCasillas(0, 0).getAbierta());
 		
+		
+		//juego=new Buscaminas(null);
+		//Buscaminas.main(hey);
 
 	}
 
