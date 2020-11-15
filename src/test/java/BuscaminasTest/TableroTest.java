@@ -23,7 +23,7 @@ public class TableroTest {
 	}
 
 	@Test
-	public void testGenerarTablero() { // Statement coverage
+	public void testGenerarTablero() { // Statement coverage && loop aniuat testing
 
 		// VALORES FRONTERA
 		// Tablero 0
@@ -137,11 +137,83 @@ public class TableroTest {
 				assertFalse(tablero.getCasillas(i, j).getAbierta());
 			}
 		}
-		// (n-1), n pasadas por el loop (n es el número máximo de pasadas)
+		// (n-1), n pasadas por el loop (n es el nï¿½mero mï¿½ximo de pasadas)
+		tablero.setnColumnas(tablero.getNColumnas());
+		tablero.generarTablero();
 
-		// n-1
+		for (int i = 0; i < tablero.getNFilas(); i++) {
+			for (int j = 0; j < tablero.getNColumnas(); j++) {
+				assertFalse(tablero.getCasillas(i, j).getAbierta());
+			}
+		}
 
 		// n
+		tablero.setnColumnas(tablero.getNColumnas()+1);
+		tablero.generarTablero();
+
+		for (int i = 0; i < tablero.getNFilas(); i++) {
+			for (int j = 0; j < tablero.getNColumnas(); j++) {
+				assertFalse(tablero.getCasillas(i, j).getAbierta());
+			}
+		}
+		
+		
+		//Testejar un loop mÃ©s extern (com si fosun loop simple) 
+		//EVITAR LOOP
+		tablero=new Tablero(0);
+		
+		tablero.setnFilas(0);
+		tablero.generarTablero();
+		try {
+			tablero.getCasillas(0, 0).getAbierta();
+		} catch (IndexOutOfBoundsException e) {
+			assertTrue(true);
+		}
+		// Una pasada por el loop
+		tablero.setnFilas(1);
+		tablero.generarTablero();
+		for (int i = 0; i < tablero.getNFilas(); i++) {
+			for (int j = 0; j < tablero.getNColumnas(); j++) {
+				assertFalse(tablero.getCasillas(i, j).getAbierta());
+			}
+		}
+
+		// Dues pasadas por el loop
+		tablero.setnFilas(2);
+		tablero.generarTablero();
+		for (int i = 0; i < tablero.getNFilas(); i++) {
+			for (int j = 0; j < tablero.getNColumnas(); j++) {
+				assertFalse(tablero.getCasillas(i, j).getAbierta());
+			}
+		}
+		// m pasadas por el loop m<n
+		tablero.setnFilas(5);
+		tablero.generarTablero();
+
+		for (int i = 0; i < tablero.getNFilas(); i++) {
+			for (int j = 0; j < tablero.getNColumnas(); j++) {
+				assertFalse(tablero.getCasillas(i, j).getAbierta());
+			}
+		}
+		// (n-1), n pasadas por el loop (n es el nï¿½mero mï¿½ximo de pasadas)
+		tablero.setnFilas(tablero.getNColumnas());
+		tablero.generarTablero();
+
+		for (int i = 0; i < tablero.getNFilas(); i++) {
+			for (int j = 0; j < tablero.getNColumnas(); j++) {
+				assertFalse(tablero.getCasillas(i, j).getAbierta());
+			}
+		}
+
+		// n
+		tablero.setnFilas(tablero.getNFilas()+1);
+		tablero.generarTablero();
+
+		for (int i = 0; i < tablero.getNFilas()+1; i++) {
+			for (int j = 0; j < tablero.getNColumnas(); j++) {
+				assertFalse(tablero.getCasillas(i, j).getAbierta());
+			}
+		}
 
 		// FINAL TESTING
 
@@ -214,7 +286,7 @@ public class TableroTest {
 		minasPuestas = tablero.ponerMinas(r);
 		assertEquals("Dificultad 0= 10 minas", 5, minasPuestas);
 
-		// (n-1), n pasadas por el loop (n es el número máximo de pasadas)
+		// (n-1), n pasadas por el loop (n es el nï¿½mero mï¿½ximo de pasadas)
 
 		// n-1
 		tablero = new Tablero(0);
@@ -230,7 +302,7 @@ public class TableroTest {
 	}
 
 	@Test
-	public void testMockValorRandom() {
+	public void testMockValorRandom() { //Mock del valor random para testear todos los casos de poner minas
 		MockRandom r = new MockRandom();
 		tablero.ponerMinas(r);
 
@@ -713,7 +785,7 @@ public class TableroTest {
 	}
 
 	@Test
-	public void testGetTablero() {
+	public void testGetTablero() { //Test getter para obtener la matriz de casillas
 		Casella[][] casillas = tablero.getTablero();
 
 		for (int i = 0; i < casillas.length; i++) {
