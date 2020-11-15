@@ -26,7 +26,6 @@ public class BuscaminasTest {
 		//juego=new Buscaminas(null);
 		//Buscaminas.main(hey);
 
-
 	}
 
 }

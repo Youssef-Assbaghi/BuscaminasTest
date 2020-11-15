@@ -6,6 +6,7 @@ import Vista.VistaInterfaz;
 public class MockView implements VistaInterfaz{
 
 	int cuento =-1;
+	private int counter=0;
 	@Override
 	public int pedirColumna() {
 		// TODO Auto-generated method stub
@@ -54,12 +55,12 @@ public class MockView implements VistaInterfaz{
 	@Override
 	public int pedirTipoJugada() {
 		// TODO Auto-generated method stub
-		cuento ++;
-		if(cuento ==30) {
-			cuento=-1;
+		counter ++;
+		if(counter ==30) {
+			counter=-1;
 			return 0;
 		}
-		return -8;
+		return counter;
 	}
 
 }
