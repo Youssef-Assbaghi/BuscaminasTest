@@ -18,11 +18,26 @@ public class MockRandom implements RandomPos {
 			int valor = (int) (rand.nextDouble() * n - 1);
 			return valor;
 		}
-		
-			
-		if (intentos>=5) {
+		if (intentos>=15) {
 			return n+22;
 		}
+		if(intentos >=11) {
+			return 0;
+		}
+		
+		if(intentos >=9) {
+			return 9;
+		}
+		
+		if(intentos >=6) {
+			return 1;
+		}
+		
+	
+		
+		
+			
+		
 		return n;
 	}
 

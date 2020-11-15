@@ -15,6 +15,7 @@ public class MockView implements VistaInterfaz{
 			cuento=-1;
 			return 0;
 		}
+
 		return -154;
 	}
 
@@ -26,6 +27,8 @@ public class MockView implements VistaInterfaz{
 			cuento=-1;
 			return 0;
 		}
+
+		
 		return -1;
 	}
 

@@ -312,12 +312,15 @@ public class TableroTest {
 
 	@Test
 	public void testMockValorRandom() { // Mock del valor random para testear todos los casos de poner minas
-		MockRandom r = new MockRandom();
-		tablero.ponerMinas(r);
+		
 
 		for (int i = -6; i <= 5; i++) {
 			tablero = new Tablero(i);
+			MockRandom r = new MockRandom();
 			tablero.ponerMinas(r);
+			assertTrue(tablero.getCasillas(0, 0).esMina());
+			assertTrue(tablero.getCasillas(1, 1).esMina());
+			assertTrue(tablero.getCasillas(9, 9).esMina());
 
 		}
 	}
