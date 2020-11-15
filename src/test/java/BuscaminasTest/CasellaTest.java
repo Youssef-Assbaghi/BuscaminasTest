@@ -114,7 +114,7 @@ public class CasellaTest {
 	@Test
 	public void testSumarMinaCercana() {
 		assertEquals("Al principio no hay minas cercanas", 0, casilla.getminasCercanas());
-		for (int i = 0; i < 10; i++) {
+		for (int i = 1; i < 10; i++) {
 			casilla.sumarMinaCercana();
 			if (casilla.getminasCercanas() >= 8)
 				assertEquals("El maximo de minas son 8", 8, casilla.getminasCercanas());

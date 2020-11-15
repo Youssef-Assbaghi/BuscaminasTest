@@ -95,8 +95,8 @@ public final class Tablero {
 	/**
 	 * Devuelve si una casilla contiene una mina
 	 * 
-	 * @param fila    índice de la fila de la casilla
-	 * @param columna índice de la columna de la casilla
+	 * @param fila    ï¿½ndice de la fila de la casilla
+	 * @param columna ï¿½ndice de la columna de la casilla
 	 * @return true si es Mina, false si no lo es.
 	 */
 	public boolean esMina(int fila, int columna) {
@@ -109,8 +109,8 @@ public final class Tablero {
 	/**
 	 * Devuelve si una casilla esta cerrada
 	 * 
-	 * @param fila    índice de la fila de la casilla
-	 * @param columna índice de la columna de la casilla
+	 * @param fila    ï¿½ndice de la fila de la casilla
+	 * @param columna ï¿½ndice de la columna de la casilla
 	 * @return true si esta cerrada, false si no lo esta.
 	 */
 	public boolean casillaCerrada(int fila, int columna) {
@@ -122,9 +122,9 @@ public final class Tablero {
 	/**
 	 * Devuelve si la posicion de fila columna dada es valida para el tablero.
 	 * 
-	 * @param fila    índice de la fila de la casilla
-	 * @param columna índice de la columna de la casilla
-	 * @return true si es válida, false si no lo es
+	 * @param fila    ï¿½ndice de la fila de la casilla
+	 * @param columna ï¿½ndice de la columna de la casilla
+	 * @return true si es vï¿½lida, false si no lo es
 	 */
 	public boolean posicionValida(int fila, int columna) {
 		return (fila >= 0 && fila < nFilas && columna >= 0 && columna < nColumnas);
@@ -230,10 +230,7 @@ public final class Tablero {
 	 * @return
 	 */
 	public int ponerBandera(int fila, int columna) {
-		if (fila < 0 || fila >= nFilas)
-			return -1;
-
-		if (columna < 0 || columna >= nColumnas)
+		if(!posicionValida(fila, columna))
 			return -1;
 
 		casillas[fila][columna].cambiarBandera();
