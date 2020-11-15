@@ -62,26 +62,27 @@ public class CasellaTest {
 	public void testCambiarBandera() {
 
 		// Comprobacion inicial de que las casillas no tienen bandera
-		assertFalse("Al principio de la ejecucion debe dar False", casilla.getBandera());
+		assertFalse("Al principio de la ejecucion debe dar False", casilla.getBandera()); //true true	
 		casilla.cambiarBandera();
 
 		// Comprobamos de que se ha puesto la bandera
-		assertTrue("Como se inicializa a zero debe devolver un True conforme hay Bandera", casilla.getBandera());
+		assertTrue("Como se inicializa a zero debe devolver un True conforme hay Bandera", casilla.getBandera()); //true false
 
 		// Comprobamos que se quita
-		casilla.cambiarBandera();
+		casilla.cambiarBandera(); //true true
 		assertFalse("Una vez cambia de bandera al volver a darle se debe quitar y devolver False",
 				casilla.getBandera());
 
 		// Comprobamos que si esta abierta no se puede poner banderas.
 		casilla.setAbierta(true);
-		casilla.cambiarBandera();
+		casilla.cambiarBandera(); //false false
 		assertFalse("Si la mina es abierta no se puede poner bandera a la casilla", casilla.getBandera());
 
 	}
 
 	@Test
 	public void testAbrirCasilla() {
+		//PARWISE TESTING
 
 		// Comprobamos que al inicializar esta cerrada
 		assertFalse("Al crear la variable la casilla debe estar cerrada osea False", casilla.getAbierta());

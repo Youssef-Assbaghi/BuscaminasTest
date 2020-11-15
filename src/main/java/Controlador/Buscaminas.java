@@ -23,7 +23,7 @@ public class Buscaminas {
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+
 		if (vista == null) {
 			vista = new Vista();
 		}
@@ -31,7 +31,7 @@ public class Buscaminas {
 		int dificultad = pedirAccion(1);
 		ValorRandom r = new ValorRandom();
 		tablero = new Tablero(dificultad);
-
+		int tipoJugada=0;
 		vista.printTablero(tablero.getTablero());
 
 		System.out.println("Donde sera tu primer movimiento?");
@@ -48,7 +48,7 @@ public class Buscaminas {
 			fila = pedirPosicion(tablero.getNFilas(), 0);
 			columna = pedirPosicion(tablero.getNColumnas(), 1);
 
-			int tipoJugada = pedirAccion(0);
+			tipoJugada = pedirAccion(0);
 
 			switch (tipoJugada) {
 			case 0:
