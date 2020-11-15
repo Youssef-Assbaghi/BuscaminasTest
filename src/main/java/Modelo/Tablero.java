@@ -92,6 +92,13 @@ public final class Tablero {
 		return mineCount;
 	}
 
+	/**
+	 * Devuelve si una casilla contiene una mina
+	 * 
+	 * @param fila    índice de la fila de la casilla
+	 * @param columna índice de la columna de la casilla
+	 * @return true si es Mina, false si no lo es.
+	 */
 	public boolean esMina(int fila, int columna) {
 		if (posicionValida(fila, columna))
 			if (casillas[fila][columna].esMina())
@@ -99,14 +106,27 @@ public final class Tablero {
 		return false;
 	}
 
+	/**
+	 * Devuelve si una casilla esta cerrada
+	 * 
+	 * @param fila    índice de la fila de la casilla
+	 * @param columna índice de la columna de la casilla
+	 * @return true si esta cerrada, false si no lo esta.
+	 */
 	public boolean casillaCerrada(int fila, int columna) {
 		if (posicionValida(fila, columna))
 			return (!casillas[fila][columna].getAbierta());
 		return false;
 	}
 
+	/**
+	 * Devuelve si la posicion de fila columna dada es valida para el tablero.
+	 * 
+	 * @param fila    índice de la fila de la casilla
+	 * @param columna índice de la columna de la casilla
+	 * @return true si es válida, false si no lo es
+	 */
 	public boolean posicionValida(int fila, int columna) {
-		// System.out.println("Fila:"+fila+" Columna: "+columna);
 		return (fila >= 0 && fila < nFilas && columna >= 0 && columna < nColumnas);
 
 	}
