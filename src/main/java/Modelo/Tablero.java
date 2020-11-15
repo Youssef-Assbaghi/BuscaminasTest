@@ -230,10 +230,7 @@ public final class Tablero {
 	 * @return
 	 */
 	public int ponerBandera(int fila, int columna) {
-		if (fila < 0 || fila >= nFilas)
-			return -1;
-
-		if (columna < 0 || columna >= nColumnas)
+		if(!posicionValida(fila, columna))
 			return -1;
 
 		casillas[fila][columna].cambiarBandera();
