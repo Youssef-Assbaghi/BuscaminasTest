@@ -31,16 +31,16 @@ public class Buscaminas {
 		int dificultad = pedirAccion(1);
 		ValorRandom r = new ValorRandom();
 		tablero = new Tablero(dificultad);
-		int tipoJugada=0;
-		vista.printTablero(tablero.getTablero());
+		int tipoJugada = 0;
+		tablero.ponerMinas(r);
+		vista.printTablero(tablero.getTablero(), tablero.getDificultad());
 
 		System.out.println("Donde sera tu primer movimiento?");
 		int fila = pedirPosicion(tablero.getNFilas(), 0);
 		int columna = pedirPosicion(tablero.getNColumnas(), 1);
 
-		tablero.ponerMinas(r);
 		tablero.marcarCasilla(fila, columna);
-		vista.printTablero(tablero.getTablero());
+		vista.printTablero(tablero.getTablero(), tablero.getDificultad());
 
 		do {
 
@@ -59,14 +59,9 @@ public class Buscaminas {
 				if (!tablero.getCasillas(fila, columna).getBandera()) {
 					if (tablero.esMina(fila, columna)) {
 						salir = true;
-						System.out.println("Eres mal�simo. BG.");
+						vista.printHasPerdido();
 					}
 				}
-				/*
-				 * if (tablero.esMina(fila, columna)) { if (!tablero.getCasillas(fila,
-				 * columna).getBandera()) { salir = true;
-				 * System.out.println("Eres mal�simo. BG."); } }
-				 */
 				tablero.marcarCasilla(fila, columna);
 				break;
 			case 2:
@@ -76,10 +71,10 @@ public class Buscaminas {
 			default:
 				break;
 			}
-			vista.printTablero(tablero.getTablero());
+			vista.printTablero(tablero.getTablero(), tablero.getDificultad());
 			if (tablero.getNumCasillasCerradas() == tablero.getNumMinas()) {
 				salir = true;
-				System.out.println("Felicidades, eres el �nico que ha ganado en este juego.");
+				vista.printHasGanado();
 			}
 		} while (!salir);
 

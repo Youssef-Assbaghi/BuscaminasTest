@@ -39,25 +39,7 @@ public class Vista implements VistaInterfaz {
 	}
 
 	@Override
-	public void printTablero(Casella[][] casilla) {
-		// TODO Auto-generated method stub
-		System.out.println("");
-		for (int i = 0; i < casilla.length; i++) {
-			for (int j = 0; j < casilla[i].length; j++) {
-
-				if (casilla[i][j].getAbierta()) {
-					int casillasCercanas = casilla[i][j].getminasCercanas();
-					if (casillasCercanas != 0) {
-						System.out.print(casillasCercanas);
-					} else
-						System.out.print(" ");
-				} else if (casilla[i][j].getBandera()) {
-					System.out.print("B");
-				} else
-					System.out.print("C");
-			}
-			System.out.println("");
-		}
+	public void printTablero(Casella[][] casilla, int dificultad) {
 
 //		for (int i = 0; i < casilla.length; i++) {
 //			for (int j = 0; j < casilla[i].length; j++) {
@@ -71,13 +53,47 @@ public class Vista implements VistaInterfaz {
 //			System.out.println("");
 //		}
 
-		/*
-		 * System.out.println("ARBOL MINAS CERCANAS"); for (int i = 0; i <
-		 * casilla.length; i++) { for (int j = 0; j < casilla[i].length; j++) {
-		 * 
-		 * System.out.print(casilla[i][j].getminasCercanas()); } System.out.println("");
-		 * }
-		 */
+		for (int fila = 0; fila < casilla.length; fila++) {
+			System.out.println("");
+			if (dificultad == 0) {
+
+				System.out.println("-----------------------------------------");
+			} else if (dificultad == 1) {
+				System.out.println("-----------------------------------------------------------------");
+			} else {
+				System.out.println(
+						"-------------------------------------------------------------------------------------------------");
+			}
+
+			for (int col = 0; col < casilla[fila].length; col++) {
+				System.out.print("|");
+
+				if (casilla[fila][col].getAbierta()) {
+					if (casilla[fila][col].esMina()) {
+						System.out.print(" " + "X" + " ");
+					} else if (casilla[fila][col].getminasCercanas() != 0) {
+						System.out.print(" " + casilla[fila][col].getminasCercanas() + " ");
+					} else {
+						System.out.print("   ");
+					}
+
+				} else if (casilla[fila][col].getBandera()) {
+					System.out.print(" " + "B" + " ");
+				} else {
+					System.out.print(" " + "C" + " ");
+				}
+			}
+			System.out.print("|");
+		}
+		System.out.println("");
+		if (dificultad == 0) {
+			System.out.println("-----------------------------------------");
+		} else if (dificultad == 1) {
+			System.out.println("-----------------------------------------------------------------");
+		} else {
+			System.out.println(
+					"-------------------------------------------------------------------------------------------------");
+		}
 
 	}
 
@@ -94,6 +110,24 @@ public class Vista implements VistaInterfaz {
 	public void printBienvenido() {
 		// TODO Auto-generated method stub
 		System.out.println("Bienvenido al Buscaminas");
+
+	}
+
+	@Override
+	public void printHasPerdido() {
+		// TODO Auto-generated method stub
+		System.out.println("-----------");
+		System.out.println("HAS PERDIDO");
+		System.out.println("-----------");
+
+	}
+
+	@Override
+	public void printHasGanado() {
+		// TODO Auto-generated method stub
+		System.out.println("-----------");
+		System.out.println("HAS GANADO");
+		System.out.println("-----------");
 
 	}
 

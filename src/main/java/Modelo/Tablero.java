@@ -155,11 +155,13 @@ public final class Tablero {
 
 		} else {
 
-			if (primerMovimiento && casillas[fila][columna].esMina()) {
-				casillas[fila][columna].setEsMina(false);
-				restarMinasAlrededor(fila, columna);
+			if (primerMovimiento) {
 				primerMovimiento = false;
-				numMinas--;
+				if (casillas[fila][columna].esMina()) {
+					casillas[fila][columna].setEsMina(false);
+					restarMinasAlrededor(fila, columna);
+					numMinas--;
+				}
 			}
 			casillas[fila][columna].abrirCasilla();
 			setNumCasillasCerradas(getNumCasillasCerradas() - 1);
@@ -185,6 +187,9 @@ public final class Tablero {
 	public void restarMinasAlrededor(int fila, int col) {
 
 		if (posicionValida(fila, col)) {
+
+			casillas[fila][col].restarMinaCercana();
+
 			if (posicionValida(fila - 1, col)) {
 				casillas[fila - 1][col].restarMinaCercana();
 			}
@@ -230,7 +235,7 @@ public final class Tablero {
 	 * @return
 	 */
 	public int ponerBandera(int fila, int columna) {
-		if(!posicionValida(fila, columna))
+		if (!posicionValida(fila, columna))
 			return -1;
 
 		casillas[fila][columna].cambiarBandera();
