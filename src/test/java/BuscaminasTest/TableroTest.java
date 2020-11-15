@@ -33,7 +33,7 @@ public class TableroTest {
 
 				assertFalse(tablero.getCasillas(i, j).getAbierta());
 				assertFalse(tablero.getCasillas(i, j).getBandera());
-				assertEquals(tablero.getCasillas(i, j).getminasCercanas(),0);
+				assertEquals(tablero.getCasillas(i, j).getminasCercanas(), 0);
 				assertFalse(tablero.getCasillas(i, j).esMina());
 				checksum++;
 			}
@@ -49,7 +49,7 @@ public class TableroTest {
 
 				assertFalse(tablero.getCasillas(i, j).getAbierta());
 				assertFalse(tablero.getCasillas(i, j).getBandera());
-				assertEquals(tablero.getCasillas(i, j).getminasCercanas(),0);
+				assertEquals(tablero.getCasillas(i, j).getminasCercanas(), 0);
 				assertFalse(tablero.getCasillas(i, j).esMina());
 				checksum++;
 			}
@@ -65,7 +65,7 @@ public class TableroTest {
 
 				assertFalse(tablero.getCasillas(i, j).getAbierta());
 				assertFalse(tablero.getCasillas(i, j).getBandera());
-				assertEquals(tablero.getCasillas(i, j).getminasCercanas(),0);
+				assertEquals(tablero.getCasillas(i, j).getminasCercanas(), 0);
 				assertFalse(tablero.getCasillas(i, j).esMina());
 				checksum++;
 			}
@@ -82,7 +82,7 @@ public class TableroTest {
 
 				assertFalse(tablero.getCasillas(i, j).getAbierta());
 				assertFalse(tablero.getCasillas(i, j).getBandera());
-				assertEquals(tablero.getCasillas(i, j).getminasCercanas(),0);
+				assertEquals(tablero.getCasillas(i, j).getminasCercanas(), 0);
 				assertFalse(tablero.getCasillas(i, j).esMina());
 				checksum++;
 			}
@@ -98,7 +98,7 @@ public class TableroTest {
 
 				assertFalse(tablero.getCasillas(i, j).getAbierta());
 				assertFalse(tablero.getCasillas(i, j).getBandera());
-				assertEquals(tablero.getCasillas(i, j).getminasCercanas(),0);
+				assertEquals(tablero.getCasillas(i, j).getminasCercanas(), 0);
 				assertFalse(tablero.getCasillas(i, j).esMina());
 				checksum++;
 			}
@@ -158,7 +158,7 @@ public class TableroTest {
 		}
 
 		// n
-		tablero.setnColumnas(tablero.getNColumnas()+1);
+		tablero.setnColumnas(tablero.getNColumnas() + 1);
 		tablero.generarTablero();
 
 		for (int i = 0; i < tablero.getNFilas(); i++) {
@@ -166,12 +166,11 @@ public class TableroTest {
 				assertFalse(tablero.getCasillas(i, j).getAbierta());
 			}
 		}
-		
-		
-		//Testejar un loop més extern (com si fosun loop simple) 
-		//EVITAR LOOP
-		tablero=new Tablero(0);
-		
+
+		// Testejar un loop més extern (com si fosun loop simple)
+		// EVITAR LOOP
+		tablero = new Tablero(0);
+
 		tablero.setnFilas(0);
 		tablero.generarTablero();
 		try {
@@ -216,10 +215,10 @@ public class TableroTest {
 		}
 
 		// n
-		tablero.setnFilas(tablero.getNFilas()+1);
+		tablero.setnFilas(tablero.getNFilas() + 1);
 		tablero.generarTablero();
 
-		for (int i = 0; i < tablero.getNFilas()+1; i++) {
+		for (int i = 0; i < tablero.getNFilas() + 1; i++) {
 			for (int j = 0; j < tablero.getNColumnas(); j++) {
 				assertFalse(tablero.getCasillas(i, j).getAbierta());
 			}
@@ -228,6 +227,7 @@ public class TableroTest {
 		// FINAL TESTING
 
 	}
+
 	@Test
 	public void testEsMina() { // Decision coverage, Condition coverage
 		for (int i = 0; i < 3; i++) {
@@ -311,7 +311,7 @@ public class TableroTest {
 	}
 
 	@Test
-	public void testMockValorRandom() { //Mock del valor random para testear todos los casos de poner minas
+	public void testMockValorRandom() { // Mock del valor random para testear todos los casos de poner minas
 		MockRandom r = new MockRandom();
 		tablero.ponerMinas(r);
 
@@ -322,12 +322,10 @@ public class TableroTest {
 		}
 	}
 
-
 	@Test
 	public void testMarcarCasilla() { // Condition coverage, Decision coverage.
 		int k;
-		
-		
+
 		// Testeamos valores limite y frontera de tablero
 		for (int i = -1; i < 3; i++) {
 			tablero = new Tablero(i);
@@ -364,7 +362,7 @@ public class TableroTest {
 
 		// Comprobamos que se abran m�ltiples casillas si se le da a una casilla con 0
 		// minas alrededor.
-		//PATH COVERAGE
+		// PATH COVERAGE
 
 		for (int i = 0; i < 3; i++) {
 			tablero = new Tablero(i);
@@ -443,37 +441,38 @@ public class TableroTest {
 
 	}
 
-	public void testPathMArcarCasilla() { 
-		//PATH COVERAGE
-		//9 ARCOS 6 NODOS
-		//9-6+2=5 PATHS DEBEN SALIR
-		//SE INCLUYE AUTOMATIZACION EN LOS TESTS
-		
-		//PATH DONDE LA POSCION NO ES VALIDA 
+	public void testPathMarcarCasilla() {
+		// PATH COVERAGE
+		// 9 ARCOS 6 NODOS
+		// 9-6+2=5 PATHS DEBEN SALIR
+		// SE INCLUYE AUTOMATIZACION EN LOS TESTS
+
+		// PATH DONDE LA POSCION NO ES VALIDA
 		int k;
 		k = tablero.marcarCasilla(tablero.getNFilas(), -8);
 		assertEquals(-1, k);
-		
-		//PATH DONDE POSICION ES VALIDA PERO ESTA ABIERTA
+
+		// PATH DONDE POSICION ES VALIDA PERO ESTA ABIERTA
 		tablero.getCasillas(0, 0).setAbierta(true);
 		k = tablero.marcarCasilla(0, 0);
 		assertTrue("La casilla no se abre porque ya esta abierta", tablero.getCasillas(0, 0).getAbierta());
 		assertEquals(0, k);
-		
-		//PATH DONDE POS VALIDA, NO ESTA ABIERTA ES PRIMER MOV,
-		//NO TIENE MINAS CERCANAS
-		tablero=new Tablero(0);
+
+		// PATH DONDE POS VALIDA, NO ESTA ABIERTA ES PRIMER MOV,
+		// NO TIENE MINAS CERCANAS
+		tablero = new Tablero(0);
 		assertTrue("La casilla se abre porque porque no tiene minas cercanas", tablero.getCasillas(0, 0).getAbierta());
 		assertEquals(0, k);
-		
-		//PATH DONDE POS VALIDA, NO ESTA ABIERTA _NO_ ES PRIMER MOV,
-		//NO TIENE MINAS CERCANAS
+
+		// PATH DONDE POS VALIDA, NO ESTA ABIERTA _NO_ ES PRIMER MOV,
+		// NO TIENE MINAS CERCANAS
 		tablero.getCasillas(0, 0).setAbierta(false);
-		assertTrue("La casilla se abre porque aunque no sea el primer movimiento no tiene minas cercanas", tablero.getCasillas(0, 0).getAbierta());
+		assertTrue("La casilla se abre porque aunque no sea el primer movimiento no tiene minas cercanas",
+				tablero.getCasillas(0, 0).getAbierta());
 		assertEquals(0, k);
-		
-		//PATH DONDE POS VALIDA, NO ESTA ABIERTA _NO_ ES PRIMER MOV,
-		//TIENE MINAS CERCANAS
+
+		// PATH DONDE POS VALIDA, NO ESTA ABIERTA _NO_ ES PRIMER MOV,
+		// TIENE MINAS CERCANAS
 		tablero.getCasillas(0, 0).setAbierta(false);
 		tablero.getCasillas(0, 1).setEsMina(true);
 		tablero.sumarMinasAlrededor(0, 1);
@@ -481,23 +480,15 @@ public class TableroTest {
 		tablero.sumarMinasAlrededor(1, 1);
 		tablero.getCasillas(1, 0).setEsMina(true);
 		tablero.sumarMinasAlrededor(1, 0);
-		assertTrue("La casilla se abre porque aunque no sea el primer movimiento tiene minas cercanas y se abren", tablero.getCasillas(0, 0).getAbierta());
+		assertTrue("La casilla se abre porque aunque no sea el primer movimiento tiene minas cercanas y se abren",
+				tablero.getCasillas(0, 0).getAbierta());
 		assertFalse("La casilla no se abre porque es mina", tablero.getCasillas(0, 1).getAbierta());
 		assertFalse("La casilla no se abre porque es mina", tablero.getCasillas(1, 0).getAbierta());
 		assertFalse("La casilla no se abre porque es mina", tablero.getCasillas(1, 1).getAbierta());
 		assertEquals(0, k);
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
 	}
-		
+
 	@Test
 	public void testSumaMinasAlrededor() { // DECISION AND CONDITION COVERAGE.
 
@@ -853,7 +844,7 @@ public class TableroTest {
 	}
 
 	@Test
-	public void testGetTablero() { //Test getter para obtener la matriz de casillas
+	public void testGetTablero() { // Test getter para obtener la matriz de casillas
 		Casella[][] casillas = tablero.getTablero();
 
 		for (int i = 0; i < casillas.length; i++) {
