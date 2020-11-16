@@ -10,6 +10,7 @@ import Vista.VistaMain;
 public class Main {
 	private static  InterfazBuscaminas buscaminas;
 	private static InterfazVistaMain vista;
+	
 	public void init(InterfazBuscaminas buscaminas, InterfazVistaMain vista) {
 		this.buscaminas = buscaminas;
 		this.vista=vista;

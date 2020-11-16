@@ -5,6 +5,12 @@ import Modelo.ValorRandom;
 import Vista.Vista;
 import Vista.VistaInterfaz;
 
+/**
+ * 
+ * Clase que forma parte de la estructura controlador
+ * se encarga de instanciar todos los objetos y que se pueda jugar
+ *
+ */
 public class Buscaminas implements InterfazBuscaminas{
 
 	
@@ -14,6 +20,9 @@ public class Buscaminas implements InterfazBuscaminas{
 	private static boolean victoria = false;
 	private static VistaInterfaz vista;
 
+	/**
+	 * Devuelve el tipo de vista que se utiliza
+	 */
 	public VistaInterfaz getVista() {
 		return vista;
 	}
@@ -28,11 +37,20 @@ public class Buscaminas implements InterfazBuscaminas{
 		salir = false;
 		victoria = false;
 	}
+	/**
+	 * Inicializa la vista:
+	 * Si se le pasa por parametro adopta esa 
+	 * sino mantiene una por defecto
+	 */
 	public  void initVista() {
 		if (vista == null) {
 			vista = new Vista();
 		}
 	}
+	/**
+	 * Implementa todas las funciones de la vista 
+	 * y ejecuta los metodos del tablero para poder jugar
+	 */
 	@Override
 	public void jugar() {
 
@@ -78,6 +96,10 @@ public class Buscaminas implements InterfazBuscaminas{
 	public boolean getSalir() {
 		return salir;
 	}
+	/**
+	 * Comprueba si hemos ganado en funcion de si el numero de 
+	 * casillas cerradas es igual al numero de minas
+	 */
 	@Override
 	public void detectarVictoria() {
 		if(!salir)
@@ -88,6 +110,11 @@ public class Buscaminas implements InterfazBuscaminas{
 			}
 
 	}
+	/**
+	 * 
+	 * @param accion vista a la que vamos a llamar (0 tipo jugada, 1 dificultad)
+	 * @return devuelve la variable correcta que concierne a la accion
+	 */
 	private  int pedirAccion(int accion) {
 		boolean acierto = false;
 		int queHacer = 0;
@@ -102,6 +129,12 @@ public class Buscaminas implements InterfazBuscaminas{
 		}
 		return queHacer;
 	}
+	/**
+	 * 
+	 * @param valor valor limite de la fila o columna NFILAS O NCOLUMNAS
+	 * @param filaOColumna VARIABLE QUE CONDICIONA LA VISTA, 0 PEDIMOS FILA, 1 PEDIMOS COLUMNA
+	 * @return
+	 */
 	private int pedirPosicion(int valor, int filaOColumna) {
 		boolean acierto = false;
 		int value = 0;
@@ -124,6 +157,12 @@ public class Buscaminas implements InterfazBuscaminas{
 		}
 		return value;
 	}
+	/**
+	 * Swutch case que define la jugada que se va a realizar
+	 * @param tipoJugada cariable del swirch case
+	 * @param fila fila sobre la que se ejecutaran acciones
+	 * @param columna columna sobre la que se ejecutaran acciones
+	 */
 	private void jugada(int tipoJugada, int fila, int columna) {
 		switch (tipoJugada) {
 		case 0:
@@ -140,6 +179,11 @@ public class Buscaminas implements InterfazBuscaminas{
 
 		}
 	}
+	/**
+	 * metodo que comprueba si hemos perdido
+	 * comprueba si la casilla que hemos pulsado no tenga bandera
+	 * y si no tiene miramos si es mina
+	 */
 	@Override
 	public void detectarDerrota(int fila, int columna) {
 
