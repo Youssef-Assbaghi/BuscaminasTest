@@ -7,10 +7,6 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import Modelo.Casella;
-import Modelo.Tablero;
-import Modelo.ValorRandom;
-
 public class TableroTest {
 
 	private Tablero tablero;
@@ -105,7 +101,7 @@ public class TableroTest {
 		}
 		assertEquals(100, checksum);
 
-		// LOOP TESTING
+		// LOOP TESTING (Loop anidado)
 		// FOR FILA
 		// FOR COLUMNA
 		// LOOP Testing
@@ -490,24 +486,6 @@ public class TableroTest {
 
 		}
 		
-		//CAJA BLANCA
-		//Aseguramos que pase por todas las decisiones y condiciones.
-	
-		//No abierta y no bandera
-		tablero = new Tablero(0);
-		tablero.marcarCasilla(0, 0);
-		
-		//No abierta y bandera
-		tablero = new Tablero(0);
-		tablero.marcarCasilla(0, 0);
-		
-		//Abierta y bandera
-		tablero = new Tablero(0);
-		tablero.marcarCasilla(0, 0);
-		
-		//Abierta y no bandera
-		tablero = new Tablero(0);
-		tablero.marcarCasilla(0, 0);
 			
 	}
 
