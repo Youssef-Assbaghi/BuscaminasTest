@@ -348,8 +348,6 @@ public class TableroTest {
 		//Particiones (fila,col) invalido < ([0,9],[0,9]) < invalido (PARA TABLERO DE DIFICULTAD 0)
 		
 		//
-		
-		// Testeamos valores limite y frontera de tablero
 		for (int i = -1; i < 3; i++) {
 			tablero = new Tablero(i);
 			tablero.ponerMinas(r);
@@ -357,16 +355,16 @@ public class TableroTest {
 			//Particiones
 			
 			//Invalidos
-			k = tablero.marcarCasilla(100, -100); 
+			k = tablero.marcarCasilla(500, -500); 
 			assertEquals(-1, k);
 			
-			k = tablero.marcarCasilla(-100, 100); 
+			k = tablero.marcarCasilla(-500, 500); 
 			assertEquals(-1, k);
 			
-			k = tablero.marcarCasilla(-100, -100); 
+			k = tablero.marcarCasilla(-500, -500); 
 			assertEquals(-1, k);
 			
-			k = tablero.marcarCasilla(100, 100); 
+			k = tablero.marcarCasilla(500, 500); 
 			assertEquals(-1, k);
 			
 			//Validos
@@ -574,9 +572,29 @@ public class TableroTest {
 		// dificultad 0, por lo que
 		// getminasCercanas devolvera 0.
 
+		
 		int fila;
 		int col;
-
+		
+		//Casilla que no existe
+		tablero.sumarMinasAlrededor(100, -100); //No hace nada si posicion no es valida
+		assertEquals(tablero.getCasillas(100, -100).getminasCercanas(), 0); //Si la posicion no es valida no devuelve la casilla[0][0]
+		//Casilla que no existe
+		tablero.sumarMinasAlrededor(-100, 100);
+		assertEquals(tablero.getCasillas(-100, 100).getminasCercanas(), 0);
+		//Casilla que no existe
+		tablero.sumarMinasAlrededor(-100, -100);
+		assertEquals(tablero.getCasillas(-100, -100).getminasCercanas(), 0);
+		//Casilla que no existe
+		tablero.sumarMinasAlrededor(100, 100);
+		assertEquals(tablero.getCasillas(100, 100).getminasCercanas(), 0);
+		//Fila existe columna no
+		tablero.sumarMinasAlrededor(5, -100);
+		assertEquals(tablero.getCasillas(5, -100).getminasCercanas(), 0);
+		//Columna existe fila no
+		tablero.sumarMinasAlrededor(100, 5);
+		assertEquals(tablero.getCasillas(100, 5).getminasCercanas(), 0);
+		
 		// Valores interiores
 		fila = 4;
 		col = 4;
@@ -627,10 +645,6 @@ public class TableroTest {
 		fila = 5;
 		col = 5;
 	
-		
-		
-		
-
 		// 1 minas
 		tablero = new Tablero(0);
 		tablero.getCasillas(fila, col).setEsMina(true);
@@ -697,6 +711,20 @@ public class TableroTest {
 	public void testPosicionValida() { // Decision coverage, Condition Coverage.
 		for (int i = 0; i < 3; i++) {
 			tablero = new Tablero(i);
+			
+			//Casilla que no existe
+			assertFalse("Estamos dentro de la matriz", tablero.posicionValida(500, -500));
+			//Casilla que no existe
+			assertFalse("Estamos dentro de la matriz", tablero.posicionValida(-500, 500));
+			//Casilla que no existe
+			assertFalse("Estamos dentro de la matriz", tablero.posicionValida(-5, -5));
+			//Casilla que no existe
+			assertFalse("Estamos dentro de la matriz", tablero.posicionValida(500, 500));
+			//Fila existe columna no
+			assertFalse("Estamos dentro de la matriz", tablero.posicionValida(5, -500));
+			//Columna existe fila no
+			assertFalse("Estamos dentro de la matriz", tablero.posicionValida(-500, 5));
+			
 			// Particion equivalente [0,Nfila]-[0,nColumna]
 			// Valores internos
 			assertTrue("Estamos dentro de la matriz", tablero.posicionValida(5, 5));
@@ -716,14 +744,15 @@ public class TableroTest {
 			assertTrue("Estamos dentro de la matriz", tablero.posicionValida(tablero.getNFilas() - 1, 1));
 
 			// Valores exteriores a frontera
-			assertFalse("Estamos dentro de la matriz", tablero.posicionValida(-1, 1));
+			assertFalse("Estamos fuera de la matriz", tablero.posicionValida(-1, 1));
 
-			assertFalse("Estamos dentro de la matriz", tablero.posicionValida(1, tablero.getNColumnas() + 1));
-			assertFalse("Estamos dentro de la matriz",
+			assertFalse("Estamos fuera de la matriz", tablero.posicionValida(1, tablero.getNColumnas() + 1));
+			assertFalse("Estamos fuera de la matriz",
 					tablero.posicionValida(tablero.getNFilas() + 1, tablero.getNColumnas() + 1));
-			assertFalse("Estamos dentro de la matriz", tablero.posicionValida(tablero.getNFilas(), -1));
+			assertFalse("Estamos fuera de la matriz", tablero.posicionValida(tablero.getNFilas(), -1));
 
 		}
+		
 
 	}
 
@@ -732,7 +761,26 @@ public class TableroTest {
 
 		int fila = 5;
 		int col = 5;
-
+			
+		//Casilla que no existe
+		tablero.restarMinasAlrededor(100, -100); //No hace nada si posicion no es valida
+		assertEquals(tablero.getCasillas(100, -100).getminasCercanas(), 0); //Si la posicion no es valida no devuelve la casilla[0][0]
+		//Casilla que no existe
+		tablero.restarMinasAlrededor(-100, 100);
+		assertEquals(tablero.getCasillas(-100, 100).getminasCercanas(), 0);
+		//Casilla que no existe
+		tablero.restarMinasAlrededor(-100, -100);
+		assertEquals(tablero.getCasillas(-100, -100).getminasCercanas(), 0);
+		//Casilla que no existe
+		tablero.restarMinasAlrededor(100, 100);
+		assertEquals(tablero.getCasillas(100, 100).getminasCercanas(), 0);
+		//Fila existe columna no
+		tablero.restarMinasAlrededor(5, -100);
+		assertEquals(tablero.getCasillas(5, -100).getminasCercanas(), 0);
+		//Columna existe fila no
+		tablero.restarMinasAlrededor(100, 5);
+		assertEquals(tablero.getCasillas(100, 5).getminasCercanas(), 0);
+		
 		// Valores l�mite fila,col
 		// Valores interiores
 		fila = 4;
@@ -906,15 +954,82 @@ public class TableroTest {
 	}
 
 	@Test
-	public void testCasillaCerrada() { // Decision coverage.
+	public void testCasillaCerrada() {
 
+		//Miramos casilla abierta
 		tablero.getCasillas(0, 0).setAbierta(true);
 		assertFalse("Esta abierta, no cerrada", tablero.casillaCerrada(0, 0));
 
+		//Miramos casilla cerrada
 		tablero.getCasillas(0, 0).setAbierta(false);
-		assertTrue("Esta cerrada, no abierta", tablero.casillaCerrada(0, 0));
+		assertTrue(tablero.casillaCerrada(0, 0));
 
-		assertFalse("Esta cerrada, no abierta", tablero.casillaCerrada(-89, 3));
+		//Casilla que no existe
+		assertFalse(tablero.casillaCerrada(100, -100));
+		
+		//Casilla que no existe
+		assertFalse(tablero.casillaCerrada(-100, 100));
+		
+		//Casilla que no existe
+		assertFalse(tablero.casillaCerrada(-100, -100));
+		
+		//Casilla que no existe
+		assertFalse(tablero.casillaCerrada(100, 100));
+		
+		//Fila existe columna no
+		assertFalse(tablero.casillaCerrada(5, -100));
+		
+		//Columna existe fila no
+		assertFalse(tablero.casillaCerrada(100, 5));
+		
+		//Valores limite | Tablero de dificultad 0.
+		// Valores interiores
+		int fila = 4;
+		int col = 4;
+		tablero = new Tablero(0);
+		tablero.sumarMinasAlrededor(fila, col);
+		assertEquals(tablero.getCasillas(fila, col).getminasCercanas(), 1);
+
+		// Valores frontera
+		fila = 0;
+		col = 9;
+		tablero = new Tablero(0);
+		tablero.sumarMinasAlrededor(fila, col);
+		assertEquals(tablero.getCasillas(fila, col).getminasCercanas(), 1);
+
+		fila = 9;
+		col = 0;
+		tablero = new Tablero(0);
+		tablero.sumarMinasAlrededor(fila, col);
+		assertEquals(tablero.getCasillas(fila, col).getminasCercanas(), 1);
+
+		// Valors interiors a frontera
+		fila = 1;
+		col = 9;
+		tablero = new Tablero(0);
+		tablero.sumarMinasAlrededor(fila, col);
+		assertEquals(tablero.getCasillas(fila, col).getminasCercanas(), 1);
+
+		fila = 9;
+		col = 1;
+		tablero = new Tablero(0);
+		tablero.sumarMinasAlrededor(fila, col);
+		assertEquals(tablero.getCasillas(fila, col).getminasCercanas(), 1);
+
+		// Valores exteriores a frontera
+
+		fila = -1;
+		col = 10;
+		tablero = new Tablero(0);
+		tablero.sumarMinasAlrededor(fila, col);
+		assertEquals(tablero.getCasillas(fila, col).getminasCercanas(), 0);
+
+		fila = 10;
+		col = -1;
+		tablero = new Tablero(0);
+		tablero.sumarMinasAlrededor(fila, col);
+		assertEquals(tablero.getCasillas(fila, col).getminasCercanas(), 0);		
+		
 
 	}
 
@@ -934,34 +1049,57 @@ public class TableroTest {
 		int k;
 		for (int i = -1; i < 4; i++) {
 			tablero = new Tablero(i);
+				
+			//Ponemos bandera en casilla que existe
 			k = tablero.ponerBandera(0, 0);
-
-			assertTrue("La casilla se abre", tablero.getCasillas(0, 0).getBandera());
+			assertTrue("Se pone la bandera", tablero.getCasillas(0, 0).getBandera());
 			assertEquals(0, k);
+			
+			//Quitamos bandera en casilla q existe
 			k = tablero.ponerBandera(0, 0);
-			assertFalse("La casilla no se puede cerrar", tablero.getCasillas(0, 0).getBandera());
+			assertFalse("Se quita la bandera", tablero.getCasillas(0, 0).getBandera());
 			assertEquals(0, k);
+			
+			//Ponemos bandera en casilla que no existe
+			k = tablero.ponerBandera(100, -100); 
+			assertEquals(-1, k);
+			
+			//Ponemos bandera en casilla que no existe
+			k = tablero.ponerBandera(-100, 100); 
+			assertEquals(-1, k);
+			
+			//Ponemos bandera en casilla que no existe
+			k = tablero.ponerBandera(-100, -100); 
+			assertEquals(-1, k);
+			
+			//Ponemos bandera en casilla que no existe
+			k = tablero.ponerBandera(100, 100); 
+			assertEquals(-1, k);
+			
+			//Valores limite
 			k = tablero.ponerBandera(0, tablero.getNColumnas());
-			assertEquals(0, k);
 			assertTrue("La casilla se abre", tablero.getCasillas(0, tablero.getNColumnas()).getBandera());
 			k = tablero.ponerBandera(0, tablero.getNColumnas() + 1);
 			assertEquals(-1, k);
+			
 			k = tablero.ponerBandera(tablero.getNFilas(), 0);
 			assertEquals(0, k);
 			assertTrue("La casilla se abre", tablero.getCasillas(0, tablero.getNColumnas()).getBandera());
 			k = tablero.ponerBandera(tablero.getNFilas(), tablero.getNColumnas() + 1);
 			assertEquals(-1, k);
+			
 			k = tablero.ponerBandera(tablero.getNFilas(), -8);
 			assertEquals(-1, k);
+			
 			k = tablero.ponerBandera(tablero.getNFilas(), tablero.getNColumnas());
 			assertEquals(0, k);
 			assertTrue("La casilla se abre", tablero.getCasillas(0, tablero.getNColumnas()).getBandera());
 			k = tablero.ponerBandera(tablero.getNFilas() + 1, tablero.getNColumnas() + 1);
 			assertEquals(-1, k);
+			
 			k = tablero.ponerBandera(-1, -1); // static
 			assertEquals(-1, k);
-			k = tablero.ponerBandera(100, -100); // static
-			assertEquals(-1, k);
+			
 		}
 
 	}

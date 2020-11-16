@@ -51,7 +51,6 @@ public final class Tablero {
 	public Casella getCasillas(int fila, int columna) {
 		if (posicionValida(fila, columna))
 			return casillas[fila][columna];
-		System.out.println("Intenats acceder a una posicion que no existe, te devolvemos la 0,0");
 		return casillas[0][0];
 	}
 
