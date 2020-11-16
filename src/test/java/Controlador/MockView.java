@@ -1,4 +1,4 @@
-package BuscaminasTest;
+package Controlador;
 
 import Modelo.Casella;
 import Vista.VistaInterfaz;

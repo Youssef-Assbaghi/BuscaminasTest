@@ -1,4 +1,4 @@
-package BuscaminasTest;
+package Controlador;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -27,18 +27,19 @@ public class BuscaminasTest {
 		assertEquals("Debe ser zero", 0, testeable.getDificultad());
 		assertTrue("Esta casilla se abre", testeable.getCasillas(0, 0).getAbierta());
 
-//		juego = new Buscaminas(null);
-//		Buscaminas.main(hey);
+
 
 	}
 
 	@Test
 	public void testInitVista() {
+		
 		MockView prueba = new MockView();
 		Buscaminas juego = new Buscaminas(prueba);
 		String[] hey = null;
 		Buscaminas.main(hey);
 
+		
 		juego = new Buscaminas(null);
 		Buscaminas.initVista();
 
