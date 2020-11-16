@@ -925,4 +925,16 @@ public class TableroTest {
 		}
 
 	}
+	
+	
+
+	@Test
+	public void testNumCasillasCerradas() { // Test getter para obtener la matriz de casillas
+		
+		//Al inicializar el tablero de dificultad 0, tenemos 100 casillas cerradas.
+		assertEquals(tablero.getNumCasillasCerradas(), 100);
+		
+
+	}
+	
 }

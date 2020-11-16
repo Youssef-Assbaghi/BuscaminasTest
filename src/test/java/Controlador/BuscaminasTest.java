@@ -62,7 +62,7 @@ public class BuscaminasTest {
 		juego = new Buscaminas(prueba);
 		Tablero tablero = juego.getTablero();
 		tablero.ponerMinas(r);
-		Casella casillas[][] = tablero.getMatrizCasillas();
+		Casella casillas[][] = tablero.getTablero();
 
 		for (int i = 0; i < casillas.length; i++) {
 			for (int j = 0; j < casillas[i].length; j++) {
@@ -94,7 +94,7 @@ public class BuscaminasTest {
 		juego = new Buscaminas(prueba);
 		tablero = juego.getTablero();
 		tablero.ponerMinas(r);
-		Casella casillas[][] = tablero.getMatrizCasillas();
+		Casella casillas[][] = tablero.getTablero();
 
 		int i = 0;
 		int j = 0;

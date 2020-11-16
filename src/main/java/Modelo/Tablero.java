@@ -55,10 +55,6 @@ public final class Tablero {
 		return casillas[0][0];
 	}
 
-	public Casella[][] getMatrizCasillas() {
-		return casillas;
-	}
-
 	/**
 	 * Inicializa el tablero con casillas vacias, cerradas y sin bombas.
 	 */
