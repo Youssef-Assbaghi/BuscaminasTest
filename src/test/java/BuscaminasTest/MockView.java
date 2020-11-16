@@ -68,7 +68,7 @@ public class MockView implements VistaInterfaz {
 
 	@Override
 	public void printTablero(Casella[][] casilla, int dificultad) {
-
+		
 		
 	}
 

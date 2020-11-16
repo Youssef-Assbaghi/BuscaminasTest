@@ -11,6 +11,7 @@ public class Buscaminas {
 
 	// private static Vista vista;
 	private static boolean salir = false;
+	private static boolean victoria = false;
 	private static VistaInterfaz vista;
 
 	public Tablero getTablero() {
@@ -71,19 +72,26 @@ public class Buscaminas {
 			default:
 				break;
 			}
-			vista.printTablero(tablero.getTablero(), tablero.getDificultad());
-			if (tablero.getNumCasillasCerradas() == tablero.getNumMinas()) {
-				salir = true;
-				vista.printHasGanado();
-			}
+			vista.printTablero(tablero.getTablero(), dificultad);
+
+			detectarVictoria();
 			
-		} while (!salir);
+		} while (!salir || victoria);
 
 	}
+	public boolean getVictoria() {
+		return victoria;
+	}
 	
-	public static boolean esVictoria() {
+	public static void detectarVictoria() {
 		
-		return false;
+		if (tablero.getNumCasillasCerradas() == tablero.getNumMinas()) {
+			vista.printHasGanado();
+			victoria=true;
+	
+		}
+		
+		
 	}
 
 	private static int pedirAccion(int accion) {

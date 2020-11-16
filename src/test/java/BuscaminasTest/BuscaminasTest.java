@@ -32,8 +32,18 @@ public class BuscaminasTest {
 	public void testEsVictoria() {
 		MockView prueba=new MockView();
 		Buscaminas juego=new Buscaminas(prueba);
+		String[] hey=null;
+		juego.main(hey);
+		juego.detectarVictoria();
 		//Expected false
-		assertTrue(juego.esVictoria());
+		assertFalse(juego.getVictoria());
+		
+		
+		
+		//Expect ganar partida
+		Tablero tablero = juego.getTablero();
+		
+		
 
 	}
 	
