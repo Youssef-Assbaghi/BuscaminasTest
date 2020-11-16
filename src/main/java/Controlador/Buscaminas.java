@@ -8,12 +8,14 @@ import Vista.VistaInterfaz;
 public class Buscaminas {
 
 	private static Tablero tablero;
-
-	// private static Vista vista;
 	private static boolean salir = false;
 
 	private static boolean victoria = false;
 	private static VistaInterfaz vista;
+
+	public static VistaInterfaz getVista() {
+		return vista;
+	}
 
 	public Tablero getTablero() {
 		return tablero;
@@ -22,13 +24,20 @@ public class Buscaminas {
 	public Buscaminas(VistaInterfaz vistaa) {
 		vista = vistaa;
 		tablero = new Tablero(0);
+		salir = false;
+		victoria = false;
+	}
+
+	public static void initVista() {
+		if (vista == null) {
+			vista = new Vista();
+		}
 	}
 
 	public static void main(String[] args) {
 
-		if (vista == null) {
-			vista = new Vista();
-		}
+		initVista();
+
 		vista.printBienvenido();
 		int dificultad = pedirAccion(1);
 		ValorRandom r = new ValorRandom();
@@ -71,16 +80,11 @@ public class Buscaminas {
 	}
 
 	public static void detectarVictoria() {
-
 		if (tablero.getNumCasillasCerradas() == tablero.getNumMinas()) {
 			vista.printHasGanado();
 			victoria = true;
 
 		}
-
-	}
-
-	public static void detectarDerrota() {
 
 	}
 
@@ -129,15 +133,24 @@ public class Buscaminas {
 			break;
 
 		case 1:
-			detectarDerrota();
+			detectarDerrota(fila, columna);
 			tablero.marcarCasilla(fila, columna);
 			break;
 		case 2:
 			tablero.ponerBandera(fila, columna);
 			break;
 
-		default:
-			break;
 		}
 	}
+
+	public static void detectarDerrota(int fila, int columna) {
+
+		if (!tablero.getCasillas(fila, columna).getBandera()) {
+			if (tablero.esMina(fila, columna)) {
+				salir = true;
+				vista.printHasPerdido();
+			}
+		}
+	}
+
 }

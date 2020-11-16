@@ -40,9 +40,9 @@ public class BuscaminasTest {
 		Buscaminas.main(hey);
 
 		juego = new Buscaminas(null);
-		juego.initVista();
+		Buscaminas.initVista();
 
-		assertNotNull(juego.getVista());
+		assertNotNull(Buscaminas.getVista());
 
 	}
 
@@ -83,7 +83,7 @@ public class BuscaminasTest {
 		ValorRandom r = new ValorRandom();
 		Buscaminas juego = new Buscaminas(prueba);
 		Tablero tablero = juego.getTablero();
-		juego.detectarDerrota(0, 0);
+		Buscaminas.detectarDerrota(0, 0);
 
 		// Expected false
 		assertFalse(juego.getSalir());
