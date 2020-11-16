@@ -5,18 +5,19 @@ import Modelo.ValorRandom;
 import Vista.Vista;
 import Vista.VistaInterfaz;
 
-public class Buscaminas {
+public class Buscaminas implements InterfazBuscaminas{
 
+	
 	private static Tablero tablero;
 	private static boolean salir = false;
 
 	private static boolean victoria = false;
 	private static VistaInterfaz vista;
 
-	public static VistaInterfaz getVista() {
+	public VistaInterfaz getVista() {
 		return vista;
 	}
-
+	@Override
 	public Tablero getTablero() {
 		return tablero;
 	}
@@ -27,14 +28,13 @@ public class Buscaminas {
 		salir = false;
 		victoria = false;
 	}
-
-	public static void initVista() {
+	public  void initVista() {
 		if (vista == null) {
 			vista = new Vista();
 		}
 	}
-
-	public static void main(String[] args) {
+	@Override
+	public void jugar() {
 
 		initVista();
 
@@ -70,16 +70,16 @@ public class Buscaminas {
 		} while (!salir && !victoria);
 
 	}
-
+	@Override
 	public boolean getVictoria() {
 		return victoria;
 	}
-
+	@Override
 	public boolean getSalir() {
 		return salir;
 	}
-
-	public static void detectarVictoria() {
+	@Override
+	public void detectarVictoria() {
 		if(!salir)
 			if (tablero.getNumCasillasCerradas() == tablero.getNumMinas()) {
 				vista.printHasGanado();
@@ -88,8 +88,7 @@ public class Buscaminas {
 			}
 
 	}
-
-	private static int pedirAccion(int accion) {
+	private  int pedirAccion(int accion) {
 		boolean acierto = false;
 		int queHacer = 0;
 		while (!acierto) {
@@ -103,8 +102,7 @@ public class Buscaminas {
 		}
 		return queHacer;
 	}
-
-	private static int pedirPosicion(int valor, int filaOColumna) {
+	private int pedirPosicion(int valor, int filaOColumna) {
 		boolean acierto = false;
 		int value = 0;
 		while (!acierto) {
@@ -126,8 +124,7 @@ public class Buscaminas {
 		}
 		return value;
 	}
-
-	private static void jugada(int tipoJugada, int fila, int columna) {
+	private void jugada(int tipoJugada, int fila, int columna) {
 		switch (tipoJugada) {
 		case 0:
 			salir = true;
@@ -143,8 +140,8 @@ public class Buscaminas {
 
 		}
 	}
-
-	public static void detectarDerrota(int fila, int columna) {
+	@Override
+	public void detectarDerrota(int fila, int columna) {
 
 		if (!tablero.getCasillas(fila, columna).getBandera()) {
 			if (tablero.esMina(fila, columna)) {

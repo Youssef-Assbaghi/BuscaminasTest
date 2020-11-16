@@ -389,7 +389,7 @@ public class TableroTest {
 			
 			
 			
-			//Valores límite
+			//Valores lï¿½mite
 			k = tablero.marcarCasilla(0, tablero.getNColumnas());
 			assertEquals(0, k);
 			assertTrue("La casilla se abre", tablero.getCasillas(0, tablero.getNColumnas()).getAbierta());

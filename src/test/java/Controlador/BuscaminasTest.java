@@ -18,8 +18,7 @@ public class BuscaminasTest {
 	public void testMain() {
 		MockView prueba = new MockView();
 		Buscaminas juego = new Buscaminas(prueba);
-		String[] hey = null;
-		Buscaminas.main(hey);
+		juego.jugar();
 		Tablero testeable = juego.getTablero();
 
 		assertEquals("Debe dar diez", 9, testeable.getNFilas());
@@ -36,14 +35,14 @@ public class BuscaminasTest {
 		
 		MockView prueba = new MockView();
 		Buscaminas juego = new Buscaminas(prueba);
-		String[] hey = null;
-		Buscaminas.main(hey);
+
+		juego.jugar();
 
 		
 		juego = new Buscaminas(null);
-		Buscaminas.initVista();
+		juego.initVista();
 
-		assertNotNull(Buscaminas.getVista());
+		assertNotNull(juego.getVista());
 
 	}
 
@@ -51,9 +50,9 @@ public class BuscaminasTest {
 	public void testEsVictoria() {
 		MockView prueba = new MockView();
 		Buscaminas juego = new Buscaminas(prueba);
-		String[] hey = null;
-		Buscaminas.main(hey);
-		Buscaminas.detectarVictoria();
+		
+		juego.jugar();
+		juego.detectarVictoria();
 		// Expected false
 		assertFalse(juego.getVictoria());
 
@@ -72,7 +71,7 @@ public class BuscaminasTest {
 			}
 		}
 
-		Buscaminas.detectarVictoria();
+		juego.detectarVictoria();
 		assertTrue(juego.getVictoria());
 
 	}
@@ -84,7 +83,7 @@ public class BuscaminasTest {
 		ValorRandom r = new ValorRandom();
 		Buscaminas juego = new Buscaminas(prueba);
 		Tablero tablero = juego.getTablero();
-		Buscaminas.detectarDerrota(0, 0);
+		juego.detectarDerrota(0, 0);
 
 		// Expected false
 		assertFalse(juego.getSalir());
@@ -109,7 +108,7 @@ public class BuscaminasTest {
 			}
 		}
 
-		Buscaminas.detectarDerrota(i, j);
+		juego.detectarDerrota(i, j);
 		assertTrue(juego.getSalir());
 	}
 }

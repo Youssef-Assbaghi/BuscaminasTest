@@ -3,12 +3,12 @@ package Modelo;
 public final class Tablero {
 	private int filasColumnas[] = { 10, 16, 24 };
 	private int nMinas[] = { 15, 40, 99 };
-
+	
 	private int numMinas;
 	private int dificultad;
 	private int nFilas;
 	private int nColumnas;
-	private Casella[][] casillas;
+	private Casella[][] casillas; //CREAR MOCK UP DE ESTA 
 	private boolean primerMovimiento;
 	private int numCasillasCerradas;
 
@@ -26,6 +26,10 @@ public final class Tablero {
 	 * 
 	 * @param dificultad es el valor (0,1,2) que indica la dificultad del juego.
 	 */
+	//public Tablero(int dificultad, interfazCasella po)
+	// a la hora de generar el tablero hata un new mockcasella
+	//mockcasella valores raros iniciales y comprobaremos 
+	//cosas para ver que genera el tablero
 	public Tablero(int dificultad) {
 		if (dificultad <= 0)
 			dificultad = 0;
@@ -338,3 +342,12 @@ public final class Tablero {
 	}
 
 }
+
+
+
+
+
+
+// main buscaminas
+// bucle // buscainas
+//quieres salir o quieres seguir jugando

@@ -1,6 +1,6 @@
 package Modelo;
 
-public class Casella {
+public class Casella implements InterfazCasella {
 	private int minasCercanas; // N NUMEROS DE MINAS CERCANAS
 	private boolean esMina; // FALSE NO ES MINA TRUE ES MINA
 	private boolean abierta; // FALSE CERRADO TRUE ABIERTO
@@ -9,6 +9,7 @@ public class Casella {
 	/**
 	 * Constructor. Inicializa una casilla vacia.
 	 */
+
 	public Casella() {
 		minasCercanas = 0;
 		esMina = false;
@@ -17,13 +18,14 @@ public class Casella {
 	}
 
 	/**
-	 * Constructor. Inicializa una casilla con los parámetros que se le pasan.
+	 * Constructor. Inicializa una casilla con los parï¿½metros que se le pasan.
 	 * 
 	 * @param nMinas es el valor del contador de minas cercanas.
 	 * @param mina   indica si la casilla es una mina.
 	 * @param state  indica si la casilla se encuentra abierta.
 	 * @param flag   indica si hay una bandera en la casilla.
 	 */
+
 	public Casella(int nMinas, boolean mina, boolean state, boolean flag) {
 
 		if (nMinas > 8) {
@@ -50,6 +52,7 @@ public class Casella {
 	 * 
 	 * @param state
 	 */
+	@Override	
 	public void setAbierta(boolean state) {
 		abierta = state;
 	}
@@ -59,6 +62,7 @@ public class Casella {
 	 * 
 	 * @param flag
 	 */
+	@Override	
 	public void setBandera(boolean flag) {
 		bandera = flag;
 	}
@@ -68,6 +72,7 @@ public class Casella {
 	 * 
 	 * @param mina
 	 */
+	@Override
 	public void setEsMina(boolean mina) {
 		esMina = mina;
 	}
@@ -77,6 +82,7 @@ public class Casella {
 	 * 
 	 * @return
 	 */
+	@Override
 	public boolean getBandera() {
 		return this.bandera;
 	}
@@ -86,6 +92,7 @@ public class Casella {
 	 * 
 	 * @return
 	 */
+	@Override	
 	public boolean getAbierta() {
 		return this.abierta;
 	}
@@ -95,15 +102,17 @@ public class Casella {
 	 * 
 	 * @return
 	 */
+	@Override	
 	public boolean esMina() {
 		return this.esMina;
 	}
 
 	/**
-	 * Devuelve el número de minas cercanas.
+	 * Devuelve el nï¿½mero de minas cercanas.
 	 * 
 	 * @return
 	 */
+	@Override
 	public int getminasCercanas() {
 		return this.minasCercanas;
 	}
@@ -112,6 +121,7 @@ public class Casella {
 	 * Cambia el estado de bandera. Pone una si no hay bandera en la casilla, si ya
 	 * hay, la quita.
 	 */
+	@Override
 	public void cambiarBandera() {
 		if (!abierta && !bandera)
 			bandera = true;
@@ -122,6 +132,7 @@ public class Casella {
 	/**
 	 * Suma 1 al contador de minas cercanas de la casilla.
 	 */
+	@Override
 	public void sumarMinaCercana() {
 		
 		if(minasCercanas < 8) {
@@ -132,6 +143,7 @@ public class Casella {
 	/**
 	 * Resta uno al contador de minas cercanas de la casilla.
 	 */
+	@Override
 	public void restarMinaCercana() {
 		if (minasCercanas > 0) {
 			minasCercanas--;
@@ -141,6 +153,7 @@ public class Casella {
 	/**
 	 * Abre la casilla, si hay una bandera la quita.
 	 */
+	@Override
 	public void abrirCasilla() {
 			if (bandera)
 				bandera = false;
