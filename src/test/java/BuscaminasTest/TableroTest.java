@@ -111,18 +111,19 @@ public class TableroTest {
 		// LOOP Testing
 
 		tablero = new Tablero(0);
-		tablero.setnFilas(1);
+		tablero.setnFilas(2);
 
 		// Evitar loop
 		tablero.setnColumnas(0);
-		tablero.generarTablero();
+		
 		try {
+			tablero.generarTablero();
 			tablero.getCasillas(0, 0).getAbierta();
 		} catch (IndexOutOfBoundsException e) {
 			assertTrue(true);
 		}
 		// Una pasada por el loop
-		tablero.setnColumnas(1);
+		tablero.setnColumnas(2);
 		tablero.generarTablero();
 		for (int i = 0; i < tablero.getNFilas(); i++) {
 			for (int j = 0; j < tablero.getNColumnas(); j++) {
@@ -179,7 +180,7 @@ public class TableroTest {
 			assertTrue(true);
 		}
 		// Una pasada por el loop
-		tablero.setnFilas(1);
+		tablero.setnFilas(2);
 		tablero.generarTablero();
 		for (int i = 0; i < tablero.getNFilas(); i++) {
 			for (int j = 0; j < tablero.getNColumnas(); j++) {
@@ -459,6 +460,7 @@ public class TableroTest {
 
 	}
 
+	@Test
 	public void testPathMarcarCasilla() {
 		// PATH COVERAGE
 		// 9 ARCOS 6 NODOS
@@ -472,25 +474,29 @@ public class TableroTest {
 
 		// PATH DONDE POSICION ES VALIDA PERO ESTA ABIERTA
 		tablero.getCasillas(0, 0).setAbierta(true);
-		k = tablero.marcarCasilla(0, 0);
+		
 		assertTrue("La casilla no se abre porque ya esta abierta", tablero.getCasillas(0, 0).getAbierta());
-		assertEquals(0, k);
+		assertEquals(-1, k);
 
 		// PATH DONDE POS VALIDA, NO ESTA ABIERTA ES PRIMER MOV,
 		// NO TIENE MINAS CERCANAS
 		tablero = new Tablero(0);
+		k = tablero.marcarCasilla(0, 0);
 		assertTrue("La casilla se abre porque porque no tiene minas cercanas", tablero.getCasillas(0, 0).getAbierta());
 		assertEquals(0, k);
 
 		// PATH DONDE POS VALIDA, NO ESTA ABIERTA _NO_ ES PRIMER MOV,
 		// NO TIENE MINAS CERCANAS
+		
 		tablero.getCasillas(0, 0).setAbierta(false);
+		k = tablero.marcarCasilla(0, 0);
 		assertTrue("La casilla se abre porque aunque no sea el primer movimiento no tiene minas cercanas",
 				tablero.getCasillas(0, 0).getAbierta());
 		assertEquals(0, k);
 
 		// PATH DONDE POS VALIDA, NO ESTA ABIERTA _NO_ ES PRIMER MOV,
 		// TIENE MINAS CERCANAS
+		tablero = new Tablero(0);
 		tablero.getCasillas(0, 0).setAbierta(false);
 		tablero.getCasillas(0, 1).setEsMina(true);
 		tablero.sumarMinasAlrededor(0, 1);
@@ -498,6 +504,7 @@ public class TableroTest {
 		tablero.sumarMinasAlrededor(1, 1);
 		tablero.getCasillas(1, 0).setEsMina(true);
 		tablero.sumarMinasAlrededor(1, 0);
+		k = tablero.marcarCasilla(0, 0);
 		assertTrue("La casilla se abre porque aunque no sea el primer movimiento tiene minas cercanas y se abren",
 				tablero.getCasillas(0, 0).getAbierta());
 		assertFalse("La casilla no se abre porque es mina", tablero.getCasillas(0, 1).getAbierta());
@@ -510,7 +517,7 @@ public class TableroTest {
 	@Test
 	public void testSumaMinasAlrededor() { // DECISION AND CONDITION COVERAGE.
 
-		// Valores válidos [0,9], Qualquier valor no válido estara fuera del tablero de
+		// Valores vï¿½lidos [0,9], Qualquier valor no vï¿½lido estara fuera del tablero de
 		// dificultad 0, por lo que
 		// getminasCercanas devolvera 0.
 
@@ -673,7 +680,7 @@ public class TableroTest {
 		int fila = 5;
 		int col = 5;
 
-		// Valores límite fila,col
+		// Valores lï¿½mite fila,col
 		// Valores interiores
 		fila = 4;
 		col = 4;
