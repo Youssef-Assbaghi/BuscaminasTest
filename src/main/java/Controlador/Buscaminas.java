@@ -76,8 +76,14 @@ public class Buscaminas {
 				salir = true;
 				vista.printHasGanado();
 			}
+			
 		} while (!salir);
 
+	}
+	
+	public static boolean esVictoria() {
+		
+		return false;
 	}
 
 	private static int pedirAccion(int accion) {

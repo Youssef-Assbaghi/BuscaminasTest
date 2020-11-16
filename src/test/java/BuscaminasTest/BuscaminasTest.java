@@ -27,5 +27,16 @@ public class BuscaminasTest {
 		//Buscaminas.main(hey);
 
 	}
+	
+	@Test
+	public void testEsVictoria() {
+		MockView prueba=new MockView();
+		Buscaminas juego=new Buscaminas(prueba);
+		//Expected false
+		assertTrue(juego.esVictoria());
+
+	}
+	
+
 
 }
