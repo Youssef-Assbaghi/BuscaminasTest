@@ -50,33 +50,14 @@ public class Buscaminas {
 			columna = pedirPosicion(tablero.getNColumnas(), 1);
 
 			tipoJugada = pedirAccion(0);
+			
+			jugada(tipoJugada,fila,columna);
 
-			switch (tipoJugada) {
-			case 0:
-				salir = true;
-				break;
-
-			case 1:
-				if (!tablero.getCasillas(fila, columna).getBandera()) {
-					if (tablero.esMina(fila, columna)) {
-						salir = true;
-						vista.printHasPerdido();
-					}
-				}
-				tablero.marcarCasilla(fila, columna);
-				break;
-			case 2:
-				tablero.ponerBandera(fila, columna);
-				break;
-
-			default:
-				break;
-			}
 			vista.printTablero(tablero.getTablero(), dificultad);
 
 			detectarVictoria();
 			
-		} while (!salir || victoria);
+		} while (!salir && !victoria);
 
 	}
 	public boolean getVictoria() {
@@ -132,4 +113,28 @@ public class Buscaminas {
 		return value;
 	}
 
+	
+	private static void jugada(int tipoJugada,int fila,int columna) {
+		switch (tipoJugada) {
+		case 0:
+			salir = true;
+			break;
+
+		case 1:
+			if (!tablero.getCasillas(fila, columna).getBandera()) {
+				if (tablero.esMina(fila, columna)) {
+					salir = true;
+					vista.printHasPerdido();
+				}
+			}
+			tablero.marcarCasilla(fila, columna);
+			break;
+		case 2:
+			tablero.ponerBandera(fila, columna);
+			break;
+
+		default:
+			break;
+		}
+	}
 }
