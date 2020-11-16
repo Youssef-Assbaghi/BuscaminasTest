@@ -55,6 +55,10 @@ public final class Tablero {
 		return casillas[0][0];
 	}
 
+	public Casella[][] getMatrizCasillas() {
+		return casillas;
+	}
+
 	/**
 	 * Inicializa el tablero con casillas vacias, cerradas y sin bombas.
 	 */
@@ -163,8 +167,12 @@ public final class Tablero {
 					numMinas--;
 				}
 			}
+
+			if (!casillas[fila][columna].getBandera()) {
+				numCasillasCerradas--;
+			}
 			casillas[fila][columna].abrirCasilla();
-			setNumCasillasCerradas(getNumCasillasCerradas() - 1);
+
 			if (casillas[fila][columna].getminasCercanas() == 0) {
 				for (int i = fila - 1; i <= fila + 1; i++)
 					for (int j = columna - 1; j <= columna + 1; j++)
