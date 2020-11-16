@@ -11,6 +11,7 @@ public class Buscaminas {
 
 	// private static Vista vista;
 	private static boolean salir = false;
+
 	private static boolean victoria = false;
 	private static VistaInterfaz vista;
 
@@ -63,6 +64,10 @@ public class Buscaminas {
 
 	public boolean getVictoria() {
 		return victoria;
+	}
+
+	public boolean getSalir() {
+		return salir;
 	}
 
 	public static void detectarVictoria() {

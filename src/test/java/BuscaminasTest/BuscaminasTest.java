@@ -36,8 +36,8 @@ public class BuscaminasTest {
 		MockView prueba = new MockView();
 		Buscaminas juego = new Buscaminas(prueba);
 		String[] hey = null;
-		juego.main(hey);
-		juego.detectarVictoria();
+		Buscaminas.main(hey);
+		Buscaminas.detectarVictoria();
 		// Expected false
 		assertFalse(juego.getVictoria());
 
@@ -56,13 +56,37 @@ public class BuscaminasTest {
 			}
 		}
 
-		juego.detectarVictoria();
+		Buscaminas.detectarVictoria();
 		assertTrue(juego.getVictoria());
 
 	}
 
 	@Test
 	public void detectarDerrota() {
+		MockView prueba = new MockView();
+		Buscaminas juego = new Buscaminas(prueba);
+		String[] hey = null;
+		Buscaminas.main(hey);
+		Buscaminas.detectarDerrota();
+		// Expected false
+		assertFalse(juego.getSalir());
 
+		// Expect perder partida
+		ValorRandom r = new ValorRandom();
+		juego = new Buscaminas(prueba);
+		Tablero tablero = juego.getTablero();
+		tablero.ponerMinas(r);
+		Casella casillas[][] = tablero.getMatrizCasillas();
+
+		for (int i = 0; i < casillas.length; i++) {
+			for (int j = 0; j < casillas[i].length; j++) {
+				if (casillas[i][j].esMina()) {
+					tablero.marcarCasilla(i, j);
+				}
+			}
+		}
+
+		Buscaminas.detectarDerrota();
+		assertTrue(juego.getVictoria());
 	}
 }
