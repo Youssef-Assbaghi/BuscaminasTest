@@ -80,11 +80,12 @@ public class Buscaminas {
 	}
 
 	public static void detectarVictoria() {
-		if (tablero.getNumCasillasCerradas() == tablero.getNumMinas()) {
-			vista.printHasGanado();
-			victoria = true;
-
-		}
+		if(!salir)
+			if (tablero.getNumCasillasCerradas() == tablero.getNumMinas()) {
+				vista.printHasGanado();
+				victoria = true;
+	
+			}
 
 	}
 
