@@ -123,9 +123,10 @@ public class Casella {
 	 * Suma 1 al contador de minas cercanas de la casilla.
 	 */
 	public void sumarMinaCercana() {
-		if (minasCercanas < 8)
+		
+		if(minasCercanas < 8) {
 			minasCercanas++;
-
+		}
 	}
 
 	/**
@@ -141,10 +142,11 @@ public class Casella {
 	 * Abre la casilla, si hay una bandera la quita.
 	 */
 	public void abrirCasilla() {
-		if (!abierta && !bandera)
-			abierta = true;
-		else if (bandera)
-			bandera = false;
+			if (bandera)
+				bandera = false;
+			else {
+				abierta = true;
+			}
 
 	}
 }

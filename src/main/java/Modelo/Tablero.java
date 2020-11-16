@@ -164,10 +164,14 @@ public final class Tablero {
 				}
 			}
 
-			if (!casillas[fila][columna].getBandera()) {
-				numCasillasCerradas--;
+		
+			
+			if (casillas[fila][columna].getBandera()) {	
+				casillas[fila][columna].abrirCasilla();
+				return 0;
 			}
 			casillas[fila][columna].abrirCasilla();
+			numCasillasCerradas--;
 
 			if (casillas[fila][columna].getminasCercanas() == 0) {
 				for (int i = fila - 1; i <= fila + 1; i++)
