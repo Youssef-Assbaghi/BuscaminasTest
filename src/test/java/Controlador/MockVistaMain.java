@@ -1,4 +1,6 @@
-package Vista;
+package Controlador;
+
+import Vista.InterfazVistaMain;
 
 public class MockVistaMain implements InterfazVistaMain {
 

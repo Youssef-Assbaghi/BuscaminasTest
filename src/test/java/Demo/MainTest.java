@@ -3,7 +3,7 @@ package Demo;
 import org.junit.Test;
 
 import Controlador.MockBuscaminas;
-import Vista.MockVistaMain;
+import Controlador.MockVistaMain;
 
 public class MainTest {
 
