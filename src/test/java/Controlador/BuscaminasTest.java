@@ -15,18 +15,16 @@ import Modelo.ValorRandom;
 public class BuscaminasTest {
 
 	@Test
-	public void testMain() {
+	public void testJugar() {
 		MockView prueba = new MockView();
 		Buscaminas juego = new Buscaminas(prueba);
 		juego.jugar();
 		Tablero testeable = juego.getTablero();
-
-		assertEquals("Debe dar diez", 9, testeable.getNFilas());
-		assertEquals("Debe dar diez", 9, testeable.getNColumnas());
+		
+		assertEquals("Debe dar 9", 9, testeable.getNFilas()); // de 0 a 9 filas
+		assertEquals("Debe dar 9", 9, testeable.getNColumnas()); // de 0 a 9 columnas
 		assertEquals("Debe ser zero", 0, testeable.getDificultad());
 		assertTrue("Esta casilla se abre", testeable.getCasillas(0, 0).getAbierta());
-
-
 
 	}
 
