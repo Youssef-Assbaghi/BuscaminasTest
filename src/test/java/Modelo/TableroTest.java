@@ -22,7 +22,7 @@ public class TableroTest {
 		r = new ValorRandom();
 	}
 
-	@Test
+	//@Test
 	public void testGenerarTablero() { // Statement coverage && loop aniuat testing
 
 		// VALORES FRONTERA
@@ -229,7 +229,7 @@ public class TableroTest {
 
 	}
 
-	@Test
+	//@Test
 	public void testEsMina() { // Decision coverage, Condition coverage
 		for (int i = 0; i < 3; i++) {
 			tablero = new Tablero(i);
@@ -259,7 +259,7 @@ public class TableroTest {
 		assertFalse("Como es mina debe dar true", tablero.esMina(10, -1));
 	}
 
-	@Test
+	//@Test
 	public void testPonerMinas() { // Decision coverage, condition coverage, loop simple
 
 		int minasPuestas;
@@ -327,7 +327,7 @@ public class TableroTest {
 		assertEquals("Dificultad 0= 10 minas", 15, minasPuestas);
 	}
 
-	@Test
+	//@Test
 	public void testMockValorRandom() { // Mock del valor random para testear todos los casos de poner minas
 
 		for (int i = -6; i <= 5; i++) {
@@ -341,7 +341,7 @@ public class TableroTest {
 		}
 	}
 
-	@Test
+	//@Test
 	public void testMarcarCasilla() { // Condition coverage, Decision coverage.
 		int k;
 
@@ -562,10 +562,20 @@ public class TableroTest {
 		assertFalse("La casilla no se abre porque es mina", tablero.getCasillas(1, 0).getAbierta());
 		assertFalse("La casilla no se abre porque es mina", tablero.getCasillas(1, 1).getAbierta());
 		assertEquals(0, k);
-
+		
+		//PATH DONDE POS ES VALIDA ES PRIMER MOV ES BANDERA Y ES MINA
+		tablero = new Tablero(0);
+		tablero.getCasillas(0, 0).setEsMina(true);
+		tablero.getCasillas(0, 0).setBandera(true);
+		k = tablero.marcarCasilla(0, 0);
+		assertFalse("La casilla no se abre porque esa mina desaparece",tablero.getCasillas(0, 0).getAbierta());
+		
+		
+		
+		
 	}
 
-	@Test
+	//@Test
 	public void testSumaMinasAlrededor() { // DECISION AND CONDITION COVERAGE.
 
 		// Valores v�lidos [0,9], Qualquier valor no v�lido estara fuera del tablero de
@@ -707,7 +717,7 @@ public class TableroTest {
 		
 	}
 
-	@Test
+	//@Test
 	public void testPosicionValida() { // Decision coverage, Condition Coverage.
 		for (int i = 0; i < 3; i++) {
 			tablero = new Tablero(i);
@@ -756,7 +766,7 @@ public class TableroTest {
 
 	}
 
-	@Test
+	//@Test
 	public void testRestarMinasAlrededor() { // Decision coverage, condition coverage.
 
 		int fila = 5;
@@ -953,7 +963,7 @@ public class TableroTest {
 
 	}
 
-	@Test
+	//@Test
 	public void testCasillaCerrada() {
 
 		//Miramos casilla abierta
@@ -1033,7 +1043,7 @@ public class TableroTest {
 
 	}
 
-	@Test
+	//@Test
 	public void testPonerBandera() { // decision coverage condition coverage
 
 		assertFalse(tablero.getCasillas(1, 1).getBandera());
@@ -1104,7 +1114,7 @@ public class TableroTest {
 
 	}
 
-	@Test
+	//@Test
 	public void testGetTablero() { // Test getter para obtener la matriz de casillas
 		Casella[][] casillas = tablero.getTablero();
 
@@ -1119,7 +1129,7 @@ public class TableroTest {
 	
 	
 
-	@Test
+	//@Test
 	public void testNumCasillasCerradas() { // Test getter para obtener la matriz de casillas
 		
 		//Al inicializar el tablero de dificultad 0, tenemos 100 casillas cerradas.
